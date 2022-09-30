@@ -7,25 +7,36 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
-import uet.oop.bomberman.entities.Bomber;
+import uet.oop.bomberman.control.Move;
+import uet.oop.bomberman.entities.animal.Animal;
+import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Grass;
-import uet.oop.bomberman.entities.Wall;
+import uet.oop.bomberman.entities.block.Grass;
+import uet.oop.bomberman.entities.block.Wall;
+import uet.oop.bomberman.graphics.MapCreation;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.levels.Level1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class BombermanGame extends Application {
-    
-    public static final int WIDTH = 20;
+    public static int wait = 100000;
+    public static final int WIDTH = 25;
     public static final int HEIGHT = 15;
-    
+
+    public static int width = 0;
+    public static int height = 0;
+    public static int level = 1;
+    public Animal player;
+    public static final List<Entity> block = new ArrayList<>();
+    public static List<Entity> enemy = new ArrayList<>();
+
+    public static int[][] object_ids;
+
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<>();
-    private List<Entity> stillObjects = new ArrayList<>();
-
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -44,6 +55,27 @@ public class BombermanGame extends Application {
         // Create scene
         Scene scene = new Scene(root);
 
+        scene.setOnKeyPressed(event -> {
+            if (true)
+                switch (event.getCode()) {
+                    case UP:
+                        Move.up(player);
+                        break;
+                    case DOWN:
+                        Move.down(player);
+                        break;
+                    case LEFT:
+                        Move.left(player);
+                        break;
+                    case RIGHT:
+                        Move.right(player);
+                        break;
+//                    case SPACE:
+//                        Bomb.putBomb();
+//                        break;
+                }
+        });
+
         // Add scene to stage
         stage.setScene(scene);
         stage.show();
@@ -59,8 +91,7 @@ public class BombermanGame extends Application {
 
         createMap();
 
-        Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        entities.add(bomberman);
+        player = new Bomber(1, 1, Sprite.player_right.getFxImage());
     }
 
     public void createMap() {
@@ -73,18 +104,31 @@ public class BombermanGame extends Application {
                 else {
                     object = new Grass(i, j, Sprite.grass.getFxImage());
                 }
-                stillObjects.add(object);
+                block.add(object);
             }
         }
     }
 
+//    public void createMap() {
+//        new MapCreation("res/levels/Level1.txt");
+//    }
+
     public void update() {
-        entities.forEach(Entity::update);
+        block.forEach(Entity::update);
+        enemy.forEach(Entity::update);
+        player.update();
+
+        player.setCountToRun(player.getCountToRun() + 1);
+        if (player.getCountToRun() == 4) {
+            Move.checkRun(player);
+            player.setCountToRun(0);
+        }
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        stillObjects.forEach(g -> g.render(gc));
-        entities.forEach(g -> g.render(gc));
+        block.forEach(g -> g.render(gc));
+        enemy.forEach(g -> g.render(gc));
+        player.render(gc);
     }
 }
