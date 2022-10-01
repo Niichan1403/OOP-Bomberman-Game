@@ -14,8 +14,8 @@ public class Bomber extends Animal {
         super( x, y, img);
     }
 
-    public Bomber(int isMove, int swap, String direction, int count, int countToRun) {
-        super(isMove, swap, direction, count, countToRun);
+    public Bomber(int dist, int swap, String direction) {
+        super(dist, swap, direction);
     }
 
     @Override

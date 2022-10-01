@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.logging.Level;
 
 public class BombermanGame extends Application {
-    public static int wait = 100000;
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
 
@@ -32,7 +31,7 @@ public class BombermanGame extends Application {
     public static final List<Entity> block = new ArrayList<>();
     public static List<Entity> enemy = new ArrayList<>();
 
-    public static int[][] object_ids;
+    public static String[][] object_ids;
 
     private GraphicsContext gc;
     private Canvas canvas;
@@ -58,22 +57,44 @@ public class BombermanGame extends Application {
             if (true)
                 switch (event.getCode()) {
                     case UP:
-                        Move.up(player);
+                        player.up = true;
                         break;
                     case DOWN:
-                        Move.down(player);
+                        player.down = true;
                         break;
                     case LEFT:
-                        Move.left(player);
+                        player.left = true;
                         break;
                     case RIGHT:
-                        Move.right(player);
+                        player.right = true;
                         break;
 //                    case SPACE:
 //                        Bomb.putBomb();
 //                        break;
                 }
         });
+
+        scene.setOnKeyReleased(event -> {
+            if (true)
+                switch (event.getCode()) {
+                    case UP:
+                        player.up = false;
+                        break;
+                    case DOWN:
+                        player.down = false;
+                        break;
+                    case LEFT:
+                        player.left = false;
+                        break;
+                    case RIGHT:
+                        player.right = false;
+                        break;
+//                    case SPACE:
+//                        Bomb.putBomb();
+//                        break;
+                }
+        });
+
 
         // Add scene to stage
         stage.setScene(scene);
@@ -88,26 +109,17 @@ public class BombermanGame extends Application {
         };
         timer.start();
 
-            new CreateMap("res/levels/level1.txt");
+        new CreateMap("res/levels/level1.txt");
 
         player = new Bomber(1, 1, Sprite.player_right.getFxImage());
     }
-
-
-//    public void createMap() {
-//        new MapCreation("res/levels/Level1.txt");
-//    }
 
     public void update() {
         block.forEach(Entity::update);
         enemy.forEach(Entity::update);
         player.update();
 
-        player.setCountToRun(player.getCountToRun() + 1);
-        if (player.getCountToRun() == 4) {
-            Move.checkRun(player);
-            player.setCountToRun(0);
-        }
+        Move.checkRun(player);
     }
 
     public void render() {

@@ -1,70 +1,109 @@
 package uet.oop.bomberman.control;
 
 import uet.oop.bomberman.entities.animal.*;
+import uet.oop.bomberman.graphics.Sprite;
 
 public class Move {
     public static void checkRun(Animal animal) {
-        if (animal instanceof Bomber && animal.getCount() > 0){
-            setMovement(animal.getDirection(), animal, 4);
-            animal.setCount(animal.getCount() - 1);
+        if (animal instanceof Bomber){
+            setMovement(animal, 2);
         }
     }
 
-    private static void setMovement(String direction, Animal animal, int isMove) {
-        switch (direction) {
-            case "down":
-//                down_step(animal);
-                animal.setY(animal.getY() + isMove);
-                break;
-            case "up":
-                animal.setY(animal.getY() - isMove);
-                break;
-            case "left":
-                animal.setX(animal.getX() - isMove);
-                break;
-            case "right":
-                animal.setX(animal.getX() + isMove);
-                break;
+    private static void setMovement(Animal animal, int dist) {
+        int dx = 0, dy = 0;
+        if (animal.up){
+            upAnimation(animal);
+            dy = -dist;
+            animal.setY(animal.getY() + dy);
+        }
+        if (animal.down){
+            downAnimation(animal);
+            dy = dist;
+            animal.setY(animal.getY() + dy);
+        }
+        if (animal.left){
+            leftAnimation(animal);
+            dx = -dist;
+            animal.setX(animal.getX() + dx);
+        }
+        if (animal.right){
+            rightAnimation(animal);
+            dx = dist;
+            animal.setX(animal.getX() + dx);
         }
     }
 
-    public static void down(Animal animal) {
-        if (animal.getX() % 16 == 0 && animal.getY() % 16 == 0){
-            if (animal instanceof Bomber){
-                animal.setDirection("down");
-                animal.setCount(4);
-                checkRun(animal);
+    private static void upAnimation(Animal animal) {
+        if (animal instanceof Bomber && animal.getY() % 8 == 0){
+            if (animal.getSwap() == 1){
+                animal.setImg(Sprite.player_up.getFxImage());
+                animal.setSwap(2);
+            } else if (animal.getSwap() == 2){
+                animal.setImg(Sprite.player_up_1.getFxImage());
+                animal.setSwap(3);
+            } else if (animal.getSwap() == 3){
+                animal.setImg(Sprite.player_up.getFxImage());
+                animal.setSwap(4);
+            } else if (animal.getSwap() == 4){
+                animal.setImg(Sprite.player_up_2.getFxImage());
+                animal.setSwap(1);
             }
         }
     }
 
-    public static void up(Animal animal) {
-        if (animal.getX() % 16 == 0 && animal.getY() % 16 == 0){
-            if (animal instanceof Bomber){
-                animal.setDirection("up");
-                animal.setCount(4);
-                checkRun(animal);
+    private static void downAnimation(Animal animal) {
+        if (animal instanceof Bomber && animal.getY() % 8 == 0){
+            if (animal.getSwap() == 1){
+                animal.setImg(Sprite.player_down.getFxImage());
+                animal.setSwap(2);
+            } else if (animal.getSwap() == 2){
+                animal.setImg(Sprite.player_down_1.getFxImage());
+                animal.setSwap(3);
+            } else if (animal.getSwap() == 3){
+                animal.setImg(Sprite.player_down.getFxImage());
+                animal.setSwap(4);
+            } else if (animal.getSwap() == 4){
+                animal.setImg(Sprite.player_down_2.getFxImage());
+                animal.setSwap(1);
             }
         }
     }
 
-    public static void left(Animal animal) {
-        if (animal.getX() % 16 == 0 && animal.getY() % 16 == 0){
-            if (animal instanceof Bomber){
-                animal.setDirection("left");
-                animal.setCount(4);
-                checkRun(animal);
+    private static void leftAnimation(Animal animal) {
+        if (animal instanceof Bomber && animal.getX() % 8 == 0){
+            if (animal.getSwap() == 1){
+                animal.setImg(Sprite.player_left.getFxImage());
+                animal.setSwap(2);
+            } else if (animal.getSwap() == 2){
+                animal.setImg(Sprite.player_left_1.getFxImage());
+                animal.setSwap(3);
+            } else if (animal.getSwap() == 3){
+                animal.setImg(Sprite.player_left.getFxImage());
+                animal.setSwap(4);
+            } else if (animal.getSwap() == 4){
+                animal.setImg(Sprite.player_left_2.getFxImage());
+                animal.setSwap(1);
             }
         }
     }
 
-    public static void right(Animal animal) {
-        if (animal.getX() % 16 == 0 && animal.getY() % 16 == 0){
-            if (animal instanceof Bomber){
-                animal.setDirection("right");
-                animal.setCount(4);
-                checkRun(animal);
+    private static void rightAnimation(Animal animal) {
+        if (animal instanceof Bomber && animal.getX() % 8 == 0){
+            if (animal.getSwap() == 1){
+                animal.setImg(Sprite.player_right.getFxImage());
+                animal.setSwap(2);
+            } else if (animal.getSwap() == 2){
+                animal.setImg(Sprite.player_right_1.getFxImage());
+                animal.setSwap(3);
+            } else if (animal.getSwap() == 3){
+                animal.setImg(Sprite.player_right.getFxImage());
+                animal.setSwap(4);
+            } else if (animal.getSwap() == 4){
+                animal.setImg(Sprite.player_right_2.getFxImage());
+                animal.setSwap(1);
             }
         }
     }
+
 }

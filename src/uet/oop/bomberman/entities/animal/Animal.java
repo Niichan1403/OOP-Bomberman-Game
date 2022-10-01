@@ -4,35 +4,36 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
 
 public abstract class Animal extends Entity {
-    protected int isMove;
-    protected int swap;
-    protected String direction;
-    protected int count;
-    protected int countToRun;
-    protected boolean life;
+    protected int dist;             // distance in pixel
+    protected int swap = 1;             // animation swap
+    protected String direction;     // moving direction
+    protected boolean life;         // check if player is alive or dead
+
+    public boolean up;
+    public boolean down;
+    public boolean left;
+    public boolean right;
 
     public Animal(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
 
-    public Animal(int isMove, int swap, String direction, int count, int countToRun) {
-        this.isMove = isMove;
+    public Animal(int dist, int swap, String direction) {
+        this.dist = dist;
         this.swap = swap;
         this.direction = direction;
-        this.count = count;
-        this.countToRun = countToRun;
     }
 
     public Animal(boolean life) {
         this.life = life;
     }
 
-    public int getIsMove() {
-        return isMove;
+    public int getDist() {
+        return dist;
     }
 
-    public void setIsMove(int isMove) {
-        this.isMove = isMove;
+    public void setDist(int dist) {
+        this.dist = dist;
     }
 
     public int getSwap() {
@@ -49,22 +50,6 @@ public abstract class Animal extends Entity {
 
     public void setDirection(String direction) {
         this.direction = direction;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public int getCountToRun() {
-        return countToRun;
-    }
-
-    public void setCountToRun(int countToRun) {
-        this.countToRun = countToRun;
     }
 
     public boolean isLife() {

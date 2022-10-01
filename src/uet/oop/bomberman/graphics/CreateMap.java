@@ -26,6 +26,8 @@ public class CreateMap {
             width_ = Integer.parseInt(tokens.nextToken());
 
             while (sc.hasNextLine()) {
+                object_ids = new String[width_][height_];
+
                 for (int i = 0; i < height_; i++) {
                     String lineTile = sc.nextLine();
                     StringTokenizer tokenTile = new StringTokenizer(lineTile);
@@ -45,6 +47,7 @@ public class CreateMap {
                                 break;
                         }
                         block.add(ett);
+                        object_ids[j][i] = s;
                     }
                 }
             }
