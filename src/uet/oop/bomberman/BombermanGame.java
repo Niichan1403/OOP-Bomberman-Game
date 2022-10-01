@@ -13,9 +13,8 @@ import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.block.Grass;
 import uet.oop.bomberman.entities.block.Wall;
-import uet.oop.bomberman.graphics.MapCreation;
+import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.Sprite;
-import uet.oop.bomberman.levels.Level1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +22,12 @@ import java.util.logging.Level;
 
 public class BombermanGame extends Application {
     public static int wait = 100000;
-    public static final int WIDTH = 25;
-    public static final int HEIGHT = 15;
+    public static final int WIDTH = 31;
+    public static final int HEIGHT = 13;
 
-    public static int width = 0;
-    public static int height = 0;
-    public static int level = 1;
+    public static int width_ = 0;
+    public static int height_ = 0;
+    public static int level_ = 1;
     public Animal player;
     public static final List<Entity> block = new ArrayList<>();
     public static List<Entity> enemy = new ArrayList<>();
@@ -89,25 +88,11 @@ public class BombermanGame extends Application {
         };
         timer.start();
 
-        createMap();
+            new CreateMap("res/levels/level1.txt");
 
         player = new Bomber(1, 1, Sprite.player_right.getFxImage());
     }
 
-    public void createMap() {
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                Entity object;
-                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, Sprite.wall.getFxImage());
-                }
-                else {
-                    object = new Grass(i, j, Sprite.grass.getFxImage());
-                }
-                block.add(object);
-            }
-        }
-    }
 
 //    public void createMap() {
 //        new MapCreation("res/levels/Level1.txt");
