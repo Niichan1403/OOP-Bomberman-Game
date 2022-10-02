@@ -7,7 +7,5 @@ import java.util.Objects;
 import static uet.oop.bomberman.BombermanGame.object_ids;
 
 public class Blocked {
-    public static boolean collision(Animal animal){
-        if (){}
-    }
+
 }
