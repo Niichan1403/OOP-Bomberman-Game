@@ -10,6 +10,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import uet.oop.bomberman.graphics.CreateMap;
+import uet.oop.bomberman.graphics.LayoutGame;
 
 import static uet.oop.bomberman.BombermanGame.WidthView;
 import static uet.oop.bomberman.BombermanGame.author;
@@ -75,6 +76,7 @@ public class Menu {
 
         rect[0].setOnMouseClicked(event -> {
             new CreateMap("res/levels/level1.txt");
+            LayoutGame.createLayout(root);
             author.setX(-1000);
             author.setY(-1000);
             layoutMenu.setTranslateX(-1000);

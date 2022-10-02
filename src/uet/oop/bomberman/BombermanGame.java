@@ -124,8 +124,6 @@ public class BombermanGame extends Application {
         };
         timer.start();
 
-        new CreateMap("res/levels/level1.txt");
-
         player = new Bomber(1, 1, Sprite.player_right.getFxImage());
     }
 
