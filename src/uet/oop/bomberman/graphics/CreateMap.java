@@ -26,7 +26,8 @@ public class CreateMap {
             width_ = Integer.parseInt(tokens.nextToken());
 
             while (sc.hasNextLine()) {
-                object_ids = new String[width_][height_];
+                object_ids = new Entity[width_][height_];
+                killed_list = new String[width_][height_];
 
                 for (int i = 0; i < height_; i++) {
                     String lineTile = sc.nextLine();
@@ -47,7 +48,7 @@ public class CreateMap {
                                 break;
                         }
                         block.add(ett);
-                        object_ids[j][i] = s;
+                        object_ids[j][i] = ett;
                     }
                 }
             }

@@ -3,32 +3,47 @@ package uet.oop.bomberman.control;
 import uet.oop.bomberman.entities.animal.*;
 import uet.oop.bomberman.graphics.Sprite;
 
+import static uet.oop.bomberman.control.Collision.*;
+
 public class Move {
-    public static void checkRun(Animal animal) {
+    public static int dx = 0;
+    public static int dy = 0;
+    public static boolean blocked = false;
+
+    public static void checkRun(Animal animal, int dist) {
         if (animal instanceof Bomber){
-            setMovement(animal, 2);
+            setMovement(animal, dist);
         }
     }
 
     private static void setMovement(Animal animal, int dist) {
-        int dx = 0, dy = 0;
         if (animal.up){
             upAnimation(animal);
+            if (blockedUp(animal)) {dist = 0;}
             dy = -dist;
             animal.setY(animal.getY() + dy);
         }
         if (animal.down){
             downAnimation(animal);
+            if (blockedDown(animal)) {
+                dist = 0;
+            }
             dy = dist;
             animal.setY(animal.getY() + dy);
         }
         if (animal.left){
             leftAnimation(animal);
+            if (blockedLeft(animal)) {
+                dist = 0;
+            }
             dx = -dist;
             animal.setX(animal.getX() + dx);
         }
         if (animal.right){
             rightAnimation(animal);
+            if (blockedRight(animal)) {
+                dist = 0;
+            }
             dx = dist;
             animal.setX(animal.getX() + dx);
         }

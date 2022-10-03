@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
 
 public abstract class Animal extends Entity {
-    protected int dist;             // distance in pixel
+    public int dist = 1;             // distance in pixel
     protected int swap = 1;             // animation swap
     protected String direction;     // moving direction
     protected boolean life;         // check if player is alive or dead

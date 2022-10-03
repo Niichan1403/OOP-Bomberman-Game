@@ -36,7 +36,8 @@ public class BombermanGame extends Application {
     public static final List<Entity> block = new ArrayList<>();
     public static List<Entity> enemy = new ArrayList<>();
 
-    public static String[][] object_ids;
+    public static Entity[][] object_ids;
+    public static String[][] killed_list;
 
     private GraphicsContext gc;
     private Canvas canvas;
@@ -132,7 +133,7 @@ public class BombermanGame extends Application {
         enemy.forEach(Entity::update);
         player.update();
 
-        Move.checkRun(player);
+        Move.checkRun(player, player.getDist());
     }
 
     public void render() {
