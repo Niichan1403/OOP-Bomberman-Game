@@ -13,6 +13,9 @@ import javafx.scene.shape.Rectangle;
 
 import java.awt.*;
 
+import static uet.oop.bomberman.BombermanGame.level_;
+import static uet.oop.bomberman.BombermanGame.running;
+
 public class LayoutGame {
     public static ImageView status;
     public static ImageView bom[] = new ImageView[3];
@@ -22,16 +25,17 @@ public class LayoutGame {
     public static ImageView bomberImage,ballomImage,onealImage;
     public static Text level,runTime,bomberman,quit;
     public static Text objectText[] = new Text[3];
+    public static int timeNumber = 120;
 
     public static Rectangle rect_[] = new Rectangle[6];
     public static void createLayout(Group root) {
-        level = new Text("Level: ");
+        level = new Text("Level: " + level_);
         level.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,20));
         level.setFill(Color.WHITE);
         level.setX(400);
         level.setY(35);
 
-        runTime = new Text("Times: ");
+        runTime = new Text("Times: " + timeNumber);
         runTime.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,20));
         runTime.setFill(Color.WHITE);
         runTime.setX(650);
@@ -212,6 +216,17 @@ public class LayoutGame {
             rect_bom3[i].setStrokeWidth(3);
         }
 
+        status.setOnMouseClicked(mouseEvent -> {
+            if(running) {
+                Image playGame = new Image("images/playGame.png");
+                status.setImage(playGame);
+                running = false;
+            }
+            else {
+                status.setImage(pauseGame);
+                running = true;
+            }
+        });
 
         Pane pane = new Pane();
         pane.getChildren().addAll(bomberman,level,runTime,status,rect_[1],rect_[2],rect_[3],rect_[0],quit,bomberImage,ballomImage,onealImage,rect_bom1[0],rect_bom1[1],rect_bom1[2],rect_bom2[0],rect_bom2[1],rect_bom2[2],rect_bom3[0],rect_bom3[1],rect_bom3[2],bom[0],bom[1],bom[2],objectText[0],objectText[1],objectText[2]);

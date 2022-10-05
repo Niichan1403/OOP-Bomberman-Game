@@ -24,15 +24,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+import static uet.oop.bomberman.graphics.LayoutGame.runTime;
+import static uet.oop.bomberman.graphics.LayoutGame.timeNumber;
+
 public class BombermanGame extends Application {
     public static final int WidthView = 1140;
+    public static boolean running;
+    private long timeLast;
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
 
     public static int width_ = 0;
     public static int height_ = 0;
     public static int level_ = 1;
-    public Animal player;
+    public static Animal player;
     public static final List<Entity> block = new ArrayList<>();
     public static List<Entity> enemy = new ArrayList<>();
 
@@ -119,13 +124,16 @@ public class BombermanGame extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                render();
-                update();
+                if(running) {
+                    update();
+                    render();
+                    time();
+                }
             }
         };
         timer.start();
-
         player = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        timeLast = System.currentTimeMillis();
     }
 
     public void update() {
@@ -141,5 +149,18 @@ public class BombermanGame extends Application {
         block.forEach(g -> g.render(gc));
         enemy.forEach(g -> g.render(gc));
         player.render(gc);
+    }
+
+    public void time() {
+        long now = System.currentTimeMillis();
+        if(now - timeLast >= 1000) {
+            timeLast = System.currentTimeMillis();
+            runTime.setText("Times: " + timeNumber);
+            timeNumber--;
+            if(timeNumber < 0)
+            {
+                player.setLife(false);
+            }
+        }
     }
 }

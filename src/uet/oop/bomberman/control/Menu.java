@@ -11,14 +11,15 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.LayoutGame;
+import uet.oop.bomberman.levels.Level1;
 
-import static uet.oop.bomberman.BombermanGame.WidthView;
-import static uet.oop.bomberman.BombermanGame.author;
+import static uet.oop.bomberman.BombermanGame.*;
 
 public class Menu {
     private static Text newGameText, exitText, optionsText;
     private static Text item[] = new Text[3];
     private static Rectangle rect[] = new Rectangle[3];
+    public static Pane layoutMenu;
 
 
     public static void creatMenu(Group root) {
@@ -67,7 +68,7 @@ public class Menu {
             rect[i].setStrokeWidth(3);
         }
 
-        Pane layoutMenu = new Pane();
+        layoutMenu = new Pane();
         layoutMenu.getChildren().addAll(rect[0],rect[1],rect[2],item[0],item[1],item[2]);
         layoutMenu.setMinSize(500,500);
         layoutMenu.setMaxSize(600,600);
@@ -75,12 +76,12 @@ public class Menu {
 
 
         rect[0].setOnMouseClicked(event -> {
-            new CreateMap("res/levels/level1.txt");
-            LayoutGame.createLayout(root);
             author.setX(-1000);
             author.setY(-1000);
             layoutMenu.setTranslateX(-1000);
             layoutMenu.setTranslateY(-1000);
+            running = true;
+            new Level1(root);
         });
 
         for(Rectangle Rect:rect) {
