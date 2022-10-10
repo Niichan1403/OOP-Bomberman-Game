@@ -21,35 +21,37 @@ public class Move {
     }
 
     private static void setMovement(Animal animal, int dist) {
-        if (animal.up){
-            upAnimation(animal);
-            if (blockedUp(animal)) {dist = 0;}
-            dy = -dist;
-            animal.setY(animal.getY() + dy);
-        }
-        else if (animal.down){
-            downAnimation(animal);
-            if (blockedDown(animal)) {
-                dist = 0;
+        if (animal.isLife()) {
+            if (animal.up){
+                upAnimation(animal);
+                if (blockedUp(animal)) {dist = 0;}
+                dy = -dist;
+                animal.setY(animal.getY() + dy);
             }
-            dy = dist;
-            animal.setY(animal.getY() + dy);
-        }
-        else if (animal.left){
-            leftAnimation(animal);
-            if (blockedLeft(animal)) {
-                dist = 0;
+            else if (animal.down){
+                downAnimation(animal);
+                if (blockedDown(animal)) {
+                    dist = 0;
+                }
+                dy = dist;
+                animal.setY(animal.getY() + dy);
             }
-            dx = -dist;
-            animal.setX(animal.getX() + dx);
-        }
-        else if (animal.right){
-            rightAnimation(animal);
-            if (blockedRight(animal)) {
-                dist = 0;
+            else if (animal.left){
+                leftAnimation(animal);
+                if (blockedLeft(animal)) {
+                    dist = 0;
+                }
+                dx = -dist;
+                animal.setX(animal.getX() + dx);
             }
-            dx = dist;
-            animal.setX(animal.getX() + dx);
+            else if (animal.right){
+                rightAnimation(animal);
+                if (blockedRight(animal)) {
+                    dist = 0;
+                }
+                dx = dist;
+                animal.setX(animal.getX() + dx);
+            }
         }
     }
 
@@ -188,7 +190,4 @@ public class Move {
             }
         }
     }
-
-
-
 }

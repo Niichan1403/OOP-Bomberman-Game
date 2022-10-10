@@ -46,9 +46,10 @@ public class Collision {
         }
 
         if(entity instanceof Ballom) {
-            if(yt % 32 == 0)
-            return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
-                    object_ids[xt / 32][yt / 32 - 1] instanceof Brick;
+            if(yt % 32 == 0) {
+                return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick;
+            }
         }
         return false;
     }
@@ -76,9 +77,10 @@ public class Collision {
         }
 
         if(entity instanceof Ballom) {
-            if(yt % 32 == 0)
-            return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
-                    object_ids[xt / 32][yt / 32 + 1] instanceof Brick;
+            if (yt % 32 == 0) {
+                return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick;
+            }
         }
         return false;
     }
@@ -91,7 +93,7 @@ public class Collision {
            if (xt % 32 == 0 && yt % 32 == 0) {
                return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
                        object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
-           } else if (xt % 32 == 0 && yt % 32 != 0) {
+           } else if (xt % 32 == 0) {
                while (yt % 32 != 0) {
                    yt--;
                }
@@ -106,11 +108,12 @@ public class Collision {
        }
 
        if(entity instanceof Ballom) {
-           if(xt % 32 == 0)
-           return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
-                   object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
+           if(xt % 32 == 0) {
+               return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
+                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
+           }
        }
-        return false;
+       return false;
     }
 
     public static boolean blockedRight(Entity entity) {
@@ -136,27 +139,21 @@ public class Collision {
        }
 
        if(entity instanceof Ballom) {
-           if(xt % 32 == 0)
-           return object_ids[xt / 32 + 1][yt / 32] instanceof Wall ||
-                   object_ids[xt / 32 + 1][yt / 32] instanceof Brick;
+           if(xt % 32 == 0) {
+               return object_ids[xt / 32 + 1][yt / 32] instanceof Wall ||
+                       object_ids[xt / 32 + 1][yt / 32] instanceof Brick;
+           }
        }
-        return false;
+       return false;
     }
 
-
-//    public static boolean checkCollision(Animal animal) {
-////        for (Entity entity : block) {
-//            int curr_x = animal.getX() / 32;
-//            int curr_y = animal.getY() / 32;
-//
-//            if ((entity instanceof Wall || entity instanceof Brick) &&
-//                    collision(animal.getX(), animal.getY(), 32, 32,
-//                            entity.getX(), entity.getY(), 32, 32)) {
-//                unstuck(animal);
-//                return true;
-//            }
-//            return false;
-//    }
+    public static void checkCollisionWithEnemy() {
+        for (Animal animal : enemy) {
+            if (collision(player.getX(), player.getY(), 24, 32, animal.getX(), animal.getY(), 32, 32)) {
+                player.setLife(false);
+            }
+        }
+    }
 
     public static void unstuck(Animal animal) {
         if (animal.right) {

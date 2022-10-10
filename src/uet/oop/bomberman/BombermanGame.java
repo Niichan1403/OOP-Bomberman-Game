@@ -14,6 +14,7 @@ import uet.oop.bomberman.control.Move;
 import uet.oop.bomberman.entities.animal.Animal;
 import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.block.Bomb;
 import uet.oop.bomberman.entities.block.Grass;
 import uet.oop.bomberman.entities.block.Wall;
 import uet.oop.bomberman.graphics.CreateMap;
@@ -30,21 +31,20 @@ import static uet.oop.bomberman.graphics.LayoutGame.timeNumber;
 public class BombermanGame extends Application {
     public static Image authorImage;
     public static final int WidthView = 1140;
-    public static boolean running;
+    public static boolean running;      // check if game is running
     private long timeLast;
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
 
-    public static int width_ = 0;
-    public static int height_ = 0;
-    public static int level_ = 1;
+    public static int width_ = 0;   // board's width
+    public static int height_ = 0;  // board's height
+    public static int level_ = 1;   // board's level
     public static Animal player;
-    public static final List<Entity> block = new ArrayList<>();
-    public static List<Animal> enemy = new ArrayList<>();
+    public static final List<Entity> block = new ArrayList<>(); // list of idle object
+    public static List<Animal> enemy = new ArrayList<>(); // list of enemy
 
-    public static Entity[][] object_ids;
-    public static String[][] killed_list;
-    public static String [][] idObjects;
+    public static Entity[][] object_ids; // store (x, y) coordinate of objects on game board
+    public static String[][] killed_list; // store (x, y) coordinate of killed objects on game board
 
     private GraphicsContext gc;
     private Canvas canvas;
@@ -73,8 +73,9 @@ public class BombermanGame extends Application {
         // Create scene
         Scene scene = new Scene(root,1140,455);
 
+        // Input handling
         scene.setOnKeyPressed(event -> {
-            if (true)
+//            if (player.isLife())
                 switch (event.getCode()) {
                     case UP:
                         player.up = true;
@@ -88,14 +89,14 @@ public class BombermanGame extends Application {
                     case RIGHT:
                         player.right = true;
                         break;
-//                    case SPACE:
-//                        Bomb.putBomb();
-//                        break;
+                    case SPACE:
+                        Bomb.putBomb();
+                        break;
                 }
         });
 
         scene.setOnKeyReleased(event -> {
-            if (true)
+//            if (player.isLife())
                 switch (event.getCode()) {
                     case UP:
                         player.up = false;
@@ -109,9 +110,9 @@ public class BombermanGame extends Application {
                     case RIGHT:
                         player.right = false;
                         break;
-//                    case SPACE:
-//                        Bomb.putBomb();
-//                        break;
+                    case SPACE:
+                        Bomb.putBomb();
+                        break;
                 }
         });
 
@@ -123,6 +124,7 @@ public class BombermanGame extends Application {
         stage.setScene(scene);
         stage.show();
 
+        // Game loop
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -134,6 +136,7 @@ public class BombermanGame extends Application {
             }
         };
         timer.start();
+
         player = new Bomber(1, 1, Sprite.player_right.getFxImage());
         timeLast = System.currentTimeMillis();
     }

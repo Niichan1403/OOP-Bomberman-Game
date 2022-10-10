@@ -10,6 +10,7 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.BombermanGame.author;
+import static uet.oop.bomberman.control.Collision.checkCollisionWithEnemy;
 import static uet.oop.bomberman.control.Menu.layoutMenu;
 
 public class Bomber extends Animal {
@@ -25,8 +26,8 @@ public class Bomber extends Animal {
         super(dist, swap, direction);
     }
 
-    private void killBomber(Animal animal) {
-        if(frameKill % 10 == 0) {
+    private void killBomber() {
+        if(frameKill % 16 == 0) {
             if(swapKill == 1) {
                 player.setImg(Sprite.player_dead1.getFxImage());
             }
@@ -48,9 +49,10 @@ public class Bomber extends Animal {
 
     @Override
     public void update() {
+        checkCollisionWithEnemy();
         if(!player.isLife()) {
             frameKill++;
-            killBomber(player);
+            killBomber();
         }
     }
 }
