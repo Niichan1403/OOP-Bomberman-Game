@@ -8,7 +8,7 @@ public abstract class Animal extends Entity {
     protected int swap = 1;             // animation swap
     protected String direction;     // moving direction
     protected boolean life;         // check if player is alive or dead
-
+    protected int countToRun = 0;
     public boolean up;
     public boolean down;
     public boolean left;
@@ -58,6 +58,14 @@ public abstract class Animal extends Entity {
 
     public void setLife(boolean life) {
         this.life = life;
+    }
+
+    public void setCountToRun(int countToRun) {
+        this.countToRun = countToRun;
+    }
+
+    public int getCountToRun() {
+        return countToRun;
     }
 
     public Animal() {}

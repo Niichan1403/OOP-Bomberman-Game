@@ -2,6 +2,7 @@ package uet.oop.bomberman.control;
 
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.animal.Animal;
+import uet.oop.bomberman.entities.animal.Ballom;
 import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.entities.block.*;
 
@@ -26,18 +27,26 @@ public class Collision {
         int xt = entity.getX();
         int yt = entity.getY();
 
-        if (xt % 32 == 0 && yt % 32 == 0) {
-            return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
-                    object_ids[xt / 32][yt / 32 - 1] instanceof Brick;
-        } else if (xt % 32 != 0 && yt % 32 == 0) {
-            while (xt % 32 != 0) {
-                xt--;
+        if(entity instanceof Bomber) {
+            if (xt % 32 == 0 && yt % 32 == 0) {
+                return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick;
+            } else if (xt % 32 != 0 && yt % 32 == 0) {
+                while (xt % 32 != 0) {
+                    xt--;
+                }
+                if (object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick) {
+                    return true;
+                }
+                xt += 32;
+                return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick;
             }
-            if (object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
-                    object_ids[xt / 32][yt / 32 - 1] instanceof Brick) {
-                return true;
-            }
-            xt += 32;
+        }
+
+        if(entity instanceof Ballom) {
+            if(yt % 32 == 0)
             return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
                     object_ids[xt / 32][yt / 32 - 1] instanceof Brick;
         }
@@ -48,18 +57,26 @@ public class Collision {
         int xt = entity.getX();
         int yt = entity.getY();
 
-        if (xt % 32 == 0 && yt % 32 == 0) {
-            return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
-                    object_ids[xt / 32][yt / 32 + 1] instanceof Brick;
-        } else if (xt % 32 != 0 && yt % 32 == 0) {
-            while (xt % 32 != 0) {
-                xt--;
+        if(entity instanceof Bomber) {
+            if (xt % 32 == 0 && yt % 32 == 0) {
+                return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick;
+            } else if (xt % 32 != 0 && yt % 32 == 0) {
+                while (xt % 32 != 0) {
+                    xt--;
+                }
+                if (object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick) {
+                    return true;
+                }
+                xt += 32;
+                return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick;
             }
-            if (object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
-                    object_ids[xt / 32][yt / 32 + 1] instanceof Brick) {
-                return true;
-            }
-            xt += 32;
+        }
+
+        if(entity instanceof Ballom) {
+            if(yt % 32 == 0)
             return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
                     object_ids[xt / 32][yt / 32 + 1] instanceof Brick;
         }
@@ -70,21 +87,29 @@ public class Collision {
         int xt = entity.getX();
         int yt = entity.getY();
 
-        if (xt % 32 == 0 && yt % 32 == 0) {
-            return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
-                    object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
-        } else if (xt % 32 == 0 && yt % 32 != 0) {
-            while (yt % 32 != 0) {
-                yt--;
-            }
-            if (object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
-                    object_ids[xt / 32 - 1][yt / 32] instanceof Brick) {
-                return true;
-            }
-            yt += 32;
-            return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
-                    object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
-        }
+       if(entity instanceof Bomber) {
+           if (xt % 32 == 0 && yt % 32 == 0) {
+               return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
+                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
+           } else if (xt % 32 == 0 && yt % 32 != 0) {
+               while (yt % 32 != 0) {
+                   yt--;
+               }
+               if (object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
+                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick) {
+                   return true;
+               }
+               yt += 32;
+               return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
+                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
+           }
+       }
+
+       if(entity instanceof Ballom) {
+           if(xt % 32 == 0)
+           return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
+                   object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
+       }
         return false;
     }
 
@@ -92,21 +117,29 @@ public class Collision {
         int xt = entity.getX();
         int yt = entity.getY();
 
-        if (xt % 32 == 8 && yt % 32 == 0) {
-            return object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Wall ||
-                    object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick;
-        } else if (xt % 32 == 8 && yt % 32 != 0) {
-            while (yt % 32 != 0) {
-                yt--;
-            }
-            if (object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Wall ||
-                    object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick) {
-                return true;
-            }
-            yt += 32;
-            return object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Wall ||
-                    object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick;
-            }
+       if(entity instanceof Bomber) {
+           if (xt % 32 == 8 && yt % 32 == 0) {
+               return object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Wall ||
+                       object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick;
+           } else if (xt % 32 == 8 && yt % 32 != 0) {
+               while (yt % 32 != 0) {
+                   yt--;
+               }
+               if (object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Wall ||
+                       object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick) {
+                   return true;
+               }
+               yt += 32;
+               return object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Wall ||
+                       object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick;
+           }
+       }
+
+       if(entity instanceof Ballom) {
+           if(xt % 32 == 0)
+           return object_ids[xt / 32 + 1][yt / 32] instanceof Wall ||
+                   object_ids[xt / 32 + 1][yt / 32] instanceof Brick;
+       }
         return false;
     }
 

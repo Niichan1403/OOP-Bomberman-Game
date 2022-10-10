@@ -33,41 +33,41 @@ public class LayoutGame {
         level.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,20));
         level.setFill(Color.WHITE);
         level.setX(400);
-        level.setY(35);
+        level.setY(28);
 
         runTime = new Text("Times: " + timeNumber);
         runTime.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,20));
         runTime.setFill(Color.WHITE);
         runTime.setX(650);
-        runTime.setY(35);
+        runTime.setY(28);
 
         bomberman = new Text("Bomberman Game ");
         bomberman.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,20));
         bomberman.setFill(Color.WHITE);
         bomberman.setX(15);
-        bomberman.setY(35);
+        bomberman.setY(28);
 
         quit = new Text("Quit!");
         quit.setX(1036);
-        quit.setY(458);
-        quit.setFont(Font.font("Arial",FontWeight.BOLD,FontPosture.REGULAR,23));
+        quit.setY(436);
+        quit.setFont(Font.font("Arial",FontWeight.BOLD,FontPosture.REGULAR,22));
         quit.setFill(Color.rgb(75,75,75));
 
         for(int i = 0; i < 3; i++) {
             if(i == 0) {
                 objectText[i] = new Text( "Bomber");
                 objectText[i].setX(1010);
-                objectText[i].setY(165);
+                objectText[i].setY(145);
             }
             else if(i == 1) {
                 objectText[i] = new Text("Ballom");
                 objectText[i].setX(1013);
-                objectText[i].setY(285);
+                objectText[i].setY(265);
             }
             else {
                 objectText[i] = new Text("Oneal");
                 objectText[i].setX(1015);
-                objectText[i].setY(405);
+                objectText[i].setY(385);
             }
             objectText[i].setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,13));
             objectText[i].setFill(Color.rgb(75,75,75));
@@ -78,16 +78,16 @@ public class LayoutGame {
         Image pauseGame = new Image("images/pauseGame.png");
         status = new ImageView(pauseGame);
         status.setX(800);
-        status.setY(5);
-        status.setScaleX(0.55);
-        status.setScaleY(0.55);
+        status.setY(-5);
+        status.setScaleX(0.54);
+        status.setScaleY(0.54);
 
         rect_[0] = new Rectangle();
         rect_[0].setWidth(100);
-        rect_[0].setHeight(30);
+        rect_[0].setHeight(28);
         rect_[0].setFill(Color.rgb(220,220,220));
         rect_[0].setX(1013);
-        rect_[0].setY(435);
+        rect_[0].setY(415);
         rect_[0].setStroke(Color.rgb(105,105,105));
         rect_[0].setStrokeWidth(2);
         rect_[0].setArcWidth(5);
@@ -96,13 +96,13 @@ public class LayoutGame {
         for(int i=1;i<=3;i++) {
             rect_[i] = new Rectangle();
             if(i == 1) {
-                rect_[i].setY(80);
+                rect_[i].setY(60);
             }
             else if(i == 2) {
-                rect_[i].setY(200);
+                rect_[i].setY(180);
             }
             else {
-                rect_[i].setY(320);
+                rect_[i].setY(300);
             }
 
             rect_[i].setWidth(120);
@@ -118,17 +118,23 @@ public class LayoutGame {
         Image bomberImage_ = new Image("images/player.png");
         bomberImage = new ImageView(bomberImage_);
         bomberImage.setX(1010);
-        bomberImage.setY(90);
+        bomberImage.setY(70);
+        bomberImage.setScaleX(0.85);
+        bomberImage.setScaleY(0.85);
 
         Image ballImage_ = new Image("images/ballom1.png");
         ballomImage = new ImageView(ballImage_);
         ballomImage.setX(1005);
-        ballomImage.setY(215);
+        ballomImage.setY(195);
+        ballomImage.setScaleX(0.85);
+        ballomImage.setScaleY(0.85);
 
         Image onealImage_ = new Image("images/oneal.png");
         onealImage = new ImageView(onealImage_);
         onealImage.setX(1005);
-        onealImage.setY(336);
+        onealImage.setY(316);
+        onealImage.setScaleX(0.85);
+        onealImage.setScaleY(0.85);
 
 
 
@@ -140,26 +146,26 @@ public class LayoutGame {
             bom[i] = new ImageView(bomImage);
             bom[i].setX(1060);
             if(i == 0) {
-                bom[i].setY(73);
+                bom[i].setY(53);
             }
             else if(i == 1) {
-                bom[i].setY(193);
+                bom[i].setY(173);
             }
             else {
-                bom[i].setY(313);
+                bom[i].setY(293);
             }
         }
 
         for(int i=0;i<3;i++) {
             rect_bom1[i] = new Rectangle();
             if(i == 0) {
-                rect_bom1[i].setY(87);
+                rect_bom1[i].setY(67);
             }
             else if(i == 1) {
-                rect_bom1[i].setY(120);
+                rect_bom1[i].setY(100);
             }
             else {
-                rect_bom1[i].setY(152);
+                rect_bom1[i].setY(132);
             }
 
             rect_bom1[i].setWidth(50);
@@ -175,13 +181,13 @@ public class LayoutGame {
         for(int i=0;i<3;i++) {
             rect_bom2[i] = new Rectangle();
             if(i == 0) {
-                rect_bom2[i].setY(207);
+                rect_bom2[i].setY(187);
             }
             else if(i == 1) {
-                rect_bom2[i].setY(240);
+                rect_bom2[i].setY(220);
             }
             else {
-                rect_bom2[i].setY(272);
+                rect_bom2[i].setY(252);
             }
 
             rect_bom2[i].setWidth(50);
@@ -197,13 +203,13 @@ public class LayoutGame {
         for(int i=0;i<3;i++) {
             rect_bom3[i] = new Rectangle();
             if(i == 0) {
-                rect_bom3[i].setY(327);
+                rect_bom3[i].setY(307);
             }
             else if(i == 1) {
-                rect_bom3[i].setY(360);
+                rect_bom3[i].setY(340);
             }
             else {
-                rect_bom3[i].setY(392);
+                rect_bom3[i].setY(372);
             }
 
             rect_bom3[i].setWidth(50);
@@ -230,8 +236,8 @@ public class LayoutGame {
 
         Pane pane = new Pane();
         pane.getChildren().addAll(bomberman,level,runTime,status,rect_[1],rect_[2],rect_[3],rect_[0],quit,bomberImage,ballomImage,onealImage,rect_bom1[0],rect_bom1[1],rect_bom1[2],rect_bom2[0],rect_bom2[1],rect_bom2[2],rect_bom3[0],rect_bom3[1],rect_bom3[2],bom[0],bom[1],bom[2],objectText[0],objectText[1],objectText[2]);
-        pane.setMinSize(1140,60 );
-        pane.setMaxSize(1140, 60);
+        pane.setMinSize(1140,40 );
+        pane.setMaxSize(1140, 40);
         pane.setStyle("-fx-background-color: #353535");
         root.getChildren().add(pane);
 

@@ -28,6 +28,7 @@ import static uet.oop.bomberman.graphics.LayoutGame.runTime;
 import static uet.oop.bomberman.graphics.LayoutGame.timeNumber;
 
 public class BombermanGame extends Application {
+    public static Image authorImage;
     public static final int WidthView = 1140;
     public static boolean running;
     private long timeLast;
@@ -39,10 +40,11 @@ public class BombermanGame extends Application {
     public static int level_ = 1;
     public static Animal player;
     public static final List<Entity> block = new ArrayList<>();
-    public static List<Entity> enemy = new ArrayList<>();
+    public static List<Animal> enemy = new ArrayList<>();
 
     public static Entity[][] object_ids;
     public static String[][] killed_list;
+    public static String [][] idObjects;
 
     private GraphicsContext gc;
     private Canvas canvas;
@@ -57,8 +59,8 @@ public class BombermanGame extends Application {
         // Create Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
-        canvas.setTranslateY(60);
-        Image authorImage = new Image("images/menu0.png");
+        canvas.setTranslateY(40);
+        authorImage = new Image("images/menu0.png");
         author = new ImageView(authorImage);
         author.setX(0);
         author.setY(0);
@@ -69,7 +71,7 @@ public class BombermanGame extends Application {
 
 
         // Create scene
-        Scene scene = new Scene(root,1140,475);
+        Scene scene = new Scene(root,1140,455);
 
         scene.setOnKeyPressed(event -> {
             if (true)
@@ -142,6 +144,14 @@ public class BombermanGame extends Application {
         player.update();
 
         Move.checkRun(player, player.getDist());
+
+        for (Animal a : enemy) {
+            a.setCountToRun(a.getCountToRun() + 1);
+            if (a.getCountToRun() == 8) {
+                Move.checkRun(a,4);
+                a.setCountToRun(0);
+            }
+        }
     }
 
     public void render() {

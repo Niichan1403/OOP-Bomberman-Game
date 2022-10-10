@@ -14,6 +14,10 @@ public class Move {
         if (animal instanceof Bomber){
             setMovement(animal, dist);
         }
+
+        if(animal instanceof Ballom){
+            setMovement(animal, dist);
+        }
     }
 
     private static void setMovement(Animal animal, int dist) {
@@ -23,7 +27,7 @@ public class Move {
             dy = -dist;
             animal.setY(animal.getY() + dy);
         }
-        if (animal.down){
+        else if (animal.down){
             downAnimation(animal);
             if (blockedDown(animal)) {
                 dist = 0;
@@ -31,7 +35,7 @@ public class Move {
             dy = dist;
             animal.setY(animal.getY() + dy);
         }
-        if (animal.left){
+        else if (animal.left){
             leftAnimation(animal);
             if (blockedLeft(animal)) {
                 dist = 0;
@@ -39,7 +43,7 @@ public class Move {
             dx = -dist;
             animal.setX(animal.getX() + dx);
         }
-        if (animal.right){
+        else if (animal.right){
             rightAnimation(animal);
             if (blockedRight(animal)) {
                 dist = 0;
@@ -65,6 +69,22 @@ public class Move {
                 animal.setSwap(1);
             }
         }
+
+        if(animal instanceof Ballom && animal.getY() % 8 == 0) {
+            if(animal.getSwap() == 1) {
+                animal.setImg(Sprite.balloom_left1.getFxImage());
+                animal.setSwap(2);
+            } else if(animal.getSwap() == 2) {
+                animal.setImg(Sprite.balloom_left2.getFxImage());
+                animal.setSwap(3);
+            } else if(animal.getSwap() == 3) {
+                animal.setImg(Sprite.balloom_left3.getFxImage());
+                animal.setSwap(4);
+            } else if(animal.getSwap() == 4) {
+                animal.setImg(Sprite.balloom_left2.getFxImage());
+                animal.setSwap(1);
+            }
+        }
     }
 
     private static void downAnimation(Animal animal) {
@@ -80,6 +100,22 @@ public class Move {
                 animal.setSwap(4);
             } else if (animal.getSwap() == 4){
                 animal.setImg(Sprite.player_down_2.getFxImage());
+                animal.setSwap(1);
+            }
+        }
+
+        if(animal instanceof Ballom && animal.getY() % 8 == 0) {
+            if(animal.getSwap() == 1) {
+                animal.setImg(Sprite.balloom_right1.getFxImage());
+                animal.setSwap(2);
+            } else if(animal.getSwap() == 2) {
+                animal.setImg(Sprite.balloom_right2.getFxImage());
+                animal.setSwap(3);
+            } else if(animal.getSwap() == 3) {
+                animal.setImg(Sprite.balloom_right3.getFxImage());
+                animal.setSwap(4);
+            } else if(animal.getSwap() == 4) {
+                animal.setImg(Sprite.balloom_right2.getFxImage());
                 animal.setSwap(1);
             }
         }
@@ -101,6 +137,22 @@ public class Move {
                 animal.setSwap(1);
             }
         }
+
+        if(animal instanceof Ballom && animal.getX() % 8 == 0) {
+            if(animal.getSwap() == 1) {
+                animal.setImg(Sprite.balloom_left1.getFxImage());
+                animal.setSwap(2);
+            } else if(animal.getSwap() == 2) {
+                animal.setImg(Sprite.balloom_left2.getFxImage());
+                animal.setSwap(3);
+            } else if(animal.getSwap() == 3) {
+                animal.setImg(Sprite.balloom_left3.getFxImage());
+                animal.setSwap(4);
+            } else if(animal.getSwap() == 4) {
+                animal.setImg(Sprite.balloom_left2.getFxImage());
+                animal.setSwap(1);
+            }
+        }
     }
 
     private static void rightAnimation(Animal animal) {
@@ -119,6 +171,24 @@ public class Move {
                 animal.setSwap(1);
             }
         }
+
+        if(animal instanceof Ballom && animal.getX() % 8 == 0) {
+            if(animal.getSwap() == 1) {
+                animal.setImg(Sprite.balloom_right1.getFxImage());
+                animal.setSwap(2);
+            } else if(animal.getSwap() == 2) {
+                animal.setImg(Sprite.balloom_right2.getFxImage());
+                animal.setSwap(3);
+            } else if(animal.getSwap() == 3) {
+                animal.setImg(Sprite.balloom_right3.getFxImage());
+                animal.setSwap(4);
+            } else if(animal.getSwap() == 4) {
+                animal.setImg(Sprite.balloom_right2.getFxImage());
+                animal.setSwap(1);
+            }
+        }
     }
+
+
 
 }
