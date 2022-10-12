@@ -17,6 +17,7 @@ import static uet.oop.bomberman.BombermanGame.level_;
 import static uet.oop.bomberman.BombermanGame.running;
 
 public class LayoutGame {
+    public static int boom = 20,heart = 3,coin = 0;
     public static ImageView status;
     public static ImageView bom[] = new ImageView[3];
     public static Rectangle rect_bom1[] = new Rectangle[3];
@@ -25,6 +26,10 @@ public class LayoutGame {
     public static ImageView bomberImage,ballomImage,onealImage;
     public static Text level,runTime,bomberman,quit;
     public static Text objectText[] = new Text[3];
+
+    public static Text textBox1[] = new Text[3];
+    public static Text textBox2[] = new Text[3];
+    public static Text textBox3[] = new Text[3];
     public static int timeNumber = 120;
 
     public static Rectangle rect_[] = new Rectangle[6];
@@ -159,12 +164,18 @@ public class LayoutGame {
         for(int i=0;i<3;i++) {
             rect_bom1[i] = new Rectangle();
             if(i == 0) {
+                textBox1[i] = new Text(": " + coin);
+                textBox1[i].setY(84);
                 rect_bom1[i].setY(67);
             }
             else if(i == 1) {
+                textBox1[i] = new Text(": " + heart);
+                textBox1[i].setY(117);
                 rect_bom1[i].setY(100);
             }
             else {
+                textBox1[i] = new Text(": " + boom);
+                textBox1[i].setY(149);
                 rect_bom1[i].setY(132);
             }
 
@@ -176,6 +187,10 @@ public class LayoutGame {
             rect_bom1[i].setFill(Color.WHITE);
             rect_bom1[i].setStroke(Color.PINK);
             rect_bom1[i].setStrokeWidth(3);
+
+            textBox1[i].setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,15));
+            textBox1[i].setFill(Color.rgb(75,75,75));
+            textBox1[i].setX(1085);
         }
 
         for(int i=0;i<3;i++) {
@@ -235,7 +250,7 @@ public class LayoutGame {
         });
 
         Pane pane = new Pane();
-        pane.getChildren().addAll(bomberman,level,runTime,status,rect_[1],rect_[2],rect_[3],rect_[0],quit,bomberImage,ballomImage,onealImage,rect_bom1[0],rect_bom1[1],rect_bom1[2],rect_bom2[0],rect_bom2[1],rect_bom2[2],rect_bom3[0],rect_bom3[1],rect_bom3[2],bom[0],bom[1],bom[2],objectText[0],objectText[1],objectText[2]);
+        pane.getChildren().addAll(bomberman,level,runTime,status,rect_[1],rect_[2],rect_[3],rect_[0],quit,bomberImage,ballomImage,onealImage,rect_bom1[0],rect_bom1[1],rect_bom1[2],rect_bom2[0],rect_bom2[1],rect_bom2[2],rect_bom3[0],rect_bom3[1],rect_bom3[2],bom[0],bom[1],bom[2],objectText[0],objectText[1],objectText[2],textBox1[0],textBox1[1],textBox1[2]);
         pane.setMinSize(1140,40 );
         pane.setMaxSize(1140, 40);
         pane.setStyle("-fx-background-color: #353535");

@@ -11,10 +11,9 @@ public class Ballom extends Animal {
 
     private static int swapKill = 1;
     private static int countKill = 0;
-    public Ballom(int isMove, int swap, String direction, int countToRun) {
+    public Ballom(int isMove, int swap, String direction) {
 
         super(4, 1, "up");
-        this.countToRun = countToRun;
     }
 
     public Ballom() {
@@ -41,6 +40,7 @@ public class Ballom extends Animal {
             swapKill ++;
         }
     }
+
 
     @Override
     public void update() {

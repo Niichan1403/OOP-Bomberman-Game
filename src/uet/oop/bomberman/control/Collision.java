@@ -4,6 +4,7 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.animal.Animal;
 import uet.oop.bomberman.entities.animal.Ballom;
 import uet.oop.bomberman.entities.animal.Bomber;
+import uet.oop.bomberman.entities.animal.Oneal;
 import uet.oop.bomberman.entities.block.*;
 
 import java.util.Objects;
@@ -45,7 +46,7 @@ public class Collision {
             }
         }
 
-        if(entity instanceof Ballom) {
+        if(entity instanceof Ballom || entity instanceof Oneal) {
             if(yt % 32 == 0)
             return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
                     object_ids[xt / 32][yt / 32 - 1] instanceof Brick;
@@ -75,7 +76,7 @@ public class Collision {
             }
         }
 
-        if(entity instanceof Ballom) {
+        if(entity instanceof Ballom || entity instanceof Oneal) {
             if(yt % 32 == 0)
             return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
                     object_ids[xt / 32][yt / 32 + 1] instanceof Brick;
@@ -105,7 +106,7 @@ public class Collision {
            }
        }
 
-       if(entity instanceof Ballom) {
+       if(entity instanceof Ballom || entity instanceof Oneal) {
            if(xt % 32 == 0)
            return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
                    object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
@@ -135,7 +136,7 @@ public class Collision {
            }
        }
 
-       if(entity instanceof Ballom) {
+       if(entity instanceof Ballom || entity instanceof Oneal) {
            if(xt % 32 == 0)
            return object_ids[xt / 32 + 1][yt / 32] instanceof Wall ||
                    object_ids[xt / 32 + 1][yt / 32] instanceof Brick;

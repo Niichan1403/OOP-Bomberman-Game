@@ -15,7 +15,7 @@ public class Move {
             setMovement(animal, dist);
         }
 
-        if(animal instanceof Ballom){
+        if(animal instanceof Ballom || animal instanceof Oneal){
             setMovement(animal, dist);
         }
     }
@@ -85,6 +85,22 @@ public class Move {
                 animal.setSwap(1);
             }
         }
+
+        if (animal instanceof Oneal && animal.getY() % 8 == 0) {
+            if (animal.getSwap() == 1) {
+                animal.setImg(Sprite.oneal_left1.getFxImage());
+                animal.setSwap(2);
+            } else if (animal.getSwap() == 2) {
+                animal.setImg(Sprite.oneal_left2.getFxImage());
+                animal.setSwap(3);
+            } else if (animal.getSwap() == 3) {
+                animal.setImg(Sprite.oneal_left3.getFxImage());
+                animal.setSwap(4);
+            } else {
+                animal.setImg(Sprite.oneal_left2.getFxImage());
+                animal.setSwap(1);
+            }
+        }
     }
 
     private static void downAnimation(Animal animal) {
@@ -116,6 +132,21 @@ public class Move {
                 animal.setSwap(4);
             } else if(animal.getSwap() == 4) {
                 animal.setImg(Sprite.balloom_right2.getFxImage());
+                animal.setSwap(1);
+            }
+        }
+        if (animal instanceof Oneal && animal.getY() % 8 == 0) {
+            if (animal.getSwap() == 1) {
+                animal.setImg(Sprite.oneal_right1.getFxImage());
+                animal.setSwap(2);
+            } else if (animal.getSwap() == 2) {
+                animal.setImg(Sprite.oneal_right2.getFxImage());
+                animal.setSwap(3);
+            } else if (animal.getSwap() == 3) {
+                animal.setImg(Sprite.oneal_right3.getFxImage());
+                animal.setSwap(4);
+            } else {
+                animal.setImg(Sprite.oneal_right2.getFxImage());
                 animal.setSwap(1);
             }
         }
@@ -153,6 +184,21 @@ public class Move {
                 animal.setSwap(1);
             }
         }
+        if (animal instanceof Oneal && animal.getY() % 8 == 0) {
+            if (animal.getSwap() == 1) {
+                animal.setImg(Sprite.oneal_left1.getFxImage());
+                animal.setSwap(2);
+            } else if (animal.getSwap() == 2) {
+                animal.setImg(Sprite.oneal_left2.getFxImage());
+                animal.setSwap(3);
+            } else if (animal.getSwap() == 3) {
+                animal.setImg(Sprite.oneal_left3.getFxImage());
+                animal.setSwap(4);
+            } else {
+                animal.setImg(Sprite.oneal_left2.getFxImage());
+                animal.setSwap(1);
+            }
+        }
     }
 
     private static void rightAnimation(Animal animal) {
@@ -187,8 +233,21 @@ public class Move {
                 animal.setSwap(1);
             }
         }
+
+        if (animal instanceof Oneal && animal.getY() % 8 == 0) {
+            if (animal.getSwap() == 1) {
+                animal.setImg(Sprite.oneal_right1.getFxImage());
+                animal.setSwap(2);
+            } else if (animal.getSwap() == 2) {
+                animal.setImg(Sprite.oneal_right2.getFxImage());
+                animal.setSwap(3);
+            } else if (animal.getSwap() == 3) {
+                animal.setImg(Sprite.oneal_right3.getFxImage());
+                animal.setSwap(4);
+            } else {
+                animal.setImg(Sprite.oneal_right2.getFxImage());
+                animal.setSwap(1);
+            }
+        }
     }
-
-
-
 }
