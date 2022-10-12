@@ -26,11 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import static uet.oop.bomberman.graphics.LayoutGame.runTime;
-import static uet.oop.bomberman.graphics.LayoutGame.timeNumber;
+import static uet.oop.bomberman.graphics.LayoutGame.*;
 
 public class BombermanGame extends Application {
-    public static Image authorImage;
+    public static Group root;
     public static final int WidthView = 1140;
     public static boolean running;      // check if game is running
     private long timeLast;
@@ -49,7 +48,6 @@ public class BombermanGame extends Application {
 
     private GraphicsContext gc;
     private Canvas canvas;
-    public static ImageView author;
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -61,13 +59,9 @@ public class BombermanGame extends Application {
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
         canvas.setTranslateY(40);
-        authorImage = new Image("images/menu0.png");
-        author = new ImageView(authorImage);
-        author.setX(0);
-        author.setY(0);
         // Create root container
-        Group root = new Group();
-        root.getChildren().addAll(canvas,author);
+        root = new Group();
+        root.getChildren().addAll(canvas);
         Menu.creatMenu(root);
 
 
@@ -146,7 +140,7 @@ public class BombermanGame extends Application {
         block.forEach(Entity::update);
         enemy.forEach(Entity::update);
         player.update();
-
+        updateLayout();
         Move.checkRun(player, player.getDist());
 
         for (Animal a : enemy) {
@@ -171,7 +165,7 @@ public class BombermanGame extends Application {
             timeLast = System.currentTimeMillis();
             runTime.setText("Times: " + timeNumber);
             timeNumber--;
-            if(timeNumber < 0)
+            if(timeNumber <= 0)
             {
                 player.setLife(false);
             }

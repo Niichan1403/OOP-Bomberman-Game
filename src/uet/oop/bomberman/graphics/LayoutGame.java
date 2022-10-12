@@ -17,6 +17,7 @@ import static uet.oop.bomberman.BombermanGame.level_;
 import static uet.oop.bomberman.BombermanGame.running;
 
 public class LayoutGame {
+    public static Pane pane;
     public static int boom = 20,heart = 3,coin = 0;
     public static ImageView status;
     public static ImageView bom[] = new ImageView[3];
@@ -255,6 +256,11 @@ public class LayoutGame {
         pane.setMaxSize(1140, 40);
         pane.setStyle("-fx-background-color: #353535");
         root.getChildren().add(pane);
+    }
 
+
+    public static void updateLayout() {
+        textBox1[1].setText(": " + heart);
+        textBox1[2].setText(": " + boom);
     }
 }

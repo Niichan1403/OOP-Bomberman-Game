@@ -1,6 +1,8 @@
 package uet.oop.bomberman.control;
 
 import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -16,6 +18,8 @@ import uet.oop.bomberman.levels.Level1;
 import static uet.oop.bomberman.BombermanGame.*;
 
 public class Menu {
+    public static Image authorImage;
+    public static ImageView author;
     private static Text newGameText, exitText, optionsText;
     private static Text item[] = new Text[3];
     private static Rectangle rect[] = new Rectangle[3];
@@ -23,22 +27,27 @@ public class Menu {
 
 
     public static void creatMenu(Group root) {
+        authorImage = new Image("images/menu.png");
+        author = new ImageView(authorImage);
+        author.setX(0);
+        author.setY(0);
+
         for(int i = 0;i < 3; i++) {
             item[i] = new Text();
             if(i == 0) {
                 item[i].setText("New Game");
                 item[i].setX(510);
-                item[i].setY(270);
+                item[i].setY(280);
             }
             else if(i == 1) {
                 item[i].setText("Options");
                 item[i].setX(520);
-                item[i].setY(320);
+                item[i].setY(340);
             }
             else {
                 item[i].setText("Exit");
                 item[i].setX(540);
-                item[i].setY(370);
+                item[i].setY(400);
             }
 
             item[i].setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,25));
@@ -49,13 +58,13 @@ public class Menu {
         for(int i = 0; i < 3; i++) {
             rect[i] = new Rectangle();
             if(i == 0) {
-                rect[i].setY(240);
+                rect[i].setY(250);
             }
             else if(i == 1) {
-                rect[i].setY(290);
+                rect[i].setY(310);
             }
             else {
-                rect[i].setY(340);
+                rect[i].setY(370);
             }
 
             rect[i].setWidth(200);
@@ -70,9 +79,9 @@ public class Menu {
 
         layoutMenu = new Pane();
         layoutMenu.getChildren().addAll(rect[0],rect[1],rect[2],item[0],item[1],item[2]);
-        layoutMenu.setMinSize(500,500);
+        layoutMenu.setMinSize(600,600);
         layoutMenu.setMaxSize(600,600);
-        root.getChildren().add(layoutMenu);
+        root.getChildren().addAll(author,layoutMenu);
 
 
         rect[0].setOnMouseClicked(event -> {

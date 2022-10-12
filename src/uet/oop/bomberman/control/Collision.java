@@ -1,15 +1,18 @@
 package uet.oop.bomberman.control;
 
+import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.animal.Animal;
 import uet.oop.bomberman.entities.animal.Ballom;
 import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.entities.animal.Oneal;
 import uet.oop.bomberman.entities.block.*;
+import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.Objects;
 
 import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.graphics.LayoutGame.heart;
 
 public class Collision {
     public static int MAX(int a, int b) {
@@ -148,7 +151,13 @@ public class Collision {
     public static void checkCollisionWithEnemy() {
         for (Animal animal : enemy) {
             if (collision(player.getX(), player.getY(), 24, 32, animal.getX(), animal.getY(), 32, 32)) {
-                player.setLife(false);
+                if(animal.isLife() && player.isLife()) {
+                    animal.setLife(false);
+                    if(heart > 0) {
+                        heart = heart - 1;
+                        player.setLife(false);
+                    }
+                }
             }
         }
     }

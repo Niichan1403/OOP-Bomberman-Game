@@ -9,8 +9,8 @@ import static uet.oop.bomberman.BombermanGame.enemy;
 
 public class Ballom extends Animal {
 
-    private static int swapKill = 1;
-    private static int countKill = 0;
+    private int swapKill = 1;
+    private int countKill = 0;
     public Ballom(int dist, int swap, String direction, int countToRun) {
 
         super(4, 1, "up");
@@ -33,9 +33,7 @@ public class Ballom extends Animal {
             } else if(swapKill == 3) {
                 animal.setImg(Sprite.mob_dead3.getFxImage());
             } else {
-                if(!enemy.isEmpty()) {
                     enemy.remove(animal);
-                }
             }
             swapKill ++;
         }
@@ -44,12 +42,9 @@ public class Ballom extends Animal {
 
     @Override
     public void update() {
-
-        for(Animal animal : enemy) {
-            if(animal instanceof Ballom && !this.isLife()) {
-                countKill++;
-                killBallom(animal);
-            }
+        if(!this.isLife()) {
+            countKill++;
+            killBallom(this);
         }
 
         if (this.y % 32 == 0 && this.x % 32 == 0) {

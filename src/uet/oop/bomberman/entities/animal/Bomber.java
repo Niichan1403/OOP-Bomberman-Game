@@ -9,9 +9,9 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.BombermanGame.author;
 import static uet.oop.bomberman.control.Collision.checkCollisionWithEnemy;
-import static uet.oop.bomberman.control.Menu.layoutMenu;
+import static uet.oop.bomberman.control.Menu.*;
+import static uet.oop.bomberman.graphics.LayoutGame.*;
 
 public class Bomber extends Animal {
 
@@ -27,7 +27,7 @@ public class Bomber extends Animal {
     }
 
     private void killBomber() {
-        if(frameKill % 16 == 0) {
+        if(frameKill % 15 == 0) {
             if(swapKill == 1) {
                 player.setImg(Sprite.player_dead1.getFxImage());
             }
@@ -37,15 +37,36 @@ public class Bomber extends Animal {
             else if(swapKill == 3) {
                 player.setImg(Sprite.player_dead3.getFxImage());
             }
-            else {
+            else if(swapKill == 4) {
                 Image playerDead = new Image("images/transparent.png");
                 player.setImg(playerDead);
-                running = false;
+            }
+            else {
+                if(heart > 0) {
+                    if(timeNumber < 0) {
+                        running = false;
+                        heart = 0;
+                        enemy.clear();
+                        creatMenu(root);
+                        return;
+                    }
+                    else {
+                        swapKill = 1;
+                        player.setX(32);
+                        player.setY(32);
+                        player.setLife(true);
+                        player.setImg(Sprite.player_right_2.getFxImage());
+                    }
+                } else {
+                    running = false;
+                    heart = 0;
+                    enemy.clear();
+                    creatMenu(root);
+                }
             }
             swapKill++;
         }
     }
-
 
     @Override
     public void update() {
