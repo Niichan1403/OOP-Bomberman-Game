@@ -11,7 +11,7 @@ public class Ballom extends Animal {
 
     private static int swapKill = 1;
     private static int countKill = 0;
-    public Ballom(int isMove, int swap, String direction) {
+    public Ballom(int dist, int swap, String direction, int countToRun) {
 
         super(4, 1, "up");
     }
