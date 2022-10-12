@@ -15,6 +15,7 @@ import uet.oop.bomberman.entities.animal.Animal;
 import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
 //import uet.oop.bomberman.entities.block.Bomb;
+import uet.oop.bomberman.entities.block.Bomb;
 import uet.oop.bomberman.entities.block.Grass;
 import uet.oop.bomberman.entities.block.Wall;
 import uet.oop.bomberman.graphics.CreateMap;
@@ -89,9 +90,9 @@ public class BombermanGame extends Application {
                     case RIGHT:
                         player.right = true;
                         break;
-//                    case SPACE:
-//                        Bomb.putBomb();
-//                        break;
+                    case SPACE:
+                        Bomb.putBomb();
+                        break;
                 }
         });
 
@@ -110,9 +111,9 @@ public class BombermanGame extends Application {
                     case RIGHT:
                         player.right = false;
                         break;
-//                    case SPACE:
-//                        Bomb.putBomb();
-//                        break;
+                    case SPACE:
+                        Bomb.putBomb();
+                        break;
                 }
         });
 
