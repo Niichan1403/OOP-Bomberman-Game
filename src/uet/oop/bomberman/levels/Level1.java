@@ -36,7 +36,7 @@ public class Level1 {
         Animal enemy1 = new Ballom(13, 1, Sprite.balloom_left1.getFxImage());
         Animal enemy2 = new Ballom(18, 3, Sprite.balloom_left1.getFxImage());
         Animal enemy3 = new Ballom(24, 5, Sprite.balloom_left1.getFxImage());
-        Animal enemy4 = new Ballom(6, 2, Sprite.balloom_left1.getFxImage());
+        Animal enemy4 = new Oneal(5, 7, Sprite.oneal_left1.getFxImage());
         enemy.add(enemy1);
         enemy.add(enemy2);
         enemy.add(enemy3);

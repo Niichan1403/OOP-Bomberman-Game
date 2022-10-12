@@ -46,7 +46,7 @@ public class Collision {
             }
         }
 
-        if(entity instanceof Ballom) {
+        if(entity instanceof Ballom || entity instanceof Oneal) {
             if(yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
                         object_ids[xt / 32][yt / 32 - 1] instanceof Brick;
@@ -76,7 +76,7 @@ public class Collision {
                         object_ids[xt / 32][yt / 32 + 1] instanceof Brick;
             }
         }
-        if(entity instanceof Ballom) {
+        if(entity instanceof Ballom || entity instanceof Oneal) {
             if (yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
                         object_ids[xt / 32][yt / 32 + 1] instanceof Brick;
@@ -106,7 +106,7 @@ public class Collision {
                        object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
            }
        }
-       if(entity instanceof Ballom) {
+       if(entity instanceof Ballom || entity instanceof Oneal) {
            if(xt % 32 == 0) {
                return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
                        object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
@@ -136,7 +136,7 @@ public class Collision {
                        object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick;
            }
        }
-       if(entity instanceof Ballom) {
+       if(entity instanceof Ballom || entity instanceof Oneal) {
            if(xt % 32 == 0) {
                return object_ids[xt / 32 + 1][yt / 32] instanceof Wall ||
                        object_ids[xt / 32 + 1][yt / 32] instanceof Brick;
