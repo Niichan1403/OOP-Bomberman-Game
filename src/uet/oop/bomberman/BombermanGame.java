@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.control.Menu;
+import uet.oop.bomberman.control.Menu2;
 import uet.oop.bomberman.control.Move;
 import uet.oop.bomberman.entities.animal.Animal;
 import uet.oop.bomberman.entities.animal.Bomber;
@@ -19,6 +20,7 @@ import uet.oop.bomberman.entities.block.Bomb;
 import uet.oop.bomberman.entities.block.Grass;
 import uet.oop.bomberman.entities.block.Wall;
 import uet.oop.bomberman.graphics.CreateMap;
+import uet.oop.bomberman.graphics.LayoutGame;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.awt.*;
@@ -31,6 +33,7 @@ import static uet.oop.bomberman.graphics.LayoutGame.*;
 
 public class BombermanGame extends Application {
     public static Group root;
+    public static Stage stage_;
     public static final int WidthView = 1140;
     public static boolean running;      // check if game is running
     private long timeLast;      // used to determine level's play time
@@ -118,6 +121,7 @@ public class BombermanGame extends Application {
 
 
         // Add scene to stage
+        stage_ = stage;
         Image logo = new Image("images/logo.png");
         stage.getIcons().add(logo);
         stage.setTitle("Bomberman Game");

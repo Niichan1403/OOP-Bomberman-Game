@@ -11,6 +11,7 @@ import uet.oop.bomberman.graphics.Sprite;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.control.Collision.checkCollisionWithEnemy;
 import static uet.oop.bomberman.control.Menu.*;
+import static uet.oop.bomberman.control.Menu2.setCheckCreateMenu2;
 import static uet.oop.bomberman.graphics.LayoutGame.*;
 
 public class Bomber extends Animal {
@@ -47,6 +48,8 @@ public class Bomber extends Animal {
                         running = false;
                         heart = 0;
                         enemy.clear();
+                        block.clear();
+                        setCheckCreateMenu2(false);
                         creatMenu(root);
                         return;
                     }
@@ -60,7 +63,9 @@ public class Bomber extends Animal {
                 } else {
                     running = false;
                     heart = 0;
+                    block.clear();
                     enemy.clear();
+                    setCheckCreateMenu2(false);
                     creatMenu(root);
                 }
             }

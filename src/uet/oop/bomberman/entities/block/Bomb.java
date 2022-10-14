@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.graphics.LayoutGame.boom;
 
 public class Bomb extends Entity {
     private static Entity bomb;
@@ -41,8 +42,9 @@ public class Bomb extends Entity {
     }
 
     public static void putBomb() {
-        if (hasBomb == 0 && bombNumber > 0) {
+        if (hasBomb == 0 && bombNumber > 0 && boom > 0) {
             bombNumber--;
+            boom--;
             hasBomb = 1;
             timeToExplode = 180;
             explosionTime = 140;

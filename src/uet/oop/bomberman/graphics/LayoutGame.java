@@ -10,11 +10,12 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.shape.Rectangle;
+import uet.oop.bomberman.control.Menu2;
 
 import java.awt.*;
 
-import static uet.oop.bomberman.BombermanGame.level_;
-import static uet.oop.bomberman.BombermanGame.running;
+import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.control.Menu2.*;
 
 public class LayoutGame {
     public static Pane pane;
@@ -53,7 +54,7 @@ public class LayoutGame {
         bomberman.setX(15);
         bomberman.setY(28);
 
-        quit = new Text("Quit!");
+        quit = new Text("Menu");
         quit.setX(1036);
         quit.setY(436);
         quit.setFont(Font.font("Arial",FontWeight.BOLD,FontPosture.REGULAR,22));
@@ -238,18 +239,6 @@ public class LayoutGame {
             rect_bom3[i].setStrokeWidth(3);
         }
 
-        status.setOnMouseClicked(mouseEvent -> {
-            if(running) {
-                Image playGame = new Image("images/playGame.png");
-                status.setImage(playGame);
-                running = false;
-            }
-            else {
-                status.setImage(pauseGame);
-                running = true;
-            }
-        });
-
         Pane pane = new Pane();
         pane.getChildren().addAll(bomberman,level,runTime,status,rect_[1],rect_[2],rect_[3],rect_[0],quit,bomberImage,ballomImage,onealImage,rect_bom1[0],rect_bom1[1],rect_bom1[2],rect_bom2[0],rect_bom2[1],rect_bom2[2],rect_bom3[0],rect_bom3[1],rect_bom3[2],bom[0],bom[1],bom[2],objectText[0],objectText[1],objectText[2],textBox1[0],textBox1[1],textBox1[2]);
         pane.setMinSize(1140,40 );
@@ -262,5 +251,40 @@ public class LayoutGame {
     public static void updateLayout() {
         textBox1[1].setText(": " + heart);
         textBox1[2].setText(": " + boom);
+        status.setOnMouseClicked(mouseEvent -> {
+            if(running) {
+                Image playGame = new Image("images/playGame.png");
+                status.setImage(playGame);
+                running = false;
+            }
+            else {
+                Image pauseGame = new Image("images/pauseGame.png");
+                status.setImage(pauseGame);
+                running = true;
+            }
+        });
+
+        rect_[0].setOnMouseClicked(event->{
+            if(running) {
+                if(!Menu2.getCheckCreateMenu2()) {
+                    Menu2.creatMenu2();
+                    Menu2.updateMenu2();
+                    running = false;
+                } else {
+                    rect1.setY(80);
+                    for(int i = 0; i < 4; i++) {
+                        textMenu2[i].setY(180 + i * 50);
+                    }
+                    Menu2.updateMenu2();
+                    running = false;
+                }
+            } else {
+                rect1.setY(500);
+                for(int i = 0; i < 4; i++) {
+                    textMenu2[i].setY(500);
+                }
+                running = true;
+            }
+        });
     }
 }

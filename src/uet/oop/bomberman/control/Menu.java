@@ -11,6 +11,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.LayoutGame;
 import uet.oop.bomberman.levels.Level1;
@@ -91,6 +92,10 @@ public class Menu {
             layoutMenu.setTranslateY(-1000);
             running = true;
             new Level1(root);
+        });
+
+        rect[2].setOnMouseClicked(event->{
+            stage_.close();
         });
 
         for(Rectangle Rect:rect) {

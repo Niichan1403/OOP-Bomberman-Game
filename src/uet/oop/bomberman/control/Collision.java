@@ -59,7 +59,8 @@ public class Collision {
         if(entity instanceof Ballom || entity instanceof Oneal) {
             if(yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
-                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick;
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick ||
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Bomb;
             }
         }
         return false;
@@ -95,7 +96,8 @@ public class Collision {
         if(entity instanceof Ballom || entity instanceof Oneal) {
             if (yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
-                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick;
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick||
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Bomb;
             }
         }
 
@@ -127,7 +129,8 @@ public class Collision {
        if(entity instanceof Ballom || entity instanceof Oneal) {
            if(xt % 32 == 0) {
                return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
-                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
+                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick ||
+                       object_ids[xt / 32 - 1][yt / 32] instanceof Bomb;
            }
        }
        return false;
@@ -158,7 +161,8 @@ public class Collision {
        if(entity instanceof Ballom || entity instanceof Oneal) {
            if(xt % 32 == 0) {
                return object_ids[xt / 32 + 1][yt / 32] instanceof Wall ||
-                       object_ids[xt / 32 + 1][yt / 32] instanceof Brick;
+                       object_ids[xt / 32 + 1][yt / 32] instanceof Brick||
+                       object_ids[xt / 32 + 1][yt / 32] instanceof Bomb;
            }
        }
 
@@ -168,9 +172,10 @@ public class Collision {
     public static void checkCollisionWithEnemy() {
         for (Animal animal : enemy) {
             if (collision(player.getX(), player.getY(), 24, 32, animal.getX(), animal.getY(), 32, 32)) {
-                if (player.isLife()) {
+                if (player.isLife() && animal.isLife()) {
                     if (heart > 0) {
                         heart--;
+                        animal.setLife(false);
                         player.setLife(false);
                     }
                 }
