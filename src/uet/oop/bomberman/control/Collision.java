@@ -12,7 +12,7 @@ import uet.oop.bomberman.graphics.Sprite;
 import java.util.Objects;
 
 import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.entities.block.Bomb.flameList;
+import static uet.oop.bomberman.entities.block.Bomb.*;
 import static uet.oop.bomberman.graphics.LayoutGame.heart;
 
 public class Collision {
@@ -199,6 +199,60 @@ public class Collision {
                     }
                 }
             }
+        }
+
+        if (upFlame.size() > 0) {
+            for (int i = 0; i < upFlame.size(); i++) {
+                if (i == upFlame.size() - 1 && upFlame.size() < powerDirUp) {
+                    destroyBrick(object_ids[upFlame.get(i).getX() / 32][upFlame.get(i).getY() / 32 - 1]);
+                }
+            }
+        }
+        if (downFlame.size() > 0) {
+            for (int i = 0; i < downFlame.size(); i++) {
+                if (i == downFlame.size() - 1 && downFlame.size() < powerDirDown) {
+                    destroyBrick(object_ids[downFlame.get(i).getX() / 32][downFlame.get(i).getY() / 32 + 1]);
+                }
+            }
+        }
+        if (leftFlame.size() > 0) {
+            for (int i = 0; i < leftFlame.size(); i++) {
+                if (i == leftFlame.size() - 1 && leftFlame.size() < powerDirLeft) {
+                    destroyBrick(object_ids[leftFlame.get(i).getX() / 32 - 1][leftFlame.get(i).getY() / 32]);
+                }
+            }
+        }
+        if (rightFlame.size() > 0) {
+            for (int i = 0; i < rightFlame.size(); i++) {
+                if (i == rightFlame.size() - 1 && rightFlame.size() < powerDirRight) {
+                    destroyBrick(object_ids[rightFlame.get(i).getX() / 32 + 1][rightFlame.get(i).getY() / 32]);
+                }
+            }
+        }
+
+        if (center.size() > 0) {
+            destroyBrick(object_ids[center.get(0).getX() / 32][center.get(0).getY() / 32 - 1]);
+            destroyBrick(object_ids[center.get(0).getX() / 32][center.get(0).getY() / 32 + 1]);
+            destroyBrick(object_ids[center.get(0).getX() / 32 - 1][center.get(0).getY() / 32]);
+            destroyBrick(object_ids[center.get(0).getX() / 32 + 1][center.get(0).getY() / 32]);
+        }
+    }
+
+    public static void destroyBrick(Entity e) {
+        if (e instanceof Brick) {
+            int xt = e.getX() / 32;
+            int yt = e.getY() / 32;
+
+            block.remove(e);
+
+            Entity newGrass = new Grass(xt, yt, Sprite.grass.getFxImage());
+            Entity brickAnimation = new Brick(xt, yt, Sprite.brick.getFxImage());
+            block.add(newGrass);
+            block.add(brickAnimation);
+
+            brickAnimation.isDestroyed = true;
+
+            object_ids[xt][yt] = newGrass;
         }
     }
 

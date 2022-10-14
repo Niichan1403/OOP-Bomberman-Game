@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import uet.oop.bomberman.graphics.Sprite;
 
 public abstract class Entity {
+    public boolean isDestroyed = false;
     //Tọa độ X tính từ góc trái trên trong Canvas
     protected int x;
 

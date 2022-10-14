@@ -22,16 +22,18 @@ public class Bomb extends Entity {
     public static int hasBomb = 0;          // check if there's a bomb
     public static int bombNumber = 1;
 
-    private static int powerDirUp = 2;
-    private static int powerDirDown= 2;
-    private static int powerDirLeft = 2;
-    private static int powerDirRight = 2;
+    public static int powerDirUp = 2;
+    public static int powerDirDown= 2;
+    public static int powerDirLeft = 2;
+    public static int powerDirRight = 2;
 
     private static Entity middleFlame;
-    private static List<Entity> upFlame = new ArrayList<>();
-    private static List<Entity> downFlame = new ArrayList<>();
-    private static List<Entity> leftFlame = new ArrayList<>();
-    private static List<Entity> rightFlame = new ArrayList<>();
+
+    public static List<Entity> center = new ArrayList<>();
+    public static List<Entity> upFlame = new ArrayList<>();
+    public static List<Entity> downFlame = new ArrayList<>();
+    public static List<Entity> leftFlame = new ArrayList<>();
+    public static List<Entity> rightFlame = new ArrayList<>();
 
     private static boolean hasFlame = false;
 
@@ -92,6 +94,7 @@ public class Bomb extends Entity {
 
     public static void createFlame() {
         middleFlame = new Bomb(bomb.getX() / 32, bomb.getY() / 32, Sprite.bomb_exploded.getFxImage());
+        center.add(middleFlame);
         Entity flame;
         int i;
         for (i = 1; i <= powerDirUp; i++) {
@@ -149,7 +152,9 @@ public class Bomb extends Entity {
 
             if (upFlame.size() > 0) {
                 for (i = 0; i < upFlame.size(); i++) {
-                    if (i == upFlame.size() - 1) {
+                    if (i == powerDirUp - 1 ||
+                            (i == upFlame.size() - 1 && upFlame.size() < powerDirUp
+                                    && object_ids[upFlame.get(i).getX() / 32][upFlame.get(i).getY() / 32 - 1] instanceof Wall)) {
                         upFlame.get(i).setImg(Sprite.explosion_vertical_top_last.getFxImage());
                     } else {
                         upFlame.get(i).setImg(Sprite.explosion_vertical.getFxImage());
@@ -159,7 +164,9 @@ public class Bomb extends Entity {
 
             if (downFlame.size() > 0) {
                 for (i = 0; i < downFlame.size(); i++) {
-                    if (i == downFlame.size() - 1) {
+                    if (i == powerDirDown - 1 ||
+                            (i == downFlame.size() - 1 && downFlame.size() < powerDirDown
+                                    && object_ids[downFlame.get(i).getX() / 32][downFlame.get(i).getY() / 32 + 1] instanceof Wall)) {
                         downFlame.get(i).setImg(Sprite.explosion_vertical_down_last.getFxImage());
                     } else {
                         downFlame.get(i).setImg(Sprite.explosion_vertical.getFxImage());
@@ -169,7 +176,9 @@ public class Bomb extends Entity {
 
             if (leftFlame.size() > 0) {
                 for (i = 0; i < leftFlame.size(); i++) {
-                    if (i == leftFlame.size() - 1) {
+                    if (i == powerDirLeft - 1 ||
+                            (i == leftFlame.size() - 1 && leftFlame.size() < powerDirLeft
+                                    && object_ids[leftFlame.get(i).getX() / 32 - 1][leftFlame.get(i).getY() / 32] instanceof Wall)) {
                         leftFlame.get(i).setImg(Sprite.explosion_horizontal_left_last.getFxImage());
                     } else {
                         leftFlame.get(i).setImg(Sprite.explosion_horizontal.getFxImage());
@@ -179,7 +188,9 @@ public class Bomb extends Entity {
 
             if (rightFlame.size() > 0) {
                 for (i = 0; i < rightFlame.size(); i++) {
-                    if (i == rightFlame.size() - 1) {
+                    if (i == powerDirRight - 1 ||
+                            (i == rightFlame.size() - 1 && rightFlame.size() < powerDirRight
+                                    && object_ids[rightFlame.get(i).getX() / 32 + 1][rightFlame.get(i).getY() / 32] instanceof Wall)) {
                         rightFlame.get(i).setImg(Sprite.explosion_horizontal_right_last.getFxImage());
                     } else {
                         rightFlame.get(i).setImg(Sprite.explosion_horizontal.getFxImage());
@@ -198,7 +209,9 @@ public class Bomb extends Entity {
 
             if (upFlame.size() > 0) {
                 for (i = 0; i < upFlame.size(); i++) {
-                    if (i == upFlame.size() - 1) {
+                    if (i == powerDirUp - 1 ||
+                            (i == upFlame.size() - 1 && upFlame.size() < powerDirUp
+                                    && object_ids[upFlame.get(i).getX() / 32][upFlame.get(i).getY() / 32 - 1] instanceof Wall)) {
                         upFlame.get(i).setImg(Sprite.explosion_vertical_top_last1.getFxImage());
                     } else {
                         upFlame.get(i).setImg(Sprite.explosion_vertical1.getFxImage());
@@ -208,7 +221,9 @@ public class Bomb extends Entity {
 
             if (downFlame.size() > 0) {
                 for (i = 0; i < downFlame.size(); i++) {
-                    if (i == downFlame.size() - 1) {
+                    if (i == powerDirDown - 1 ||
+                            (i == downFlame.size() - 1 && downFlame.size() < powerDirDown
+                                    && object_ids[downFlame.get(i).getX() / 32][downFlame.get(i).getY() / 32 + 1] instanceof Wall)) {
                         downFlame.get(i).setImg(Sprite.explosion_vertical_down_last1.getFxImage());
                     } else {
                         downFlame.get(i).setImg(Sprite.explosion_vertical1.getFxImage());
@@ -218,7 +233,9 @@ public class Bomb extends Entity {
 
             if (leftFlame.size() > 0) {
                 for (i = 0; i < leftFlame.size(); i++) {
-                    if (i == leftFlame.size() - 1) {
+                    if (i == powerDirLeft - 1 ||
+                            (i == leftFlame.size() - 1 && leftFlame.size() < powerDirLeft
+                                    && object_ids[leftFlame.get(i).getX() / 32 - 1][leftFlame.get(i).getY() / 32] instanceof Wall)) {
                         leftFlame.get(i).setImg(Sprite.explosion_horizontal_left_last1.getFxImage());
                     } else {
                         leftFlame.get(i).setImg(Sprite.explosion_horizontal1.getFxImage());
@@ -228,7 +245,9 @@ public class Bomb extends Entity {
 
             if (rightFlame.size() > 0) {
                 for (i = 0; i < rightFlame.size(); i++) {
-                    if (i == rightFlame.size() - 1) {
+                    if (i == powerDirRight - 1 ||
+                            (i == rightFlame.size() - 1 && rightFlame.size() < powerDirRight
+                                    && object_ids[rightFlame.get(i).getX() / 32 + 1][rightFlame.get(i).getY() / 32] instanceof Wall)) {
                         rightFlame.get(i).setImg(Sprite.explosion_horizontal_right_last1.getFxImage());
                     } else {
                         rightFlame.get(i).setImg(Sprite.explosion_horizontal1.getFxImage());
@@ -247,7 +266,9 @@ public class Bomb extends Entity {
 
             if (upFlame.size() > 0) {
                 for (i = 0; i < upFlame.size(); i++) {
-                    if (i == upFlame.size() - 1) {
+                    if (i == powerDirUp - 1 ||
+                            (i == upFlame.size() - 1 && upFlame.size() < powerDirUp
+                                    && object_ids[upFlame.get(i).getX() / 32][upFlame.get(i).getY() / 32 - 1] instanceof Wall)) {
                         upFlame.get(i).setImg(Sprite.explosion_vertical_top_last2.getFxImage());
                     } else {
                         upFlame.get(i).setImg(Sprite.explosion_vertical2.getFxImage());
@@ -257,7 +278,9 @@ public class Bomb extends Entity {
 
             if (downFlame.size() > 0) {
                 for (i = 0; i < downFlame.size(); i++) {
-                    if (i == downFlame.size() - 1) {
+                    if (i == powerDirDown - 1 ||
+                            (i == downFlame.size() - 1 && downFlame.size() < powerDirDown
+                                    && object_ids[downFlame.get(i).getX() / 32][downFlame.get(i).getY() / 32 + 1] instanceof Wall)) {
                         downFlame.get(i).setImg(Sprite.explosion_vertical_down_last2.getFxImage());
                     } else {
                         downFlame.get(i).setImg(Sprite.explosion_vertical2.getFxImage());
@@ -267,7 +290,9 @@ public class Bomb extends Entity {
 
             if (leftFlame.size() > 0) {
                 for (i = 0; i < leftFlame.size(); i++) {
-                    if (i == leftFlame.size() - 1) {
+                    if (i == powerDirLeft - 1 ||
+                            (i == leftFlame.size() - 1 && leftFlame.size() < powerDirLeft
+                                    && object_ids[leftFlame.get(i).getX() / 32 - 1][leftFlame.get(i).getY() / 32] instanceof Wall)) {
                         leftFlame.get(i).setImg(Sprite.explosion_horizontal_left_last2.getFxImage());
                     } else {
                         leftFlame.get(i).setImg(Sprite.explosion_horizontal2.getFxImage());
@@ -277,7 +302,9 @@ public class Bomb extends Entity {
 
             if (rightFlame.size() > 0) {
                 for (i = 0; i < rightFlame.size(); i++) {
-                    if (i == rightFlame.size() - 1) {
+                    if (i == powerDirRight - 1 ||
+                            (i == rightFlame.size() - 1 && rightFlame.size() < powerDirRight
+                                    && object_ids[rightFlame.get(i).getX() / 32 + 1][rightFlame.get(i).getY() / 32] instanceof Wall)) {
                         rightFlame.get(i).setImg(Sprite.explosion_horizontal_right_last2.getFxImage());
                     } else {
                         rightFlame.get(i).setImg(Sprite.explosion_horizontal2.getFxImage());
@@ -326,6 +353,7 @@ public class Bomb extends Entity {
             flameList.removeAll(leftFlame);
             flameList.removeAll(rightFlame);
 
+            center.clear();
             upFlame.clear();
             downFlame.clear();
             leftFlame.clear();
