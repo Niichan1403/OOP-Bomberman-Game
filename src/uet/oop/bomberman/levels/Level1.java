@@ -24,8 +24,8 @@ public class Level1 {
         player.setLife(true);
         player.setX(32);
         player.setY(32);
-        player.setImg(Sprite.player_right_2.getFxImage());
-        timeNumber = 10;
+        player.setImg(Sprite.player_right.getFxImage());
+        timeNumber = 120;
 
         frameKill = 0;
         swapKill = 1;

@@ -24,7 +24,10 @@ public class Move {
         if (animal.isLife()) {
             if (animal.up){
                 upAnimation(animal);
-                if (blockedUp(animal)) {dist = 0;}
+                if (blockedUp(animal)) {
+                    dist = 0;
+                    swerveUp();
+                }
                 dy = -dist;
                 animal.setY(animal.getY() + dy);
             }
@@ -32,6 +35,7 @@ public class Move {
                 downAnimation(animal);
                 if (blockedDown(animal)) {
                     dist = 0;
+                    swerveDown();
                 }
                 dy = dist;
                 animal.setY(animal.getY() + dy);
@@ -40,6 +44,7 @@ public class Move {
                 leftAnimation(animal);
                 if (blockedLeft(animal)) {
                     dist = 0;
+                    swerveLeft();
                 }
                 dx = -dist;
                 animal.setX(animal.getX() + dx);
@@ -48,6 +53,7 @@ public class Move {
                 rightAnimation(animal);
                 if (blockedRight(animal)) {
                     dist = 0;
+                    swerveRight();
                 }
                 dx = dist;
                 animal.setX(animal.getX() + dx);
@@ -56,19 +62,23 @@ public class Move {
     }
 
     private static void upAnimation(Animal animal) {
-        if (animal instanceof Bomber && animal.getY() % 8 == 0){
+        if (animal instanceof Bomber && animal.animationFrame-- == 0){
             if (animal.getSwap() == 1){
                 animal.setImg(Sprite.player_up.getFxImage());
                 animal.setSwap(2);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 2){
                 animal.setImg(Sprite.player_up_1.getFxImage());
                 animal.setSwap(3);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 3){
                 animal.setImg(Sprite.player_up.getFxImage());
                 animal.setSwap(4);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 4){
                 animal.setImg(Sprite.player_up_2.getFxImage());
                 animal.setSwap(1);
+                animal.animationFrame = 8;
             }
         }
 
@@ -106,19 +116,23 @@ public class Move {
     }
 
     private static void downAnimation(Animal animal) {
-        if (animal instanceof Bomber && animal.getY() % 8 == 0){
+        if (animal instanceof Bomber && animal.animationFrame-- == 0){
             if (animal.getSwap() == 1){
                 animal.setImg(Sprite.player_down.getFxImage());
                 animal.setSwap(2);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 2){
                 animal.setImg(Sprite.player_down_1.getFxImage());
                 animal.setSwap(3);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 3){
                 animal.setImg(Sprite.player_down.getFxImage());
                 animal.setSwap(4);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 4){
                 animal.setImg(Sprite.player_down_2.getFxImage());
                 animal.setSwap(1);
+                animal.animationFrame = 8;
             }
         }
 
@@ -155,19 +169,23 @@ public class Move {
     }
 
     private static void leftAnimation(Animal animal) {
-        if (animal instanceof Bomber && animal.getX() % 8 == 0){
+        if (animal instanceof Bomber && animal.animationFrame-- == 0){
             if (animal.getSwap() == 1){
                 animal.setImg(Sprite.player_left.getFxImage());
                 animal.setSwap(2);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 2){
                 animal.setImg(Sprite.player_left_1.getFxImage());
                 animal.setSwap(3);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 3){
                 animal.setImg(Sprite.player_left.getFxImage());
                 animal.setSwap(4);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 4){
                 animal.setImg(Sprite.player_left_2.getFxImage());
                 animal.setSwap(1);
+                animal.animationFrame = 8;
             }
         }
 
@@ -204,19 +222,23 @@ public class Move {
     }
 
     private static void rightAnimation(Animal animal) {
-        if (animal instanceof Bomber && animal.getX() % 8 == 0){
+        if (animal instanceof Bomber && animal.animationFrame-- == 0){
             if (animal.getSwap() == 1){
                 animal.setImg(Sprite.player_right.getFxImage());
                 animal.setSwap(2);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 2){
                 animal.setImg(Sprite.player_right_1.getFxImage());
                 animal.setSwap(3);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 3){
                 animal.setImg(Sprite.player_right.getFxImage());
                 animal.setSwap(4);
+                animal.animationFrame = 8;
             } else if (animal.getSwap() == 4){
                 animal.setImg(Sprite.player_right_2.getFxImage());
                 animal.setSwap(1);
+                animal.animationFrame = 8;
             }
         }
 

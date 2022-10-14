@@ -18,14 +18,14 @@ import static uet.oop.bomberman.BombermanGame.running;
 
 public class LayoutGame {
     public static Pane pane;
-    public static int boom = 20,heart = 3,coin = 0;
+    public static int boom = 20, heart = 3, coin = 0;
     public static ImageView status;
     public static ImageView bom[] = new ImageView[3];
     public static Rectangle rect_bom1[] = new Rectangle[3];
     public static Rectangle rect_bom2[] = new Rectangle[3];
     public static Rectangle rect_bom3[] = new Rectangle[3];
-    public static ImageView bomberImage,ballomImage,onealImage;
-    public static Text level,runTime,bomberman,quit;
+    public static ImageView bomberImage, ballomImage, onealImage;
+    public static Text level, runTime, bomberman, quit;
     public static Text objectText[] = new Text[3];
 
     public static Text textBox1[] = new Text[3];

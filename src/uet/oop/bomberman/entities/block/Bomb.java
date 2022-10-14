@@ -21,10 +21,10 @@ public class Bomb extends Entity {
     public static int hasBomb = 0;          // check if there's a bomb
     public static int bombNumber = 1;
 
-    private static int powerDirUp = 1;
-    private static int powerDirDown= 1;
-    private static int powerDirLeft = 1;
-    private static int powerDirRight = 1;
+    private static int powerDirUp = 2;
+    private static int powerDirDown= 2;
+    private static int powerDirLeft = 2;
+    private static int powerDirRight = 2;
 
     private static Entity middleFlame;
     private static List<Entity> upFlame = new ArrayList<>();
@@ -33,6 +33,8 @@ public class Bomb extends Entity {
     private static List<Entity> rightFlame = new ArrayList<>();
 
     private static boolean hasFlame = false;
+
+    public static List<Entity> flameList = new ArrayList<>();
 
     public Bomb(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
@@ -122,11 +124,19 @@ public class Bomb extends Entity {
             flame = new Bomb(bomb.getX() / 32 + i, bomb.getY() / 32, Sprite.bomb_exploded.getFxImage());
             rightFlame.add(flame);
         }
+
         block.add(middleFlame);
         block.addAll(upFlame);
         block.addAll(downFlame);
         block.addAll(leftFlame);
         block.addAll(rightFlame);
+
+        flameList.add(middleFlame);
+        flameList.addAll(upFlame);
+        flameList.addAll(downFlame);
+        flameList.addAll(leftFlame);
+        flameList.addAll(rightFlame);
+
         hasFlame = true;
     }
 
@@ -307,10 +317,18 @@ public class Bomb extends Entity {
             block.removeAll(downFlame);
             block.removeAll(leftFlame);
             block.removeAll(rightFlame);
+
+            flameList.remove(middleFlame);
+            flameList.removeAll(upFlame);
+            flameList.removeAll(downFlame);
+            flameList.removeAll(leftFlame);
+            flameList.removeAll(rightFlame);
+
             upFlame.clear();
             downFlame.clear();
             leftFlame.clear();
             rightFlame.clear();
+
             bombNumber = 1;
             hasFlame = false;
             hasBomb = 0;

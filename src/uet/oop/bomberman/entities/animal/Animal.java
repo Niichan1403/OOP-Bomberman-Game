@@ -14,6 +14,8 @@ public abstract class Animal extends Entity {
     public boolean left;
     public boolean right;
 
+    public int animationFrame = 8;
+
     public Animal(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }

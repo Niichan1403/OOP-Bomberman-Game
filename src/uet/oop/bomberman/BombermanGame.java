@@ -26,13 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+import static uet.oop.bomberman.control.Collision.checkCollisionWithFlame;
 import static uet.oop.bomberman.graphics.LayoutGame.*;
 
 public class BombermanGame extends Application {
     public static Group root;
     public static final int WidthView = 1140;
     public static boolean running;      // check if game is running
-    private long timeLast;
+    private long timeLast;      // used to determine level's play time
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
 
@@ -95,15 +96,19 @@ public class BombermanGame extends Application {
                 switch (event.getCode()) {
                     case UP:
                         player.up = false;
+                        player.setImg(Sprite.player_up.getFxImage());
                         break;
                     case DOWN:
                         player.down = false;
+                        player.setImg(Sprite.player_down.getFxImage());
                         break;
                     case LEFT:
                         player.left = false;
+                        player.setImg(Sprite.player_left.getFxImage());
                         break;
                     case RIGHT:
                         player.right = false;
+                        player.setImg(Sprite.player_right.getFxImage());
                         break;
                     case SPACE:
                         Bomb.putBomb();
@@ -142,6 +147,7 @@ public class BombermanGame extends Application {
         player.update();
         updateLayout();
         Move.checkRun(player, player.getDist());
+        checkCollisionWithFlame();
 
         for (Animal a : enemy) {
             a.setCountToRun(a.getCountToRun() + 1);
@@ -167,6 +173,7 @@ public class BombermanGame extends Application {
             timeNumber--;
             if(timeNumber <= 0)
             {
+                heart = 0;
                 player.setLife(false);
             }
         }
