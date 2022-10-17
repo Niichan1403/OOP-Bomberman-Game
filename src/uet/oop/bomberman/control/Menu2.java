@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.control.Menu.creatMenu;
+import static uet.oop.bomberman.graphics.LayoutGame.coin;
 import static uet.oop.bomberman.graphics.LayoutGame.heart;
 
 public class Menu2 {
@@ -72,6 +73,7 @@ public class Menu2 {
         textMenu2[2].setOnMouseClicked(event->{
             running = false;
             heart = 0;
+            coin = 0;
             block.clear();
             enemy.clear();
             rect1.setY(500);

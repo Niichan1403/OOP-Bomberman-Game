@@ -13,7 +13,7 @@ import java.util.Objects;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.block.Bomb.*;
-import static uet.oop.bomberman.graphics.LayoutGame.heart;
+import static uet.oop.bomberman.graphics.LayoutGame.*;
 
 public class Collision {
     public static int MAX(int a, int b) {
@@ -48,7 +48,7 @@ public class Collision {
 
                 if (object_ids[xt / 32][yt / 32 - 1] instanceof Grass) {
                     if ((object_ids[xt / 32 + 1][yt / 32 - 1] instanceof Brick ||
-                            object_ids[xt / 32 + 1][yt / 32 - 1] instanceof Wall) &&
+                            object_ids[xt / 32 + 1][yt / 32 - 1] instanceof Wall ) &&
                             collision(entity.getX(), entity.getY() - 1, 24, 32, xt + 32, yt - 32, 32, 32)) {
                         return true;
                     }
@@ -59,7 +59,7 @@ public class Collision {
         if(entity instanceof Ballom || entity instanceof Oneal) {
             if(yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
-                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick ||
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick||
                         object_ids[xt / 32][yt / 32 - 1] instanceof Bomb;
             }
         }
@@ -73,19 +73,19 @@ public class Collision {
         if(entity instanceof Bomber) {
             if (xt % 32 == 0 && yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
-                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick;
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick ;
             } else if (xt % 32 != 0 && yt % 32 == 0) {
                 while (xt % 32 != 0) {
                     xt--;
                 }
                 if ((object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
-                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick)) {
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick )) {
                     return true;
                 }
 
                 if (object_ids[xt / 32][yt / 32 + 1] instanceof Grass) {
                     if ((object_ids[xt / 32 + 1][yt / 32 + 1] instanceof Brick ||
-                            object_ids[xt / 32 + 1][yt / 32 + 1] instanceof Wall) &&
+                            object_ids[xt / 32 + 1][yt / 32 + 1] instanceof Wall ) &&
                             collision(entity.getX(), entity.getY() + 8, 24, 25, xt + 32, yt + 32, 32, 32)) {
                         return true;
                     }
@@ -175,9 +175,11 @@ public class Collision {
                 if (player.isLife() && animal.isLife()) {
                     if (heart > 0) {
                         heart--;
-                        animal.setLife(false);
                         player.setLife(false);
                     }
+                } else if(player.isLife() && !animal.isLife()) {
+                    enemy.remove(animal);
+                    coin++;
                 }
             }
         }
@@ -186,8 +188,13 @@ public class Collision {
     public static void checkCollisionWithFlame() {
         for (Entity flame : flameList) {
             for (Animal e : enemy) {
-                if (collision(flame.getX(), flame.getY(), 32, 32, e.getX(), e.getY(), 32, 32)) {
+                if (collision(flame.getX(), flame.getY(), 32, 32, e.getX(), e.getY(), 32, 32) && e.isLife()) {
                     e.setLife(false);
+                    if(e instanceof Ballom) {
+                        ballomNumber--;
+                    } else if(e instanceof Oneal) {
+                        onealNumber--;
+                    }
                 }
             }
 

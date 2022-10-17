@@ -49,6 +49,7 @@ public class Bomber extends Animal {
                         heart = 0;
                         enemy.clear();
                         block.clear();
+                        coin = 0;
                         setCheckCreateMenu2(false);
                         creatMenu(root);
                         return;
@@ -63,6 +64,7 @@ public class Bomber extends Animal {
                 } else {
                     running = false;
                     heart = 0;
+                    coin = 0;
                     block.clear();
                     enemy.clear();
                     setCheckCreateMenu2(false);

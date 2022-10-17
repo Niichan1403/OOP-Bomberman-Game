@@ -18,6 +18,7 @@ import uet.oop.bomberman.entities.Entity;
 //import uet.oop.bomberman.entities.block.Bomb;
 import uet.oop.bomberman.entities.block.Bomb;
 import uet.oop.bomberman.entities.block.Grass;
+import uet.oop.bomberman.entities.block.Portal;
 import uet.oop.bomberman.entities.block.Wall;
 import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.LayoutGame;
@@ -30,6 +31,8 @@ import java.util.logging.Level;
 
 import static uet.oop.bomberman.control.Collision.checkCollisionWithFlame;
 import static uet.oop.bomberman.graphics.LayoutGame.*;
+import static uet.oop.bomberman.levels.NextLevel.wait;
+import static uet.oop.bomberman.levels.NextLevel.waitLevelToUp;
 
 public class BombermanGame extends Application {
     public static Group root;
@@ -150,16 +153,26 @@ public class BombermanGame extends Application {
         enemy.forEach(Entity::update);
         player.update();
         updateLayout();
-        Move.checkRun(player, player.getDist());
+        Move.checkRun(player, 1);
         checkCollisionWithFlame();
 
         for (Animal a : enemy) {
             a.setCountToRun(a.getCountToRun() + 1);
-            if (a.getCountToRun() == 8) {
+            if (a.getCountToRun() == 4) {
                 Move.checkRun(a,4);
                 a.setCountToRun(0);
             }
         }
+
+        if(enemy.size() == 0) {
+            Entity portal = new Portal(1,5,Sprite.portal.getFxImage());
+            block.add(portal);
+            if(player.getX() == portal.getX() && player.getY() == portal.getY()) {
+                wait = true;
+                level_++;
+            }
+        }
+        waitLevelToUp();
     }
 
     public void render() {

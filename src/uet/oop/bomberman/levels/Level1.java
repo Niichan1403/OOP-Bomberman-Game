@@ -25,19 +25,23 @@ public class Level1 {
         player.setX(32);
         player.setY(32);
         player.setImg(Sprite.player_right.getFxImage());
-        timeNumber = 120;
+        timeNumber = 150;
 
         frameKill = 0;
         swapKill = 1;
         heart = 3;
         boom = 20;
         coin = 0;
+        ballomNumber  = 3;
+        onealNumber = 2;
 
         Animal enemy1 = new Ballom(13, 1, Sprite.balloom_left1.getFxImage());
         Animal enemy2 = new Ballom(18, 3, Sprite.balloom_left1.getFxImage());
         Animal enemy3 = new Ballom(26, 5, Sprite.balloom_left1.getFxImage());
+
+
         Animal enemy4 = new Oneal(9, 7, Sprite.oneal_left1.getFxImage());
-        Animal enemy5 = new Oneal(8, 5, Sprite.oneal_left1.getFxImage());
+        Animal enemy5 = new Oneal(26, 3, Sprite.oneal_left1.getFxImage());
 
         enemy.add(enemy1);
         enemy.add(enemy2);

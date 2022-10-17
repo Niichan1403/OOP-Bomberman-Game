@@ -19,7 +19,7 @@ import static uet.oop.bomberman.control.Menu2.*;
 
 public class LayoutGame {
     public static Pane pane;
-    public static int boom = 20, heart = 3, coin = 0;
+    public static int boom = 20, heart = 3, coin = 0, ballomNumber = 3, onealNumber = 2;
     public static ImageView status;
     public static ImageView bom[] = new ImageView[3];
     public static Rectangle rect_bom1[] = new Rectangle[3];
@@ -198,12 +198,18 @@ public class LayoutGame {
         for(int i=0;i<3;i++) {
             rect_bom2[i] = new Rectangle();
             if(i == 0) {
+                textBox2[i] = new Text(": 0");
+                textBox2[i].setY(204);
                 rect_bom2[i].setY(187);
             }
             else if(i == 1) {
+                textBox2[i] = new Text(": " + ballomNumber);
+                textBox2[i].setY(236);
                 rect_bom2[i].setY(220);
             }
             else {
+                textBox2[i] = new Text(": 0");
+                textBox2[i].setY(269);
                 rect_bom2[i].setY(252);
             }
 
@@ -215,17 +221,27 @@ public class LayoutGame {
             rect_bom2[i].setFill(Color.WHITE);
             rect_bom2[i].setStroke(Color.PINK);
             rect_bom2[i].setStrokeWidth(3);
+
+            textBox2[i].setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,15));
+            textBox2[i].setFill(Color.rgb(75,75,75));
+            textBox2[i].setX(1085);
         }
 
         for(int i=0;i<3;i++) {
             rect_bom3[i] = new Rectangle();
             if(i == 0) {
+                textBox3[i] = new Text(": 0");
+                textBox3[i].setY(324);
                 rect_bom3[i].setY(307);
             }
             else if(i == 1) {
+                textBox3[i] = new Text(": " + onealNumber);
+                textBox3[i].setY(356);
                 rect_bom3[i].setY(340);
             }
             else {
+                textBox3[i] = new Text(": 0");
+                textBox3[i].setY(389);
                 rect_bom3[i].setY(372);
             }
 
@@ -237,10 +253,15 @@ public class LayoutGame {
             rect_bom3[i].setFill(Color.WHITE);
             rect_bom3[i].setStroke(Color.PINK);
             rect_bom3[i].setStrokeWidth(3);
+
+            textBox3[i].setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,15));
+            textBox3[i].setFill(Color.rgb(75,75,75));
+            textBox3[i].setX(1085);
         }
 
         Pane pane = new Pane();
-        pane.getChildren().addAll(bomberman,level,runTime,status,rect_[1],rect_[2],rect_[3],rect_[0],quit,bomberImage,ballomImage,onealImage,rect_bom1[0],rect_bom1[1],rect_bom1[2],rect_bom2[0],rect_bom2[1],rect_bom2[2],rect_bom3[0],rect_bom3[1],rect_bom3[2],bom[0],bom[1],bom[2],objectText[0],objectText[1],objectText[2],textBox1[0],textBox1[1],textBox1[2]);
+        pane.getChildren().addAll(bomberman,level,runTime,status,rect_[1],rect_[2],rect_[3],rect_[0],quit,bomberImage,ballomImage,onealImage,rect_bom1[0],rect_bom1[1],rect_bom1[2],rect_bom2[0],rect_bom2[1],rect_bom2[2],rect_bom3[0],rect_bom3[1],rect_bom3[2],bom[0],bom[1],bom[2],objectText[0],objectText[1],objectText[2]
+                ,textBox1[0],textBox1[1],textBox1[2],textBox2[0],textBox2[1],textBox2[2],textBox3[0],textBox3[1],textBox3[2]);
         pane.setMinSize(1140,40 );
         pane.setMaxSize(1140, 40);
         pane.setStyle("-fx-background-color: #353535");
@@ -251,6 +272,9 @@ public class LayoutGame {
     public static void updateLayout() {
         textBox1[1].setText(": " + heart);
         textBox1[2].setText(": " + boom);
+        textBox1[0].setText(": " + coin);
+        textBox2[1].setText(": " + ballomNumber);
+        textBox3[1].setText(": " + onealNumber);
         status.setOnMouseClicked(mouseEvent -> {
             if(running) {
                 Image playGame = new Image("images/playGame.png");

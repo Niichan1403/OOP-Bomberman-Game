@@ -33,7 +33,8 @@ public class Ballom extends Animal {
             } else if(swapKill == 3) {
                 animal.setImg(Sprite.mob_dead3.getFxImage());
             } else {
-                    enemy.remove(animal);
+                Image coin = new Image("images/coin.png");
+                animal.setImg(coin);
             }
             swapKill ++;
         }
