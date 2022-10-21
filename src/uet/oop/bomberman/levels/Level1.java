@@ -2,10 +2,8 @@ package uet.oop.bomberman.levels;
 
 
 import javafx.scene.Group;
-import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.animal.Animal;
 import uet.oop.bomberman.entities.animal.Ballom;
-import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.entities.animal.Oneal;
 import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.Sprite;

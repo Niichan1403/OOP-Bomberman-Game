@@ -1,9 +1,11 @@
 package uet.oop.bomberman.entities.block;
 
-import com.sun.webkit.dom.EntityImpl;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.item.FlameItem;
+import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +24,10 @@ public class Bomb extends Entity {
     public static int hasBomb = 0;          // check if there's a bomb
     public static int bombNumber = 1;
 
-    public static int powerDirUp = 2;
-    public static int powerDirDown= 2;
-    public static int powerDirLeft = 2;
-    public static int powerDirRight = 2;
+    public static int powerDirUp = 1;
+    public static int powerDirDown= 1;
+    public static int powerDirLeft = 1;
+    public static int powerDirRight = 1;
 
     private static Entity middleFlame;
 
@@ -38,6 +40,8 @@ public class Bomb extends Entity {
     private static boolean hasFlame = false;
 
     public static List<Entity> flameList = new ArrayList<>();
+
+    public static Sound bombSound = new Sound();
 
     public Bomb(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
@@ -53,6 +57,7 @@ public class Bomb extends Entity {
             int x = Math.round((float) player.getX() / 32);
             int y = Math.round((float) player.getY() / 32);
             bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
+            bombSound.playPutBomb();
             block.add(bomb);
             object_ids[x][y] = bomb;
             activeSwap = 1;
@@ -99,7 +104,9 @@ public class Bomb extends Entity {
         int i;
         for (i = 1; i <= powerDirUp; i++) {
             if (object_ids[bomb.getX() / 32][bomb.getY() / 32 - i] instanceof Wall ||
-                    object_ids[bomb.getX() / 32][bomb.getY() / 32 - i] instanceof Brick) {
+                    object_ids[bomb.getX() / 32][bomb.getY() / 32 - i] instanceof Brick ||
+                    (object_ids[bomb.getX() / 32][bomb.getY() / 32 - i] instanceof SpeedItem && !((SpeedItem) object_ids[bomb.getX() / 32][bomb.getY() / 32 - i]).isRevealed()) ||
+                    (object_ids[bomb.getX() / 32][bomb.getY() / 32 - i] instanceof FlameItem) && !((FlameItem) object_ids[bomb.getX() / 32][bomb.getY() / 32 - i]).isRevealed()) {
                 break;
             }
             flame = new Bomb(bomb.getX() / 32, bomb.getY() / 32 - i, Sprite.bomb_exploded.getFxImage());
@@ -107,7 +114,9 @@ public class Bomb extends Entity {
         }
         for (i = 1; i <= powerDirDown; i++) {
             if (object_ids[bomb.getX() / 32][bomb.getY() / 32 + i] instanceof Wall ||
-                    object_ids[bomb.getX() / 32][bomb.getY() / 32 + i] instanceof Brick) {
+                    object_ids[bomb.getX() / 32][bomb.getY() / 32 + i] instanceof Brick ||
+                    (object_ids[bomb.getX() / 32][bomb.getY() / 32 + i] instanceof SpeedItem && !((SpeedItem) object_ids[bomb.getX() / 32][bomb.getY() / 32 + i]).isRevealed()) ||
+                    (object_ids[bomb.getX() / 32][bomb.getY() / 32 + i] instanceof FlameItem) && !((FlameItem) object_ids[bomb.getX() / 32][bomb.getY() / 32 + i]).isReceived()) {
                 break;
             }
             flame = new Bomb(bomb.getX() / 32, bomb.getY() / 32 + i, Sprite.bomb_exploded.getFxImage());
@@ -115,7 +124,9 @@ public class Bomb extends Entity {
         }
         for (i = 1; i <= powerDirLeft; i++) {
             if (object_ids[bomb.getX() / 32 - i][bomb.getY() / 32] instanceof Wall ||
-                    object_ids[bomb.getX() / 32 - i][bomb.getY() / 32] instanceof Brick) {
+                    object_ids[bomb.getX() / 32 - i][bomb.getY() / 32] instanceof Brick ||
+                    (object_ids[bomb.getX() / 32 - i][bomb.getY() / 32] instanceof SpeedItem && !((SpeedItem) object_ids[bomb.getX() / 32 - i][bomb.getY() / 32]).isRevealed()) ||
+                    (object_ids[bomb.getX() / 32 - i][bomb.getY() / 32] instanceof FlameItem) && !((FlameItem) object_ids[bomb.getX() / 32 - i][bomb.getY() / 32]).isRevealed()) {
                 break;
             }
             flame = new Bomb(bomb.getX() / 32 - i, bomb.getY() / 32, Sprite.bomb_exploded.getFxImage());
@@ -123,7 +134,9 @@ public class Bomb extends Entity {
         }
         for (i = 1; i <= powerDirRight; i++) {
             if (object_ids[bomb.getX() / 32 + i][bomb.getY() / 32] instanceof Wall ||
-                    object_ids[bomb.getX() / 32 + i][bomb.getY() / 32] instanceof Brick) {
+                    object_ids[bomb.getX() / 32 + i][bomb.getY() / 32] instanceof Brick ||
+                    (object_ids[bomb.getX() / 32 + i][bomb.getY() / 32] instanceof SpeedItem && !((SpeedItem) object_ids[bomb.getX() / 32 + i][bomb.getY() / 32]).isRevealed()) ||
+                    (object_ids[bomb.getX() / 32 + i][bomb.getY() / 32] instanceof FlameItem) && !((FlameItem) object_ids[bomb.getX() / 32 + i][bomb.getY() / 32]).isRevealed()) {
                 break;
             }
             flame = new Bomb(bomb.getX() / 32 + i, bomb.getY() / 32, Sprite.bomb_exploded.getFxImage());
@@ -334,6 +347,7 @@ public class Bomb extends Entity {
         if (hasBomb == 2) {
             if (!hasFlame) {
                 createFlame();
+                bombSound.playBombExplosion();
             }
             if (explosionTime-- > 0) {
                 flameAnimation();
@@ -369,5 +383,5 @@ public class Bomb extends Entity {
     public void update() {
         checkActive();
         checkExplosion();
-    };
+    }
 }

@@ -22,8 +22,8 @@ public class Menu {
     public static Image authorImage;
     public static ImageView author;
     private static Text newGameText, exitText, optionsText;
-    private static Text item[] = new Text[3];
-    private static Rectangle rect[] = new Rectangle[3];
+    private static Text[] item = new Text[3];
+    private static Rectangle[] rect = new Rectangle[3];
     public static Pane layoutMenu;
 
 
@@ -110,5 +110,4 @@ public class Menu {
             });
         }
     }
-
 }

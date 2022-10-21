@@ -2,13 +2,14 @@ package uet.oop.bomberman.entities.animal;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 import java.util.Random;
 
 import static uet.oop.bomberman.BombermanGame.enemy;
 
 public class Ballom extends Animal {
-
+    public Sound ballomSound = new Sound();
     private int swapKill = 1;
     private int countKill = 0;
     public Ballom(int dist, int swap, String direction, int countToRun) {

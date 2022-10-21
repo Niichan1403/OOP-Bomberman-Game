@@ -6,28 +6,20 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.control.Menu;
-import uet.oop.bomberman.control.Menu2;
 import uet.oop.bomberman.control.Move;
 import uet.oop.bomberman.entities.animal.Animal;
 import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
-//import uet.oop.bomberman.entities.block.Bomb;
 import uet.oop.bomberman.entities.block.Bomb;
-import uet.oop.bomberman.entities.block.Grass;
 import uet.oop.bomberman.entities.block.Portal;
-import uet.oop.bomberman.entities.block.Wall;
-import uet.oop.bomberman.graphics.CreateMap;
-import uet.oop.bomberman.graphics.LayoutGame;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.*;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import static uet.oop.bomberman.control.Collision.checkCollisionWithFlame;
 import static uet.oop.bomberman.graphics.LayoutGame.*;
@@ -77,7 +69,6 @@ public class BombermanGame extends Application {
 
         // Input handling
         scene.setOnKeyPressed(event -> {
-//            if (player.isLife())
                 switch (event.getCode()) {
                     case UP:
                         player.up = true;
@@ -98,7 +89,6 @@ public class BombermanGame extends Application {
         });
 
         scene.setOnKeyReleased(event -> {
-//            if (player.isLife())
                 switch (event.getCode()) {
                     case UP:
                         player.up = false;
@@ -116,9 +106,9 @@ public class BombermanGame extends Application {
                         player.right = false;
                         player.setImg(Sprite.player_right.getFxImage());
                         break;
-                    case SPACE:
-                        Bomb.putBomb();
-                        break;
+//                    case SPACE:
+//                        Bomb.putBomb();
+//                        break;
                 }
         });
 
@@ -149,11 +139,15 @@ public class BombermanGame extends Application {
     }
 
     public void update() {
-        block.forEach(Entity::update);
-        enemy.forEach(Entity::update);
+        for (int i = 0; i < block.size(); i++) {
+            block.get(i).update();
+        }
+        for (int i = 0; i < enemy.size(); i++) {
+            enemy.get(i).update();
+        }
         player.update();
         updateLayout();
-        Move.checkRun(player, 1);
+        Move.checkRun(player, player.getDist());
         checkCollisionWithFlame();
 
         for (Animal a : enemy) {

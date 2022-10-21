@@ -4,6 +4,9 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.block.Brick;
 import uet.oop.bomberman.entities.block.Grass;
 import uet.oop.bomberman.entities.block.Wall;
+import uet.oop.bomberman.entities.item.FlameItem;
+import uet.oop.bomberman.entities.item.Item;
+import uet.oop.bomberman.entities.item.SpeedItem;
 
 import java.io.File;
 import java.io.FileReader;
@@ -43,6 +46,12 @@ public class CreateMap {
                             case "*":
                                 ett = new Brick(j, i, Sprite.brick.getFxImage());
                                 break;
+                            case "s":
+                                ett = new SpeedItem(j, i, Sprite.brick.getFxImage());
+                                break;
+                            case "l":
+                                ett = new FlameItem(j, i, Sprite.brick.getFxImage());
+                                break;
                             default:
                                 ett = new Grass(j, i, Sprite.grass.getFxImage());
                                 break;
@@ -52,7 +61,7 @@ public class CreateMap {
                     }
                 }
             }
-            //sc.close();
+            sc.close();
         }
 
         catch (Exception e) {

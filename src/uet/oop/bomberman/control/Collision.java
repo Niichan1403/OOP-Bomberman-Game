@@ -7,7 +7,10 @@ import uet.oop.bomberman.entities.animal.Ballom;
 import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.entities.animal.Oneal;
 import uet.oop.bomberman.entities.block.*;
+import uet.oop.bomberman.entities.item.FlameItem;
+import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 import java.util.Objects;
 
@@ -16,6 +19,7 @@ import static uet.oop.bomberman.entities.block.Bomb.*;
 import static uet.oop.bomberman.graphics.LayoutGame.*;
 
 public class Collision {
+    public static Sound check = new Sound();
     public static int MAX(int a, int b) {
         return Math.max(a, b);
     }
@@ -36,20 +40,26 @@ public class Collision {
         if(entity instanceof Bomber) {
             if (xt % 32 == 0 && yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
-                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick;
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick ||
+                        (object_ids[xt / 32][yt / 32 - 1] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32][yt / 32 - 1]).isRevealed()) ||
+                        (object_ids[xt / 32][yt / 32 - 1] instanceof FlameItem && !((FlameItem) object_ids[xt / 32][yt / 32 - 1]).isRevealed());
             } else if (xt % 32 != 0 && yt % 32 == 0) {
                 while (xt % 32 != 0) {
                     xt--;
                 }
                 if (object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
-                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick) {
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick ||
+                        (object_ids[xt / 32][yt / 32 - 1] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32][yt / 32 - 1]).isRevealed()) ||
+                        (object_ids[xt / 32][yt / 32 - 1] instanceof FlameItem && !((FlameItem) object_ids[xt / 32][yt / 32 - 1]).isRevealed())) {
                     return true;
                 }
 
                 if (object_ids[xt / 32][yt / 32 - 1] instanceof Grass) {
                     if ((object_ids[xt / 32 + 1][yt / 32 - 1] instanceof Brick ||
-                            object_ids[xt / 32 + 1][yt / 32 - 1] instanceof Wall ) &&
-                            collision(entity.getX(), entity.getY() - 1, 24, 32, xt + 32, yt - 32, 32, 32)) {
+                            object_ids[xt / 32 + 1][yt / 32 - 1] instanceof Wall ||
+                            (object_ids[xt / 32 + 1][yt / 32 - 1] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32][yt / 32 - 1]).isRevealed()) ||
+                            (object_ids[xt / 32 + 1][yt / 32 - 1] instanceof FlameItem && !((FlameItem) object_ids[xt / 32][yt / 32 - 1]).isRevealed())) &&
+                            collision(entity.getX(), entity.getY() - 1, 24, 33, xt + 32, yt - 32, 32, 32)) {
                         return true;
                     }
                 }
@@ -73,19 +83,25 @@ public class Collision {
         if(entity instanceof Bomber) {
             if (xt % 32 == 0 && yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
-                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick ;
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick ||
+                        (object_ids[xt / 32][yt / 32 + 1] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32][yt / 32 + 1]).isRevealed()) ||
+                        (object_ids[xt / 32][yt / 32 + 1] instanceof FlameItem && !((FlameItem) object_ids[xt / 32][yt / 32 + 1]).isRevealed());
             } else if (xt % 32 != 0 && yt % 32 == 0) {
                 while (xt % 32 != 0) {
                     xt--;
                 }
-                if ((object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
-                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick )) {
+                if (object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick ||
+                        (object_ids[xt / 32][yt / 32 + 1] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32][yt / 32 + 1]).isRevealed()) ||
+                        (object_ids[xt / 32][yt / 32 + 1] instanceof FlameItem && !((FlameItem) object_ids[xt / 32][yt / 32 + 1]).isRevealed())) {
                     return true;
                 }
 
                 if (object_ids[xt / 32][yt / 32 + 1] instanceof Grass) {
                     if ((object_ids[xt / 32 + 1][yt / 32 + 1] instanceof Brick ||
-                            object_ids[xt / 32 + 1][yt / 32 + 1] instanceof Wall ) &&
+                            object_ids[xt / 32 + 1][yt / 32 + 1] instanceof Wall ||
+                            (object_ids[xt / 32 + 1][yt / 32 + 1] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32][yt / 32 + 1]).isRevealed()) ||
+                            (object_ids[xt / 32 + 1][yt / 32 + 1] instanceof FlameItem && !((FlameItem) object_ids[xt / 32][yt / 32 + 1]).isRevealed())) &&
                             collision(entity.getX(), entity.getY() + 8, 24, 25, xt + 32, yt + 32, 32, 32)) {
                         return true;
                     }
@@ -111,18 +127,24 @@ public class Collision {
        if(entity instanceof Bomber) {
            if (xt % 32 == 0 && yt % 32 == 0) {
                return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
-                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
+                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick ||
+                       (object_ids[xt / 32 - 1][yt / 32] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32 - 1][yt / 32]).isRevealed()) ||
+                       (object_ids[xt / 32 - 1][yt / 32] instanceof FlameItem && !((FlameItem) object_ids[xt / 32 - 1][yt / 32]).isRevealed());
            } else if (xt % 32 == 0) {
                while (yt % 32 != 0) {
                    yt--;
                }
                if (object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
-                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick) {
+                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick ||
+                       (object_ids[xt / 32 - 1][yt / 32] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32 - 1][yt / 32]).isRevealed()) ||
+                       (object_ids[xt / 32 - 1][yt / 32] instanceof FlameItem && !((FlameItem) object_ids[xt / 32 - 1][yt / 32]).isRevealed())) {
                    return true;
                }
                yt += 32;
                return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
-                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick;
+                       object_ids[xt / 32 - 1][yt / 32] instanceof Brick ||
+                       (object_ids[xt / 32 - 1][yt / 32] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32 - 1][yt / 32]).isRevealed()) ||
+                       (object_ids[xt / 32 - 1][yt / 32] instanceof FlameItem && !((FlameItem) object_ids[xt / 32 - 1][yt / 32]).isRevealed());
            }
        }
 
@@ -143,18 +165,24 @@ public class Collision {
         if(entity instanceof Bomber) {
            if (xt % 32 == 8 && yt % 32 == 0) {
                return object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Wall ||
-                       object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick;
+                       object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick ||
+                       (object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof SpeedItem && !((SpeedItem) object_ids[(xt - 8) / 32 + 1][yt / 32]).isRevealed()) ||
+                       (object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof FlameItem && !((FlameItem) object_ids[(xt - 8) / 32 + 1][yt / 32]).isRevealed());
            } else if (xt % 32 == 8 && yt % 32 != 0) {
                while (yt % 32 != 0) {
                    yt--;
                }
                if (object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Wall ||
-                       object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick) {
+                       object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick ||
+                       (object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof SpeedItem && !((SpeedItem) object_ids[(xt - 8) / 32 + 1][yt / 32]).isRevealed()) ||
+                       (object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof FlameItem && !((FlameItem) object_ids[(xt - 8) / 32 + 1][yt / 32]).isRevealed())) {
                    return true;
                }
                yt += 32;
                return object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Wall ||
-                       object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick;
+                       object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick ||
+                       (object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof SpeedItem && !((SpeedItem) object_ids[(xt - 8) / 32 + 1][yt / 32]).isRevealed()) ||
+                       (object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof FlameItem && !((FlameItem) object_ids[(xt - 8) / 32 + 1][yt / 32]).isRevealed());
            }
        }
 
@@ -177,9 +205,10 @@ public class Collision {
                         heart--;
                         player.setLife(false);
                     }
-                } else if(player.isLife() && !animal.isLife()) {
+                } else if (player.isLife() && !animal.isLife()) {
                     enemy.remove(animal);
                     coin++;
+                    check.playCoin();
                 }
             }
         }
@@ -261,6 +290,32 @@ public class Collision {
 
             object_ids[xt][yt] = newGrass;
         }
+        else if (e instanceof SpeedItem && !((SpeedItem) e).isRevealed()) {
+            int xt = e.getX() / 32;
+            int yt = e.getY() / 32;
+
+            Entity brickAnimation = new Brick(xt, yt, Sprite.brick.getFxImage());
+            block.add(brickAnimation);
+
+            brickAnimation.isDestroyed = true;
+            e.isDestroyed = true;
+            ((SpeedItem) e).setRevealed(true);
+
+            object_ids[xt][yt] = e;
+        }
+        else if (e instanceof FlameItem && !((FlameItem) e).isRevealed()) {
+            int xt = e.getX() / 32;
+            int yt = e.getY() / 32;
+
+            Entity brickAnimation = new Brick(xt, yt, Sprite.brick.getFxImage());
+            block.add(brickAnimation);
+
+            brickAnimation.isDestroyed = true;
+            e.isDestroyed = true;
+            ((FlameItem) e).setRevealed(true);
+
+            object_ids[xt][yt] = e;
+        }
     }
 
     // Swerve around corner to avoid hard-stuck
@@ -272,10 +327,10 @@ public class Collision {
             while (xt % 32 != 0) {
                 xt--;
             }
-            if (object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
-                    object_ids[xt / 32][yt / 32 - 1] instanceof Brick) {
+            if ((object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
+                    object_ids[xt / 32][yt / 32 - 1] instanceof Brick)) {
                 if (player.getX() % 32 > 20) {
-                    player.setX(player.getX() + 1);
+                    player.setX(player.getX() + player.getDist());
                 }
             }
 
@@ -283,8 +338,8 @@ public class Collision {
                 if ((object_ids[xt / 32 + 1][yt / 32 - 1] instanceof Brick ||
                         object_ids[xt / 32 + 1][yt / 32 - 1] instanceof Wall) &&
                         collision(player.getX(), player.getY() - 1, 24, 32, xt + 32, yt - 32, 32, 32)) {
-                    if ((player.getX() + 24) % 32 < 12) {
-                        player.setX(player.getX() - 1);
+                    if ((player.getX() + 24) % 32 < 12 && (player.getX() + 24) % 32 > 0) {
+                        player.setX(player.getX() - player.getDist());
                     }
                 }
             }
@@ -302,7 +357,7 @@ public class Collision {
             if (object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
                     object_ids[xt / 32][yt / 32 + 1] instanceof Brick) {
                 if (player.getX() % 32 > 20) {
-                    player.setX(player.getX() + 1);
+                    player.setX(player.getX() + player.getDist());
                 }
             }
 
@@ -310,8 +365,8 @@ public class Collision {
                 if ((object_ids[xt / 32 + 1][yt / 32 + 1] instanceof Brick ||
                         object_ids[xt / 32 + 1][yt / 32 + 1] instanceof Wall) &&
                         collision(player.getX(), player.getY() + 1, 24, 32, xt + 32, yt + 32, 32, 32)) {
-                    if ((player.getX() + 24) % 32 < 12) {
-                        player.setX(player.getX() - 1);
+                    if ((player.getX() + 24) % 32 < 12 && (player.getX() + 24) % 32 > 0) {
+                        player.setX(player.getX() - player.getDist());
                     }
                 }
             }
@@ -330,14 +385,14 @@ public class Collision {
             if (object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
                     object_ids[xt / 32 - 1][yt / 32] instanceof Brick) {
                 if (player.getY() % 32 > 20) {
-                    player.setY(player.getY() + 1);
+                    player.setY(player.getY() + player.getDist());
                 }
             }
             yt += 32;
             if (object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
                     object_ids[xt / 32 - 1][yt / 32] instanceof Brick) {
-                if (player.getY() % 32 < 12) {
-                    player.setY(player.getY() - 1);
+                if (player.getY() % 32 < 12 && player.getY() % 32 > 0) {
+                    player.setY(player.getY() - player.getDist());
                 }
             }
         }
@@ -354,14 +409,14 @@ public class Collision {
             if (object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Wall ||
                     object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick) {
                 if (player.getY() % 32 > 20) {
-                    player.setY(player.getY() + 1);
+                    player.setY(player.getY() + player.getDist());
                 }
             }
             yt += 32;
             if (object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Wall ||
                     object_ids[(xt - 8) / 32 + 1][yt / 32] instanceof Brick) {
-                if (player.getY() % 32 < 12) {
-                    player.setY(player.getY() - 1);
+                if (player.getY() % 32 < 12 && player.getY() % 32 > 0) {
+                    player.setY(player.getY() - player.getDist());
                 }
             }
         }

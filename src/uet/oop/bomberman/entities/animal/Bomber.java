@@ -1,12 +1,8 @@
 package uet.oop.bomberman.entities.animal;
 
-import javafx.scene.SnapshotParameters;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.control.Collision.checkCollisionWithEnemy;
@@ -15,7 +11,6 @@ import static uet.oop.bomberman.control.Menu2.setCheckCreateMenu2;
 import static uet.oop.bomberman.graphics.LayoutGame.*;
 
 public class Bomber extends Animal {
-
     public static int frameKill = 0;
     public static int swapKill = 1;
     public Bomber() {}
@@ -27,10 +22,13 @@ public class Bomber extends Animal {
         super(dist, swap, direction);
     }
 
+    public Sound bomberSound = new Sound();
+
     private void killBomber() {
         if(frameKill % 15 == 0) {
             if(swapKill == 1) {
                 player.setImg(Sprite.player_dead1.getFxImage());
+                bomberSound.playJustDied();
             }
             else if(swapKill == 2) {
                 player.setImg(Sprite.player_dead2.getFxImage());
@@ -55,7 +53,7 @@ public class Bomber extends Animal {
                         return;
                     }
                     else {
-                        swapKill = 1;
+                        swapKill = 0;
                         player.setX(32);
                         player.setY(32);
                         player.setLife(true);
