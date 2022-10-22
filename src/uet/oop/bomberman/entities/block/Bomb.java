@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.graphics.LayoutGame.bom;
 import static uet.oop.bomberman.graphics.LayoutGame.boom;
 
 public class Bomb extends Entity {
+    private static Entity tmp;
     private static Entity bomb;
     private static long activeFrame = 20;    // frame counted before switch animation when active bomb
     private static long explodeFrame = 20;    // frame counted before switch animation when bomb explodes
@@ -59,6 +61,7 @@ public class Bomb extends Entity {
             bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
             bombSound.playPutBomb();
             block.add(bomb);
+            tmp = object_ids[x][y];
             object_ids[x][y] = bomb;
             activeSwap = 1;
             explodeSwap = 1;
@@ -355,6 +358,7 @@ public class Bomb extends Entity {
                 hasBomb = 3;
             }
         } else if (hasBomb == 3) {
+            object_ids[bomb.getX() / 32][bomb.getY() / 32] = tmp;
             block.remove(middleFlame);
             block.removeAll(upFlame);
             block.removeAll(downFlame);

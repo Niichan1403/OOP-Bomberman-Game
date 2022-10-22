@@ -20,11 +20,13 @@ import uet.oop.bomberman.sound.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.paint.Color;
 
+import static java.awt.Color.PINK;
 import static uet.oop.bomberman.control.Collision.checkCollisionWithFlame;
+import static uet.oop.bomberman.control.Menu.author;
 import static uet.oop.bomberman.graphics.LayoutGame.*;
-import static uet.oop.bomberman.levels.NextLevel.wait;
-import static uet.oop.bomberman.levels.NextLevel.waitLevelToUp;
+import static uet.oop.bomberman.levels.NextLevel.*;
 
 public class BombermanGame extends Application {
     public static Group root;
@@ -65,7 +67,7 @@ public class BombermanGame extends Application {
 
 
         // Create scene
-        Scene scene = new Scene(root,1140,455);
+        Scene scene = new Scene(root,1140,455, Color.rgb(125, 249, 255));
 
         // Input handling
         scene.setOnKeyPressed(event -> {
@@ -106,9 +108,9 @@ public class BombermanGame extends Application {
                         player.right = false;
                         player.setImg(Sprite.player_right.getFxImage());
                         break;
-//                    case SPACE:
-//                        Bomb.putBomb();
-//                        break;
+                   case SPACE:
+                       Bomb.putBomb();
+                        break;
                 }
         });
 
@@ -152,18 +154,23 @@ public class BombermanGame extends Application {
 
         for (Animal a : enemy) {
             a.setCountToRun(a.getCountToRun() + 1);
-            if (a.getCountToRun() == 4) {
-                Move.checkRun(a,4);
+            if (a.getCountToRun() == 2) {
+                Move.checkRun(a,2);
                 a.setCountToRun(0);
             }
         }
 
-        if(enemy.size() == 0) {
-            Entity portal = new Portal(1,5,Sprite.portal.getFxImage());
+        if(enemy.size() == 0 && !wait) {
+            Entity portal = new Portal(WIDTH - 2,HEIGHT - 2,Sprite.portal.getFxImage());
             block.add(portal);
             if(player.getX() == portal.getX() && player.getY() == portal.getY()) {
                 wait = true;
-                level_++;
+                timeWait = System.currentTimeMillis();
+                Image imageNext = new Image("images/menu.png");
+                imageLevelUp.setImage(imageNext);
+                imageLevelUp.setX(0);
+                imageLevelUp.setY(0);
+                root.getChildren().add(imageLevelUp);
             }
         }
         waitLevelToUp();

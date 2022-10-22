@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities.animal;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.block.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.sound.Sound;
 

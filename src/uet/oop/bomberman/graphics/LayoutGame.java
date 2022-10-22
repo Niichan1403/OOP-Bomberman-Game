@@ -16,13 +16,13 @@ import static uet.oop.bomberman.control.Menu2.*;
 
 public class LayoutGame {
     public static Pane pane;
-    public static int boom = 20, heart = 3, coin = 0, ballomNumber = 3, onealNumber = 2;
+    public static int boom = 20, heart = 3, coin = 0, enemy1Number = 3, enemy2Number = 2;
     public static ImageView status;
     public static ImageView[] bom = new ImageView[3];
     public static Rectangle[] rect_bom1 = new Rectangle[3];
     public static Rectangle[] rect_bom2 = new Rectangle[3];
     public static Rectangle[] rect_bom3 = new Rectangle[3];
-    public static ImageView bomberImage, ballomImage, onealImage;
+    public static ImageView bomberImage, enemy1Image, enemy2Image;
     public static Text level, runTime, bomberman, quit;
     public static Text[] objectText = new Text[3];
 
@@ -127,23 +127,18 @@ public class LayoutGame {
         bomberImage.setScaleY(0.85);
 
         Image ballImage_ = new Image("images/ballom1.png");
-        ballomImage = new ImageView(ballImage_);
-        ballomImage.setX(1005);
-        ballomImage.setY(195);
-        ballomImage.setScaleX(0.85);
-        ballomImage.setScaleY(0.85);
+        enemy1Image = new ImageView(ballImage_);
+        enemy1Image.setX(1005);
+        enemy1Image.setY(195);
+        enemy1Image.setScaleX(0.85);
+        enemy1Image.setScaleY(0.85);
 
         Image onealImage_ = new Image("images/oneal.png");
-        onealImage = new ImageView(onealImage_);
-        onealImage.setX(1005);
-        onealImage.setY(316);
-        onealImage.setScaleX(0.85);
-        onealImage.setScaleY(0.85);
-
-
-
-
-
+        enemy2Image = new ImageView(onealImage_);
+        enemy2Image.setX(1005);
+        enemy2Image.setY(316);
+        enemy2Image.setScaleX(0.85);
+        enemy2Image.setScaleY(0.85);
 
         for(int i = 0; i < 3; i++) {
             Image bomImage = new Image("images/a.png");
@@ -200,7 +195,7 @@ public class LayoutGame {
                 rect_bom2[i].setY(187);
             }
             else if(i == 1) {
-                textBox2[i] = new Text(": " + ballomNumber);
+                textBox2[i] = new Text(": " + enemy1Number);
                 textBox2[i].setY(236);
                 rect_bom2[i].setY(220);
             }
@@ -232,7 +227,7 @@ public class LayoutGame {
                 rect_bom3[i].setY(307);
             }
             else if(i == 1) {
-                textBox3[i] = new Text(": " + onealNumber);
+                textBox3[i] = new Text(": " + enemy2Number);
                 textBox3[i].setY(356);
                 rect_bom3[i].setY(340);
             }
@@ -257,7 +252,7 @@ public class LayoutGame {
         }
 
         Pane pane = new Pane();
-        pane.getChildren().addAll(bomberman,level,runTime,status,rect_[1],rect_[2],rect_[3],rect_[0],quit,bomberImage,ballomImage,onealImage,rect_bom1[0],rect_bom1[1],rect_bom1[2],rect_bom2[0],rect_bom2[1],rect_bom2[2],rect_bom3[0],rect_bom3[1],rect_bom3[2],bom[0],bom[1],bom[2],objectText[0],objectText[1],objectText[2]
+        pane.getChildren().addAll(bomberman,level,runTime,status,rect_[1],rect_[2],rect_[3],rect_[0],quit,bomberImage,enemy1Image,enemy2Image,rect_bom1[0],rect_bom1[1],rect_bom1[2],rect_bom2[0],rect_bom2[1],rect_bom2[2],rect_bom3[0],rect_bom3[1],rect_bom3[2],bom[0],bom[1],bom[2],objectText[0],objectText[1],objectText[2]
                 ,textBox1[0],textBox1[1],textBox1[2],textBox2[0],textBox2[1],textBox2[2],textBox3[0],textBox3[1],textBox3[2]);
         pane.setMinSize(1140,40 );
         pane.setMaxSize(1140, 40);
@@ -267,11 +262,13 @@ public class LayoutGame {
 
 
     public static void updateLayout() {
+        level.setText("Level: " + level_);
         textBox1[1].setText(": " + heart);
         textBox1[2].setText(": " + boom);
         textBox1[0].setText(": " + coin);
-        textBox2[1].setText(": " + ballomNumber);
-        textBox3[1].setText(": " + onealNumber);
+        textBox2[1].setText(": " + enemy1Number);
+        textBox3[1].setText(": " + enemy2Number);
+
         status.setOnMouseClicked(mouseEvent -> {
             if(running) {
                 Image playGame = new Image("images/playGame.png");

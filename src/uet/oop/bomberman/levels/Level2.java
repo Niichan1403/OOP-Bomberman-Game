@@ -2,8 +2,16 @@ package uet.oop.bomberman.levels;
 
 
 import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.animal.Animal;
 import uet.oop.bomberman.entities.animal.Ballom;
+import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.entities.animal.Oneal;
 import uet.oop.bomberman.entities.block.Bomb;
 import uet.oop.bomberman.graphics.CreateMap;
@@ -15,49 +23,44 @@ import static uet.oop.bomberman.entities.animal.Bomber.frameKill;
 import static uet.oop.bomberman.entities.animal.Bomber.swapKill;
 import static uet.oop.bomberman.graphics.LayoutGame.*;
 
-public class Level1 {
-    public Level1(Group root) {
-        level_ = 1;
-        new CreateMap("res/levels/level1.txt");
-        LayoutGame.createLayout(root);
-        player.setLife(true);
+public class Level2 {
+    public Level2(Group root) {
+        level_ = 2;
+        objectText[1].setText("Kondoria");
+        objectText[1].setX(1005);
+        objectText[2].setText("Doll");
+        objectText[2].setX(1023 );
+
+        Image kondoria = new Image("images/kondoria.png");
+        enemy1Image.setImage(kondoria);
+        Image doll = new Image("images/doll.png");
+        enemy2Image.setImage(doll);
+
+        new CreateMap("res/levels/level2.txt");
         player.setX(32);
         player.setY(32);
-        player.setDist(1);
-        Bomb.powerDirUp = 1;
-        Bomb.powerDirDown = 1;
-        Bomb.powerDirLeft = 1;
-        Bomb.powerDirRight = 1;
         player.setImg(Sprite.player_right.getFxImage());
+        player.setDist(1);
         timeNumber = 150;
 
         frameKill = 0;
         swapKill = 1;
-        heart = 3;
         boom = 20;
-        coin = 0;
-        enemy1Number  = 3;
-        enemy2Number = 2;
+        enemy1Number  = 4;
+        enemy2Number = 3;
 
-        Animal enemy1 = new Ballom(13, 1, Sprite.balloom_left1.getFxImage());
-        Animal enemy2 = new Ballom(24, 8, Sprite.balloom_left1.getFxImage());
-        Animal enemy3 = new Ballom(20, 5, Sprite.balloom_left1.getFxImage());
+        Bomb.powerDirUp = 1;
+        Bomb.powerDirDown = 1;
+        Bomb.powerDirLeft = 1;
+        Bomb.powerDirRight = 1;
 
 
         Animal enemy4 = new Oneal(9, 7, Sprite.oneal_left1.getFxImage());
-        Animal enemy5 = new Oneal(26, 3, Sprite.oneal_left1.getFxImage());
 
-        enemy.add(enemy1);
-        enemy.add(enemy2);
-        enemy.add(enemy3);
         enemy.add(enemy4);
-        enemy.add(enemy5);
 
         for(Animal item : enemy) {
             item.setLife(true);
-            if(item instanceof Ballom) {
-                item.up = true;
-            }
         }
     }
 }

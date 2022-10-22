@@ -7,6 +7,7 @@ import uet.oop.bomberman.sound.Sound;
 import java.util.Random;
 
 import static uet.oop.bomberman.BombermanGame.enemy;
+import static uet.oop.bomberman.control.Collision.*;
 
 public class Ballom extends Animal {
     public Sound ballomSound = new Sound();
@@ -50,33 +51,36 @@ public class Ballom extends Animal {
         }
 
         if (this.y % 32 == 0 && this.x % 32 == 0) {
-            Random random = new Random();
-            int dir = random.nextInt(4);
-            switch (dir) {
-                case 0:
-                    this.up = true;
-                    this.down = false;
-                    this.left = false;
-                    this.right = false;
-                    break;
-                case 1:
-                    this.up = false;
-                    this.down = true;
-                    this.left = false;
-                    this.right = false;
-                    break;
-                case 2:
-                    this.up = false;
-                    this.down = false;
-                    this.left = true;
-                    this.right = false;
-                    break;
-                case 3:
-                    this.up = false;
-                    this.down = false;
-                    this.left = false;
-                    this.right = true;
-                    break;
+            if(this.up == true && blockedUp(this) || this.down == true && blockedDown(this)
+                    || this.left == true && blockedLeft(this) || this.right == true && blockedRight(this)) {
+                Random random = new Random();
+                int dir = random.nextInt(4);
+                switch (dir) {
+                    case 0:
+                        this.up = true;
+                        this.down = false;
+                        this.left = false;
+                        this.right = false;
+                        break;
+                    case 1:
+                        this.up = false;
+                        this.down = true;
+                        this.left = false;
+                        this.right = false;
+                        break;
+                    case 2:
+                        this.up = false;
+                        this.down = false;
+                        this.left = true;
+                        this.right = false;
+                        break;
+                    case 3:
+                        this.up = false;
+                        this.down = false;
+                        this.left = false;
+                        this.right = true;
+                        break;
+            }
             }
         }
     }

@@ -220,9 +220,9 @@ public class Collision {
                 if (collision(flame.getX(), flame.getY(), 32, 32, e.getX(), e.getY(), 32, 32) && e.isLife()) {
                     e.setLife(false);
                     if(e instanceof Ballom) {
-                        ballomNumber--;
+                        enemy1Number--;
                     } else if(e instanceof Oneal) {
-                        onealNumber--;
+                        enemy2Number--;
                     }
                 }
             }
