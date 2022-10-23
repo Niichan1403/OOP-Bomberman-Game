@@ -15,7 +15,7 @@ public class Move {
             setMovement(animal, dist);
         }
 
-        if(animal instanceof Ballom || animal instanceof Oneal){
+        if(animal instanceof Ballom || animal instanceof Oneal || animal instanceof Kondoria || animal instanceof Doll){
             setMovement(animal, dist);
         }
     }
@@ -121,6 +121,46 @@ public class Move {
                 animal.animationFrame = 6;
             }
         }
+
+        if(animal instanceof Kondoria && animal.animationFrame-- == 0) {
+            if(animal.getSwap() == 1) {
+                animal.setImg(Sprite.kondoria_left1.getFxImage());
+                animal.setSwap(2);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 2) {
+                animal.setImg(Sprite.kondoria_left2.getFxImage());
+                animal.setSwap(3);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 3) {
+                animal.setImg(Sprite.kondoria_left3.getFxImage());
+                animal.setSwap(4);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 4) {
+                animal.setImg(Sprite.kondoria_left2.getFxImage());
+                animal.setSwap(1);
+                animal.animationFrame = 6;
+            }
+        }
+
+        if (animal instanceof Doll && animal.animationFrame-- == 0) {
+            if (animal.getSwap() == 1) {
+                animal.setImg(Sprite.doll_left1.getFxImage());
+                animal.setSwap(2);
+                animal.animationFrame = 6;
+            } else if (animal.getSwap() == 2) {
+                animal.setImg(Sprite.doll_left2.getFxImage());
+                animal.setSwap(3);
+                animal.animationFrame = 6;
+            } else if (animal.getSwap() == 3) {
+                animal.setImg(Sprite.doll_left3.getFxImage());
+                animal.setSwap(4);
+                animal.animationFrame = 6;
+            } else {
+                animal.setImg(Sprite.doll_left2.getFxImage());
+                animal.setSwap(1);
+                animal.animationFrame = 6;
+            }
+        }
     }
 
     private static void downAnimation(Animal animal) {
@@ -178,6 +218,46 @@ public class Move {
                 animal.animationFrame = 6;
             } else {
                 animal.setImg(Sprite.oneal_right2.getFxImage());
+                animal.setSwap(1);
+                animal.animationFrame = 6;
+            }
+        }
+
+        if(animal instanceof Kondoria && animal.animationFrame-- == 0) {
+            if(animal.getSwap() == 1) {
+                animal.setImg(Sprite.kondoria_right1.getFxImage());
+                animal.setSwap(2);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 2) {
+                animal.setImg(Sprite.kondoria_right2.getFxImage());
+                animal.setSwap(3);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 3) {
+                animal.setImg(Sprite.kondoria_right3.getFxImage());
+                animal.setSwap(4);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 4) {
+                animal.setImg(Sprite.kondoria_right2.getFxImage());
+                animal.setSwap(1);
+                animal.animationFrame = 6;
+            }
+        }
+
+        if (animal instanceof Doll && animal.animationFrame-- == 0) {
+            if (animal.getSwap() == 1) {
+                animal.setImg(Sprite.doll_right1.getFxImage());
+                animal.setSwap(2);
+                animal.animationFrame = 6;
+            } else if (animal.getSwap() == 2) {
+                animal.setImg(Sprite.doll_right2.getFxImage());
+                animal.setSwap(3);
+                animal.animationFrame = 6;
+            } else if (animal.getSwap() == 3) {
+                animal.setImg(Sprite.doll_right3.getFxImage());
+                animal.setSwap(4);
+                animal.animationFrame = 6;
+            } else {
+                animal.setImg(Sprite.doll_right2.getFxImage());
                 animal.setSwap(1);
                 animal.animationFrame = 6;
             }
@@ -243,6 +323,46 @@ public class Move {
                 animal.animationFrame = 6;
             }
         }
+
+        if(animal instanceof Kondoria && animal.animationFrame-- == 0) {
+            if(animal.getSwap() == 1) {
+                animal.setImg(Sprite.kondoria_left1.getFxImage());
+                animal.setSwap(2);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 2) {
+                animal.setImg(Sprite.kondoria_left2.getFxImage());
+                animal.setSwap(3);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 3) {
+                animal.setImg(Sprite.kondoria_left3.getFxImage());
+                animal.setSwap(4);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 4) {
+                animal.setImg(Sprite.kondoria_left2.getFxImage());
+                animal.setSwap(1);
+                animal.animationFrame = 6;
+            }
+        }
+
+        if (animal instanceof Doll && animal.animationFrame-- == 0) {
+            if (animal.getSwap() == 1) {
+                animal.setImg(Sprite.doll_left1.getFxImage());
+                animal.setSwap(2);
+                animal.animationFrame = 6;
+            } else if (animal.getSwap() == 2) {
+                animal.setImg(Sprite.doll_left2.getFxImage());
+                animal.setSwap(3);
+                animal.animationFrame = 6;
+            } else if (animal.getSwap() == 3) {
+                animal.setImg(Sprite.doll_left3.getFxImage());
+                animal.setSwap(4);
+                animal.animationFrame = 6;
+            } else {
+                animal.setImg(Sprite.doll_left2.getFxImage());
+                animal.setSwap(1);
+                animal.animationFrame = 6;
+            }
+        }
     }
 
     private static void rightAnimation(Animal animal) {
@@ -301,6 +421,46 @@ public class Move {
                 animal.animationFrame = 6;
             } else {
                 animal.setImg(Sprite.oneal_right2.getFxImage());
+                animal.setSwap(1);
+                animal.animationFrame = 6;
+            }
+        }
+
+        if(animal instanceof Kondoria && animal.animationFrame-- == 0) {
+            if(animal.getSwap() == 1) {
+                animal.setImg(Sprite.kondoria_right1.getFxImage());
+                animal.setSwap(2);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 2) {
+                animal.setImg(Sprite.kondoria_right2.getFxImage());
+                animal.setSwap(3);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 3) {
+                animal.setImg(Sprite.kondoria_right3.getFxImage());
+                animal.setSwap(4);
+                animal.animationFrame = 6;
+            } else if(animal.getSwap() == 4) {
+                animal.setImg(Sprite.kondoria_right2.getFxImage());
+                animal.setSwap(1);
+                animal.animationFrame = 6;
+            }
+        }
+
+        if (animal instanceof Doll && animal.animationFrame-- == 0) {
+            if (animal.getSwap() == 1) {
+                animal.setImg(Sprite.doll_right1.getFxImage());
+                animal.setSwap(2);
+                animal.animationFrame = 6;
+            } else if (animal.getSwap() == 2) {
+                animal.setImg(Sprite.doll_right2.getFxImage());
+                animal.setSwap(3);
+                animal.animationFrame = 6;
+            } else if (animal.getSwap() == 3) {
+                animal.setImg(Sprite.doll_right3.getFxImage());
+                animal.setSwap(4);
+                animal.animationFrame = 6;
+            } else {
+                animal.setImg(Sprite.doll_right2.getFxImage());
                 animal.setSwap(1);
                 animal.animationFrame = 6;
             }

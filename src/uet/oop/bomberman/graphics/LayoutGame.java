@@ -16,7 +16,7 @@ import static uet.oop.bomberman.control.Menu2.*;
 
 public class LayoutGame {
     public static Pane pane;
-    public static int boom = 20, heart = 3, coin = 0, enemy1Number = 3, enemy2Number = 2;
+    public static int boom = 0, heart = 0, coin = 0, enemy1Number = 0, enemy2Number = 0;
     public static ImageView status;
     public static ImageView[] bom = new ImageView[3];
     public static Rectangle[] rect_bom1 = new Rectangle[3];
@@ -115,16 +115,16 @@ public class LayoutGame {
             rect_[i].setArcHeight(30);
             rect_[i].setX(1003);
             rect_[i].setFill(Color.WHITE);
-            rect_[i].setStroke(Color.PINK);
-            rect_[i].setStrokeWidth(3);
+            rect_[i].setStroke(Color.rgb(105,105,105));
+            rect_[i].setStrokeWidth(2);
         }
 
-        Image bomberImage_ = new Image("images/player.png");
+        Image bomberImage_ = new Image("images/player1.png");
         bomberImage = new ImageView(bomberImage_);
-        bomberImage.setX(1010);
+        bomberImage.setX(1005);
         bomberImage.setY(70);
-        bomberImage.setScaleX(0.85);
-        bomberImage.setScaleY(0.85);
+        bomberImage.setScaleX(0.9);
+        bomberImage.setScaleY(0.9);
 
         Image ballImage_ = new Image("images/ballom1.png");
         enemy1Image = new ImageView(ballImage_);
@@ -179,8 +179,8 @@ public class LayoutGame {
             rect_bom1[i].setArcHeight(15);
             rect_bom1[i].setX(1063);
             rect_bom1[i].setFill(Color.WHITE);
-            rect_bom1[i].setStroke(Color.PINK);
-            rect_bom1[i].setStrokeWidth(3);
+            rect_bom1[i].setStroke(Color.rgb(105,105,105));
+            rect_bom1[i].setStrokeWidth(2);
 
             textBox1[i].setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,15));
             textBox1[i].setFill(Color.rgb(75,75,75));
@@ -211,8 +211,8 @@ public class LayoutGame {
             rect_bom2[i].setArcHeight(15);
             rect_bom2[i].setX(1063);
             rect_bom2[i].setFill(Color.WHITE);
-            rect_bom2[i].setStroke(Color.PINK);
-            rect_bom2[i].setStrokeWidth(3);
+            rect_bom2[i].setStroke(Color.rgb(105,105,105));
+            rect_bom2[i].setStrokeWidth(2);
 
             textBox2[i].setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,15));
             textBox2[i].setFill(Color.rgb(75,75,75));
@@ -243,8 +243,8 @@ public class LayoutGame {
             rect_bom3[i].setArcHeight(15);
             rect_bom3[i].setX(1063);
             rect_bom3[i].setFill(Color.WHITE);
-            rect_bom3[i].setStroke(Color.PINK);
-            rect_bom3[i].setStrokeWidth(3);
+            rect_bom3[i].setStroke(Color.rgb(105,105,105));
+            rect_bom3[i].setStrokeWidth(2);
 
             textBox3[i].setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,15));
             textBox3[i].setFill(Color.rgb(75,75,75));

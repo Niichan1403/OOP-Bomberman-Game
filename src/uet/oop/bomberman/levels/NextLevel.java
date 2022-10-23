@@ -4,9 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import uet.oop.bomberman.sound.Sound;
 
-import static uet.oop.bomberman.BombermanGame.level_;
-import static uet.oop.bomberman.BombermanGame.root;
+import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.control.Menu.author;
+import static uet.oop.bomberman.control.Menu.timeWaitLevel1;
 
 public class NextLevel {
     public static Sound nextLevelSound = new Sound();
@@ -30,6 +30,14 @@ public class NextLevel {
                         break;
                 }
                 wait = false;
+            }
+        } else if(level_ == 0 && timeWaitLevel1 > 0) {
+            long now = System.currentTimeMillis();
+            if(now - timeWaitLevel1>=3000) {
+                author.setX(-1000);
+                author.setY(-1000);
+                new Level1(root);
+                running = true;
             }
         }
     }

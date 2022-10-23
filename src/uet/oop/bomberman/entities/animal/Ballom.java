@@ -11,12 +11,8 @@ import static uet.oop.bomberman.control.Collision.*;
 
 public class Ballom extends Animal {
     public Sound ballomSound = new Sound();
-    private int swapKill = 1;
+    private int swapKill = 0;
     private int countKill = 0;
-    public Ballom(int dist, int swap, String direction, int countToRun) {
-
-        super(4, 1, "up");
-    }
 
     public Ballom() {
 
@@ -28,11 +24,14 @@ public class Ballom extends Animal {
 
     public void killBallom(Animal animal) {
         if(countKill % 10 == 0) {
-            if(swapKill == 1) {
+            if(swapKill == 0 || swapKill == 1) {
+                animal.setImg(Sprite.balloom_dead.getFxImage());
+            }
+            else if(swapKill == 2) {
                 animal.setImg(Sprite.mob_dead1.getFxImage());
-            } else if(swapKill == 2) {
-                animal.setImg(Sprite.mob_dead2.getFxImage());
             } else if(swapKill == 3) {
+                animal.setImg(Sprite.mob_dead2.getFxImage());
+            } else if(swapKill == 4) {
                 animal.setImg(Sprite.mob_dead3.getFxImage());
             } else {
                 Image coin = new Image("images/coin.png");

@@ -9,7 +9,7 @@ import static uet.oop.bomberman.BombermanGame.player;
 import static uet.oop.bomberman.control.Collision.*;
 
 public class Oneal extends Animal{
-    private int swapKill = 1;
+    private int swapKill = 0;
     private int countKill = 0;
     public Oneal(){}
     public Oneal(int x, int y, Image img) {
@@ -21,16 +21,20 @@ public class Oneal extends Animal{
 
     public void killOneal(Animal animal) {
         if (countKill % 16 == 0) {
-            if (swapKill == 1) {
+            if(swapKill == 0 || swapKill == 1) {
                 animal.setImg(Sprite.oneal_dead.getFxImage());
-                swapKill = 2;
-            } else if (swapKill == 2) {
-                animal.setImg(Sprite.player_dead3.getFxImage());
-                swapKill = 3;
-            } else {
+            }
+            else if (swapKill == 2) {
+                animal.setImg(Sprite.mob_dead1.getFxImage());
+            } else if (swapKill == 3) {
+                animal.setImg(Sprite.mob_dead2.getFxImage());
+            } else if(swapKill == 4) {
+                animal.setImg(Sprite.mob_dead3.getFxImage());
+            }else {
                 Image coin = new Image("images/coin.png");
                 animal.setImg(coin);
             }
+            swapKill++;
         }
     }
 

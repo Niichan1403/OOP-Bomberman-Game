@@ -13,6 +13,7 @@ import uet.oop.bomberman.control.Move;
 import uet.oop.bomberman.entities.animal.Animal;
 import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.animal.Doll;
 import uet.oop.bomberman.entities.block.Bomb;
 import uet.oop.bomberman.entities.block.Portal;
 import uet.oop.bomberman.graphics.Sprite;
@@ -39,7 +40,7 @@ public class BombermanGame extends Application {
 
     public static int width_ = 0;   // board's width
     public static int height_ = 0;  // board's height
-    public static int level_ = 1;   // board's level
+    public static int level_ = 0;   // board's level
     public static Animal player;
     public static final List<Entity> block = new ArrayList<>(); // list of idle object
     public static List<Animal> enemy = new ArrayList<>(); // list of enemy
@@ -67,7 +68,7 @@ public class BombermanGame extends Application {
 
 
         // Create scene
-        Scene scene = new Scene(root,1140,455, Color.rgb(125, 249, 255));
+        Scene scene = new Scene(root,1140,455, Color.LIGHTGRAY);
 
         // Input handling
         scene.setOnKeyPressed(event -> {
@@ -132,6 +133,7 @@ public class BombermanGame extends Application {
                     render();
                     time();
                 }
+                waitLevelToUp();
             }
         };
         timer.start();
@@ -155,7 +157,9 @@ public class BombermanGame extends Application {
         for (Animal a : enemy) {
             a.setCountToRun(a.getCountToRun() + 1);
             if (a.getCountToRun() == 2) {
-                Move.checkRun(a,2);
+                if(a instanceof Doll) {
+                    Move.checkRun(a,4);
+                } else Move.checkRun(a,2);
                 a.setCountToRun(0);
             }
         }
@@ -173,7 +177,6 @@ public class BombermanGame extends Application {
                 root.getChildren().add(imageLevelUp);
             }
         }
-        waitLevelToUp();
     }
 
     public void render() {

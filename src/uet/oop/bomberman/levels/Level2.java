@@ -9,14 +9,13 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import uet.oop.bomberman.BombermanGame;
-import uet.oop.bomberman.entities.animal.Animal;
-import uet.oop.bomberman.entities.animal.Ballom;
-import uet.oop.bomberman.entities.animal.Bomber;
-import uet.oop.bomberman.entities.animal.Oneal;
+import uet.oop.bomberman.entities.animal.*;
 import uet.oop.bomberman.entities.block.Bomb;
 import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.graphics.LayoutGame;
+
+import java.util.Random;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.animal.Bomber.frameKill;
@@ -54,13 +53,42 @@ public class Level2 {
         Bomb.powerDirLeft = 1;
         Bomb.powerDirRight = 1;
 
+        Animal enemy1 = new Kondoria(13, 1, Sprite.balloom_left1.getFxImage());
+        Animal enemy2 = new Kondoria(24, 8, Sprite.balloom_left1.getFxImage());
+        Animal enemy3 = new Kondoria(22, 5, Sprite.balloom_left1.getFxImage());
+        Animal enemy4 = new Kondoria(3,7 , Sprite.balloom_left1.getFxImage());
 
-        Animal enemy4 = new Oneal(9, 7, Sprite.oneal_left1.getFxImage());
 
+        Animal enemy5 = new Doll(7, 7, Sprite.oneal_left1.getFxImage());
+        Animal enemy6 = new Doll(26, 3, Sprite.oneal_left1.getFxImage());
+        Animal enemy7 = new Doll(27, 8, Sprite.oneal_left1.getFxImage());
+
+        enemy.add(enemy1);
+        enemy.add(enemy2);
+        enemy.add(enemy3);
         enemy.add(enemy4);
+        enemy.add(enemy5);
+        enemy.add(enemy6);
+        enemy.add(enemy7);
 
         for(Animal item : enemy) {
             item.setLife(true);
+                Random random = new Random();
+                int dir = random.nextInt(4);
+                switch (dir) {
+                    case 0:
+                        item.up = true;
+                        break;
+                    case 1:
+                        item.down = true;
+                        break;
+                    case 2:
+                        item.left = true;
+                        break;
+                    case 3:
+                        item.right = true;
+                        break;
+                }
+            }
         }
     }
-}

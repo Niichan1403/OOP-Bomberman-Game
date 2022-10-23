@@ -12,6 +12,7 @@ import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.control.Menu.creatMenu;
 import static uet.oop.bomberman.graphics.LayoutGame.coin;
 import static uet.oop.bomberman.graphics.LayoutGame.heart;
+import static uet.oop.bomberman.control.Menu.timeWaitLevel1;
 
 public class Menu2 {
     public static Rectangle rect1;
@@ -72,6 +73,8 @@ public class Menu2 {
 
         textMenu2[2].setOnMouseClicked(event->{
             running = false;
+            timeWaitLevel1 = 0;
+            level_ = 0;
             heart = 0;
             coin = 0;
             block.clear();

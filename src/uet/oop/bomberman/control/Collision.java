@@ -2,10 +2,7 @@ package uet.oop.bomberman.control;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.animal.Animal;
-import uet.oop.bomberman.entities.animal.Ballom;
-import uet.oop.bomberman.entities.animal.Bomber;
-import uet.oop.bomberman.entities.animal.Oneal;
+import uet.oop.bomberman.entities.animal.*;
 import uet.oop.bomberman.entities.block.*;
 import uet.oop.bomberman.entities.item.FlameItem;
 import uet.oop.bomberman.entities.item.SpeedItem;
@@ -66,10 +63,17 @@ public class Collision {
             }
         }
 
-        if(entity instanceof Ballom || entity instanceof Oneal) {
+        if(entity instanceof Ballom || entity instanceof Oneal || entity instanceof Doll) {
             if(yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
                         object_ids[xt / 32][yt / 32 - 1] instanceof Brick||
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Bomb;
+            }
+        }
+
+        if(entity instanceof Kondoria) {
+            if(yt % 32 == 0) {
+                return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
                         object_ids[xt / 32][yt / 32 - 1] instanceof Bomb;
             }
         }
@@ -109,10 +113,17 @@ public class Collision {
             }
         }
 
-        if(entity instanceof Ballom || entity instanceof Oneal) {
+        if(entity instanceof Ballom || entity instanceof Oneal || entity instanceof Doll) {
             if (yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
                         object_ids[xt / 32][yt / 32 + 1] instanceof Brick||
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Bomb;
+            }
+        }
+
+        if(entity instanceof Kondoria) {
+            if(yt % 32 == 0) {
+                return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
                         object_ids[xt / 32][yt / 32 + 1] instanceof Bomb;
             }
         }
@@ -148,13 +159,20 @@ public class Collision {
            }
        }
 
-       if(entity instanceof Ballom || entity instanceof Oneal) {
+       if(entity instanceof Ballom || entity instanceof Oneal || entity instanceof Doll) {
            if(xt % 32 == 0) {
                return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
                        object_ids[xt / 32 - 1][yt / 32] instanceof Brick ||
                        object_ids[xt / 32 - 1][yt / 32] instanceof Bomb;
            }
        }
+
+        if(entity instanceof Kondoria) {
+            if(xt % 32 == 0) {
+                return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
+                        object_ids[xt / 32 - 1][yt / 32] instanceof Bomb;
+            }
+        }
        return false;
     }
 
@@ -186,13 +204,20 @@ public class Collision {
            }
        }
 
-       if(entity instanceof Ballom || entity instanceof Oneal) {
+       if(entity instanceof Ballom || entity instanceof Oneal || entity instanceof Doll) {
            if(xt % 32 == 0) {
                return object_ids[xt / 32 + 1][yt / 32] instanceof Wall ||
                        object_ids[xt / 32 + 1][yt / 32] instanceof Brick||
                        object_ids[xt / 32 + 1][yt / 32] instanceof Bomb;
            }
        }
+
+        if(entity instanceof Kondoria) {
+            if(xt % 32 == 0) {
+                return object_ids[xt / 32 + 1][yt / 32] instanceof Wall ||
+                        object_ids[xt / 32 + 1][yt / 32] instanceof Bomb;
+            }
+        }
 
        return false;
     }
@@ -219,9 +244,9 @@ public class Collision {
             for (Animal e : enemy) {
                 if (collision(flame.getX(), flame.getY(), 32, 32, e.getX(), e.getY(), 32, 32) && e.isLife()) {
                     e.setLife(false);
-                    if(e instanceof Ballom) {
+                    if(e instanceof Ballom || e instanceof Kondoria) {
                         enemy1Number--;
-                    } else if(e instanceof Oneal) {
+                    } else if(e instanceof Oneal || e instanceof Doll) {
                         enemy2Number--;
                     }
                 }

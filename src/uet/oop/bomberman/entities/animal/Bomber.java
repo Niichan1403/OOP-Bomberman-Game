@@ -45,6 +45,8 @@ public class Bomber extends Animal {
                 if(heart > 0) {
                     if(timeNumber < 0) {
                         running = false;
+                        level_ = 0;
+                        timeWaitLevel1 = 0;
                         heart = 0;
                         enemy.clear();
                         block.clear();
@@ -62,6 +64,8 @@ public class Bomber extends Animal {
                     }
                 } else {
                     running = false;
+                    level_ = 0 ;
+                    timeWaitLevel1 = 0;
                     heart = 0;
                     coin = 0;
                     block.clear();

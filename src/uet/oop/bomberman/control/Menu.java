@@ -17,8 +17,11 @@ import uet.oop.bomberman.graphics.LayoutGame;
 import uet.oop.bomberman.levels.Level1;
 
 import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.BombermanGame.root;
+import static uet.oop.bomberman.levels.NextLevel.waitLevelToUp;
 
 public class Menu {
+    public static long timeWaitLevel1 = 0;
     public static Image authorImage;
     public static ImageView author;
     private static Text newGameText, exitText, optionsText;
@@ -86,12 +89,11 @@ public class Menu {
 
 
         rect[0].setOnMouseClicked(event -> {
-            author.setX(-1000);
-            author.setY(-1000);
+            Image imageNext = new Image("images/menu.png");
+            author.setImage(imageNext);
+            timeWaitLevel1 = System.currentTimeMillis();
             layoutMenu.setTranslateX(-1000);
             layoutMenu.setTranslateY(-1000);
-            running = true;
-            new Level1(root);
         });
 
         rect[2].setOnMouseClicked(event->{
