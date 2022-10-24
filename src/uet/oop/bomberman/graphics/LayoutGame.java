@@ -304,5 +304,28 @@ public class LayoutGame {
                 running = true;
             }
         });
+
+        quit.setOnMouseClicked(event->{
+            if(running) {
+                if(!Menu2.getCheckCreateMenu2()) {
+                    Menu2.creatMenu2();
+                    Menu2.updateMenu2();
+                    running = false;
+                } else {
+                    rect1.setY(80);
+                    for(int i = 0; i < 4; i++) {
+                        textMenu2[i].setY(180 + i * 50);
+                    }
+                    Menu2.updateMenu2();
+                    running = false;
+                }
+            } else {
+                rect1.setY(500);
+                for(int i = 0; i < 4; i++) {
+                    textMenu2[i].setY(500);
+                }
+                running = true;
+            }
+        });
     }
 }

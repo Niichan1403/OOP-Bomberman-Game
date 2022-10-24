@@ -23,92 +23,87 @@ import static uet.oop.bomberman.levels.NextLevel.waitLevelToUp;
 public class Menu {
     public static long timeWaitLevel1 = 0;
     public static Image authorImage;
+    public static Image item1,item2,item3;
+    public static ImageView[] itemMenu = new ImageView[3];
     public static ImageView author;
-    private static Text newGameText, exitText, optionsText;
-    private static Text[] item = new Text[3];
-    private static Rectangle[] rect = new Rectangle[3];
     public static Pane layoutMenu;
 
 
     public static void creatMenu(Group root) {
+        item1 = new Image("images/item1.png");
+        item2 = new Image("images/item2.png");
+        item3 = new Image("images/item3.png");
+
         authorImage = new Image("images/menu.png");
         author = new ImageView(authorImage);
         author.setX(0);
         author.setY(0);
 
-        for(int i = 0;i < 3; i++) {
-            item[i] = new Text();
-            if(i == 0) {
-                item[i].setText("New Game");
-                item[i].setX(510);
-                item[i].setY(280);
-            }
-            else if(i == 1) {
-                item[i].setText("Options");
-                item[i].setX(520);
-                item[i].setY(340);
-            }
-            else {
-                item[i].setText("Exit");
-                item[i].setX(540);
-                item[i].setY(400);
-            }
-
-            item[i].setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR,25));
-            item[i].setFill(Color.WHITE);
-            item[i].setStroke(Color.BLACK);
-        }
-
         for(int i = 0; i < 3; i++) {
-            rect[i] = new Rectangle();
             if(i == 0) {
-                rect[i].setY(250);
+                itemMenu[i] = new ImageView(item1);
+                itemMenu[i].setY(250);
             }
             else if(i == 1) {
-                rect[i].setY(310);
+                itemMenu[i] = new ImageView(item2);
+                itemMenu[i].setY(310);
             }
             else {
-                rect[i].setY(370);
+                itemMenu[i] = new ImageView(item3);
+                itemMenu[i].setY(370);
             }
 
-            rect[i].setWidth(200);
-            rect[i].setHeight(40);
-            rect[i].setX(WidthView/2-rect[i].getWidth()/2);
-            rect[i].setFill(Color.ORANGE);
-            rect[i].setArcHeight(30);
-            rect[i].setArcWidth(30);
-            rect[i].setStroke(Color.WHITE);
-            rect[i].setStrokeWidth(3);
+            itemMenu[i].setX(WidthView/2-100);
+            itemMenu[i].setScaleY(0.9);
         }
 
         layoutMenu = new Pane();
-        layoutMenu.getChildren().addAll(rect[0],rect[1],rect[2],item[0],item[1],item[2]);
+        layoutMenu.getChildren().addAll(itemMenu[0],itemMenu[1],itemMenu[2]);
         layoutMenu.setMinSize(600,600);
         layoutMenu.setMaxSize(600,600);
         root.getChildren().addAll(author,layoutMenu);
 
 
-        rect[0].setOnMouseClicked(event -> {
-            Image imageNext = new Image("images/menu.png");
+        itemMenu[0].setOnMouseClicked(event -> {
+            Image imageNext = new Image("images/nextLevel1.png");
             author.setImage(imageNext);
             timeWaitLevel1 = System.currentTimeMillis();
             layoutMenu.setTranslateX(-1000);
             layoutMenu.setTranslateY(-1000);
         });
 
-        rect[2].setOnMouseClicked(event->{
+        itemMenu[2].setOnMouseClicked(event->{
             stage_.close();
         });
 
-        for(Rectangle Rect:rect) {
-            Rect.setOnMouseEntered(event->{
-                Rect.setFill(Color.rgb(127,255,0));
+        for(ImageView img:itemMenu) {
+
+            img.setOnMouseEntered(event->{
+                if(img.equals(itemMenu[0])) {
+                    item1 = new Image("images/item1_1.png");
+                    itemMenu[0].setImage(item1);
+                } else if(img.equals(itemMenu[1])) {
+                    item2 = new Image("images/item2_1.png");
+                    itemMenu[1].setImage(item2);
+                } else {
+                    item3 = new Image("images/item3_1.png");
+                    itemMenu[2].setImage(item3);
+                }
             });
         }
 
-        for(Rectangle Rect:rect) {
-            Rect.setOnMouseExited(event->{
-                Rect.setFill(Color.ORANGE);
+        for(ImageView img:itemMenu) {
+            img.setOnMouseExited(event->{
+                if(img.equals(itemMenu[0])) {
+                    item1 = new Image("images/item1.png");
+                    itemMenu[0].setImage(item1);
+                } else if(img.equals(itemMenu[1])) {
+                    item2 = new Image("images/item2.png");
+                    itemMenu[1].setImage(item2);
+                } else {
+                    item3 = new Image("images/item3.png");
+                    itemMenu[2].setImage(item3);
+                }
             });
         }
     }

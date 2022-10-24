@@ -14,6 +14,9 @@ public class NextLevel {
     public static boolean wait;
     public static long timeWait;
     public static ImageView imageLevelUp = new ImageView();
+    public static Image imageNext2 = new Image("images/nextLevel2.png");
+    public static Image imageNext3 = new Image("images/nextLevel3.png");
+
 
     public static void waitLevelToUp() {
         Image imageNext = new Image("images/transparent.png");
@@ -25,8 +28,8 @@ public class NextLevel {
                     case 1:
                         new Level2(root);
                         break;
-                    default:
-                        new Level1(root);
+                    case 2:
+                        new Level3(root);
                         break;
                 }
                 wait = false;

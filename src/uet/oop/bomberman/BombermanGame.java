@@ -170,8 +170,11 @@ public class BombermanGame extends Application {
             if(player.getX() == portal.getX() && player.getY() == portal.getY()) {
                 wait = true;
                 timeWait = System.currentTimeMillis();
-                Image imageNext = new Image("images/menu.png");
-                imageLevelUp.setImage(imageNext);
+                if(level_ == 1) {
+                    imageLevelUp.setImage(imageNext2);
+                } else if(level_ == 2) {
+                    imageLevelUp.setImage(imageNext3);
+                }
                 imageLevelUp.setX(0);
                 imageLevelUp.setY(0);
                 root.getChildren().add(imageLevelUp);
