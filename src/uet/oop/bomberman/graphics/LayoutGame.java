@@ -16,7 +16,7 @@ import static uet.oop.bomberman.control.Menu2.*;
 
 public class LayoutGame {
     public static Pane pane;
-    public static int boom = 0, heart = 0, coin = 0, enemy1Number = 0, enemy2Number = 0;
+    public static int boom = 0, heart = 0, coin = 0, enemy1Number = 0, enemy2Number = 0,enemy3Number = 0, enemy4Number = 0;
     public static ImageView status;
     public static ImageView[] bom = new ImageView[3];
     public static Rectangle[] rect_bom1 = new Rectangle[3];
@@ -266,8 +266,18 @@ public class LayoutGame {
         textBox1[1].setText(": " + heart);
         textBox1[2].setText(": " + boom);
         textBox1[0].setText(": " + coin);
-        textBox2[1].setText(": " + enemy1Number);
-        textBox3[1].setText(": " + enemy2Number);
+
+        if(level_ == 3) {
+            textBox2[0].setText(": " + enemy1Number);
+            textBox2[1].setText(": 0");
+            textBox2[2].setText(": " + enemy2Number);
+            textBox3[0].setText(": " + enemy3Number);
+            textBox3[1].setText(": 0");
+            textBox3[2].setText(": " + enemy4Number);
+        } else {
+            textBox2[1].setText(": " + enemy1Number);
+            textBox3[1].setText(": " + enemy2Number);
+        }
 
         status.setOnMouseClicked(mouseEvent -> {
             if(running) {

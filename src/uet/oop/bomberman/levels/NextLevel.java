@@ -5,8 +5,10 @@ import javafx.scene.image.ImageView;
 import uet.oop.bomberman.sound.Sound;
 
 import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.control.Menu.author;
-import static uet.oop.bomberman.control.Menu.timeWaitLevel1;
+import static uet.oop.bomberman.control.Menu.*;
+import static uet.oop.bomberman.control.Menu2.setCheckCreateMenu2;
+import static uet.oop.bomberman.graphics.LayoutGame.coin;
+import static uet.oop.bomberman.graphics.LayoutGame.heart;
 
 public class NextLevel {
     public static Sound nextLevelSound = new Sound();
@@ -16,6 +18,7 @@ public class NextLevel {
     public static ImageView imageLevelUp = new ImageView();
     public static Image imageNext2 = new Image("images/nextLevel2.png");
     public static Image imageNext3 = new Image("images/nextLevel3.png");
+    public static Image endGame = new Image("images/endGame.png");
 
 
     public static void waitLevelToUp() {
@@ -30,6 +33,9 @@ public class NextLevel {
                         break;
                     case 2:
                         new Level3(root);
+                        break;
+                    case 3:
+                        new Level1(root);
                         break;
                 }
                 wait = false;

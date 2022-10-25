@@ -244,10 +244,22 @@ public class Collision {
             for (Animal e : enemy) {
                 if (collision(flame.getX(), flame.getY(), 32, 32, e.getX(), e.getY(), 32, 32) && e.isLife()) {
                     e.setLife(false);
-                    if(e instanceof Ballom || e instanceof Kondoria) {
-                        enemy1Number--;
-                    } else if(e instanceof Oneal || e instanceof Doll) {
-                        enemy2Number--;
+                    if(level_ == 3) {
+                        if(e instanceof Ballom) {
+                            enemy1Number--;
+                        } else if(e instanceof Kondoria) {
+                            enemy2Number--;
+                        } else if(e instanceof Oneal) {
+                            enemy3Number--;
+                        } else if(e instanceof Doll) {
+                            enemy4Number--;
+                        }
+                    } else {
+                        if(e instanceof Ballom || e instanceof Kondoria) {
+                            enemy1Number--;
+                        } else if(e instanceof Oneal || e instanceof Doll) {
+                            enemy2Number--;
+                        }
                     }
                 }
             }

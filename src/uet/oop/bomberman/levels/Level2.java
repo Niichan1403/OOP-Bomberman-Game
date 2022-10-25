@@ -45,8 +45,8 @@ public class Level2 {
         frameKill = 0;
         swapKill = 1;
         boom = 20;
-        enemy1Number  = 4;
-        enemy2Number = 3;
+        enemy1Number  = 3;
+        enemy2Number = 2;
 
         Bomb.powerDirUp = 1;
         Bomb.powerDirDown = 1;
@@ -54,22 +54,19 @@ public class Level2 {
         Bomb.powerDirRight = 1;
 
         Animal enemy1 = new Kondoria(13, 1, Sprite.balloom_left1.getFxImage());
-        Animal enemy2 = new Kondoria(24, 8, Sprite.balloom_left1.getFxImage());
-        Animal enemy3 = new Kondoria(22, 5, Sprite.balloom_left1.getFxImage());
-        Animal enemy4 = new Kondoria(3,7 , Sprite.balloom_left1.getFxImage());
+        Animal enemy2 = new Kondoria(15, 3, Sprite.balloom_left1.getFxImage());
+        Animal enemy3 = new Kondoria(13, 9, Sprite.balloom_left1.getFxImage());
 
 
-        Animal enemy5 = new Doll(7, 7, Sprite.oneal_left1.getFxImage());
-        Animal enemy6 = new Doll(26, 3, Sprite.oneal_left1.getFxImage());
-        Animal enemy7 = new Doll(27, 8, Sprite.oneal_left1.getFxImage());
+        Animal enemy5 = new Doll(20, 1, Sprite.oneal_left1.getFxImage());
+        Animal enemy6 = new Doll(5, 7, Sprite.oneal_left1.getFxImage());
 
         enemy.add(enemy1);
         enemy.add(enemy2);
         enemy.add(enemy3);
-        enemy.add(enemy4);
+
         enemy.add(enemy5);
         enemy.add(enemy6);
-        enemy.add(enemy7);
 
         for(Animal item : enemy) {
             item.setLife(true);

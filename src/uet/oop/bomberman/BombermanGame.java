@@ -168,12 +168,15 @@ public class BombermanGame extends Application {
             Entity portal = new Portal(WIDTH - 2,HEIGHT - 2,Sprite.portal.getFxImage());
             block.add(portal);
             if(player.getX() == portal.getX() && player.getY() == portal.getY()) {
+                timeNumber += 3;
                 wait = true;
                 timeWait = System.currentTimeMillis();
                 if(level_ == 1) {
                     imageLevelUp.setImage(imageNext2);
                 } else if(level_ == 2) {
                     imageLevelUp.setImage(imageNext3);
+                } else if(level_ == 3) {
+                    imageLevelUp.setImage(endGame);
                 }
                 imageLevelUp.setX(0);
                 imageLevelUp.setY(0);

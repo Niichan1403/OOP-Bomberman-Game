@@ -89,6 +89,7 @@ public class Menu {
                     item3 = new Image("images/item3_1.png");
                     itemMenu[2].setImage(item3);
                 }
+                img.setX(WidthView/2 - 120);
             });
         }
 
@@ -104,6 +105,7 @@ public class Menu {
                     item3 = new Image("images/item3.png");
                     itemMenu[2].setImage(item3);
                 }
+                img.setX(WidthView/2 - 100);
             });
         }
     }
