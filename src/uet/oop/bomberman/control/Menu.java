@@ -22,7 +22,7 @@ import static uet.oop.bomberman.BombermanGame.root;
 import static uet.oop.bomberman.levels.NextLevel.waitLevelToUp;
 
 public class Menu {
-    public static Sound menuSound = new Sound();
+    public static Sound menuSound;
     public static long timeWaitLevel1 = 0;
     public static Image authorImage;
     public static Image item1,item2,item3;
@@ -31,14 +31,16 @@ public class Menu {
     public static Pane layoutMenu;
 
 
-    public static void creatMenu(Group root) {
+    public static void creatMenu() {
+        menuSound = new Sound();
+        author = new ImageView();
         menuSound.playTitleScreen();
         item1 = new Image("images/item1.png");
         item2 = new Image("images/item2.png");
         item3 = new Image("images/item3.png");
 
         authorImage = new Image("images/menu.png");
-        author = new ImageView(authorImage);
+        author.setImage(authorImage);
         author.setX(0);
         author.setY(0);
 

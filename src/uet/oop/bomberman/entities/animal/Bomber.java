@@ -51,8 +51,10 @@ public class Bomber extends Animal {
                         enemy.clear();
                         block.clear();
                         coin = 0;
+                        Bomb.hasBomb = 0;
                         setCheckCreateMenu2(false);
-                        creatMenu(root);
+                        levelSound.stopBackground();
+                        creatMenu();
                         return;
                     }
                     else {
@@ -70,8 +72,10 @@ public class Bomber extends Animal {
                     coin = 0;
                     block.clear();
                     enemy.clear();
+                    Bomb.hasBomb = 0;
                     setCheckCreateMenu2(false);
-                    creatMenu(root);
+                    levelSound.stopBackground();
+                    creatMenu();
                 }
             }
             swapKill++;

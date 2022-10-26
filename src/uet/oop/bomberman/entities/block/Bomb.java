@@ -54,7 +54,7 @@ public class Bomb extends Entity {
             bombNumber--;
             boom--;
             hasBomb = 1;
-            timeToExplode = 180;
+            timeToExplode = 100;
             explosionTime = 140;
             int x = Math.round((float) player.getX() / 32);
             int y = Math.round((float) player.getY() / 32);

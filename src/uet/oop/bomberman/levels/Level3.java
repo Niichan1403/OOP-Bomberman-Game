@@ -47,32 +47,33 @@ public class Level3 {
         player.setY(32);
         player.setImg(Sprite.player_right.getFxImage());
         player.setDist(1);
-        timeNumber = 150;
+        timeNumber = 250;
 
         frameKill = 0;
         swapKill = 1;
-        boom = 20;
+        boom = 30;
         Bomb.powerDirUp = 1;
         Bomb.powerDirDown = 1;
         Bomb.powerDirLeft = 1;
         Bomb.powerDirRight = 1;
+        Bomb.hasBomb = 0;
 
         Animal enemy1 = new Ballom(13, 1, Sprite.balloom_left1.getFxImage());
         Animal enemy2 = new Doll(24, 8, Sprite.doll_left1.getFxImage());
 
 
-//        Animal enemy5 = new Oneal(7, 7, Sprite.oneal_left1.getFxImage());
-//        Animal enemy6 = new Oneal(26, 3, Sprite.oneal_left1.getFxImage());
-//        Animal enemy7 = new Kondoria(27, 8, Sprite.kondoria_left1.getFxImage());
-//        Animal enemy8 = new Kondoria(22, 3, Sprite.kondoria_left1.getFxImage());
-//
-//        enemy.add(enemy1);
-//        enemy.add(enemy2);
-//
-//        enemy.add(enemy5);
-//        enemy.add(enemy6);
-//        enemy.add(enemy7);
-//        enemy.add(enemy8);
+        Animal enemy5 = new Oneal(7, 7, Sprite.oneal_left1.getFxImage());
+        Animal enemy6 = new Oneal(26, 3, Sprite.oneal_left1.getFxImage());
+        Animal enemy7 = new Kondoria(27, 8, Sprite.kondoria_left1.getFxImage());
+        Animal enemy8 = new Kondoria(22, 3, Sprite.kondoria_left1.getFxImage());
+
+        enemy.add(enemy1);
+        enemy.add(enemy2);
+
+        enemy.add(enemy5);
+        enemy.add(enemy6);
+        enemy.add(enemy7);
+        enemy.add(enemy8);
 
         for(Animal item : enemy) {
             item.setLife(true);

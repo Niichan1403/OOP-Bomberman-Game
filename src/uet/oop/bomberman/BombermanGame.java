@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.control.Menu;
@@ -65,7 +66,7 @@ public class BombermanGame extends Application {
         // Create root container
         root = new Group();
         root.getChildren().addAll(canvas);
-        Menu.creatMenu(root);
+        Menu.creatMenu();
 
 
         // Create scene
@@ -169,31 +170,26 @@ public class BombermanGame extends Application {
             Entity portal = new Portal(WIDTH - 2,HEIGHT - 2,Sprite.portal.getFxImage());
             block.add(portal);
             if(player.getX() == portal.getX() && player.getY() == portal.getY()) {
-                timeNumber += 3;
+                timeNumber += 10;
                 wait = true;
                 timeWait = System.currentTimeMillis();
+                imageLevelUp = new ImageView();
                 if(level_ == 1) {
-                    imageLevelUp2.setImage(imageNext2);
-                    imageLevelUp2.setX(0);
-                    imageLevelUp2.setY(0);
-                    root.getChildren().add(imageLevelUp2);
+                    imageLevelUp.setImage(imageNext2);
                     levelSound.stopBackground();
                     levelSound.playNextLevel();
                 } else if(level_ == 2) {
-                    imageLevelUp3.setImage(imageNext3);
-                    imageLevelUp3.setX(0);
-                    imageLevelUp3.setY(0);
-                    root.getChildren().add(imageLevelUp3);
+                    imageLevelUp.setImage(imageNext3);
                     levelSound.stopBackground();
                     levelSound.playNextLevel();
                 } else if(level_ == 3) {
-                    imageLevelUp1.setImage(endGame);
-                    imageLevelUp1.setX(0);
-                    imageLevelUp1.setY(0);
-                    root.getChildren().add(imageLevelUp1);
+                    imageLevelUp.setImage(endGame);
                     levelSound.stopBackground();
                     levelSound.playWinTitle();
                 }
+                imageLevelUp.setX(0);
+                imageLevelUp.setY(0);
+                root.getChildren().add(imageLevelUp);
             }
         }
     }

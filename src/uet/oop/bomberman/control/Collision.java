@@ -231,7 +231,8 @@ public class Collision {
     }
 
     public static void checkCollisionWithEnemy() {
-        for (Animal animal : enemy) {
+        for (int i = 0; i < enemy.size(); i++) {
+            Animal animal = enemy.get(i);
             if (collision(player.getX(), player.getY(), 24, 32, animal.getX(), animal.getY(), 32, 32)) {
                 if (player.isLife() && animal.isLife()) {
                     if (heart > 0) {

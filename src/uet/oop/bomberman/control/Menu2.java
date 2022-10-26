@@ -7,12 +7,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import uet.oop.bomberman.entities.block.Bomb;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.control.Menu.creatMenu;
 import static uet.oop.bomberman.graphics.LayoutGame.coin;
 import static uet.oop.bomberman.graphics.LayoutGame.heart;
 import static uet.oop.bomberman.control.Menu.timeWaitLevel1;
+import static uet.oop.bomberman.sound.Sound.turnSound;
 
 public class Menu2 {
     public static Rectangle rect1;
@@ -71,12 +73,23 @@ public class Menu2 {
             running = true;
         });
 
+        textMenu2[1].setOnMouseClicked(mouseEvent -> {
+            if(turnSound) {
+                turnSound = false;
+                levelSound.stopBackground();
+            } else {
+                turnSound = true;
+                levelSound.playBackground();
+            }
+        });
+
         textMenu2[2].setOnMouseClicked(event->{
             running = false;
             timeWaitLevel1 = 0;
             level_ = 0;
             heart = 0;
             coin = 0;
+            Bomb.hasBomb = 0;
             block.clear();
             enemy.clear();
             rect1.setY(500);
@@ -84,7 +97,8 @@ public class Menu2 {
                 textMenu2[i].setY(500);
                 setCheckCreateMenu2(false);
             }
-            creatMenu(root);
+            levelSound.stopBackground();
+            creatMenu();
         });
 
         textMenu2[3].setOnMouseClicked(event->{

@@ -7,6 +7,7 @@ import javafx.util.Duration;
 import java.io.File;
 
 public class Sound {
+    public static boolean turnSound = true;
     public Sound() {
     }
 
@@ -44,35 +45,55 @@ public class Sound {
     }
 
     public void playJustDied() {
-        this.play(1, 1, justDiedPlayer);
+        if(turnSound) {
+            this.play(1, 1, justDiedPlayer);
+        }
     }
     public void playPutBomb() {
-        this.play(1, 1, putBombPlayer);
+        if(turnSound){
+            this.play(1, 1, putBombPlayer);
+        }
     }
 
     public void playBombExplosion() {
-        this.play(1, 1, bombExplosionPlayer);
+        if(turnSound) {
+            this.play(1, 1, bombExplosionPlayer);
+        };
     }
     public void playNextLevel() {
-        this.play(1, 0.5, nextLevelPlayer);
+        if(turnSound) {
+            this.play(1, 0.5, nextLevelPlayer);
+        }
     }
     public void playTitleScreen() {
-        this.play(1, 0.2, titleScreenPlayer);
+        if(turnSound) {
+            this.play(1, 0.2, titleScreenPlayer);
+        }
     }
     public void playCoin() {
-        this.play(1, 1, coinPlayer);
+       if(turnSound) {
+           this.play(1, 1, coinPlayer);
+       }
     }
     public void playItem() {
-        this.play(1, 0.5, itemPlayer);
+       if(turnSound) {
+           this.play(1, 0.5, itemPlayer);
+       }
     }
     public void playRunning1() {
-        this.play(1, 0.08, running1Player);
+       if(turnSound) {
+           this.play(1, 0.08, running1Player);
+       }
     }
     public void playBackground() {
-        this.play(1, 0.55, backgroundPlayer);
+       if(turnSound) {
+           this.play(1, 0.55, backgroundPlayer);
+       }
     }
     public void playWinTitle() {
-        this.play(1, 0.55, winTitlePlayer);
+        if(turnSound) {
+            this.play(1, 0.55, winTitlePlayer);
+        }
     }
 
     public void stopBackground() {
