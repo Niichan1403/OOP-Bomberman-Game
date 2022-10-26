@@ -56,6 +56,7 @@ public class Level1 {
         enemy2Number = 1;
 
 
+
         for(Animal item : enemy) {
             item.setLife(true);
             if(item instanceof Ballom) {

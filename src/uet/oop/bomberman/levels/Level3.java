@@ -61,7 +61,6 @@ public class Level3 {
         Animal enemy1 = new Ballom(13, 1, Sprite.balloom_left1.getFxImage());
         Animal enemy2 = new Doll(24, 8, Sprite.doll_left1.getFxImage());
 
-
         Animal enemy5 = new Oneal(7, 7, Sprite.oneal_left1.getFxImage());
         Animal enemy6 = new Oneal(26, 3, Sprite.oneal_left1.getFxImage());
         Animal enemy7 = new Kondoria(27, 8, Sprite.kondoria_left1.getFxImage());
@@ -74,7 +73,6 @@ public class Level3 {
         enemy.add(enemy6);
         enemy.add(enemy7);
         enemy.add(enemy8);
-
         for(Animal item : enemy) {
             item.setLife(true);
             if(item instanceof Ballom || item instanceof Doll || item instanceof Kondoria) {

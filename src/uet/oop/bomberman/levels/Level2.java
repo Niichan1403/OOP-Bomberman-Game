@@ -42,7 +42,6 @@ public class Level2 {
         player.setImg(Sprite.player_right.getFxImage());
         player.setDist(1);
         timeNumber = 200;
-
         frameKill = 0;
         swapKill = 1;
         boom = 30;
