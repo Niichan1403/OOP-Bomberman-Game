@@ -36,6 +36,7 @@ public class Level2 {
         enemy2Image.setImage(doll);
 
         new CreateMap("res/levels/level2.txt");
+        levelSound.playBackground();
         player.setX(32);
         player.setY(32);
         player.setImg(Sprite.player_right.getFxImage());
@@ -53,20 +54,20 @@ public class Level2 {
         Bomb.powerDirLeft = 1;
         Bomb.powerDirRight = 1;
 
-        Animal enemy1 = new Kondoria(13, 1, Sprite.balloom_left1.getFxImage());
-        Animal enemy2 = new Kondoria(15, 3, Sprite.balloom_left1.getFxImage());
-        Animal enemy3 = new Kondoria(13, 9, Sprite.balloom_left1.getFxImage());
-
-
-        Animal enemy5 = new Doll(20, 1, Sprite.oneal_left1.getFxImage());
-        Animal enemy6 = new Doll(5, 7, Sprite.oneal_left1.getFxImage());
-
-        enemy.add(enemy1);
-        enemy.add(enemy2);
-        enemy.add(enemy3);
-
-        enemy.add(enemy5);
-        enemy.add(enemy6);
+//        Animal enemy1 = new Kondoria(13, 1, Sprite.balloom_left1.getFxImage());
+//        Animal enemy2 = new Kondoria(15, 3, Sprite.balloom_left1.getFxImage());
+//        Animal enemy3 = new Kondoria(13, 9, Sprite.balloom_left1.getFxImage());
+//
+//
+//        Animal enemy5 = new Doll(20, 1, Sprite.oneal_left1.getFxImage());
+//        Animal enemy6 = new Doll(5, 7, Sprite.oneal_left1.getFxImage());
+//
+//        enemy.add(enemy1);
+//        enemy.add(enemy2);
+//        enemy.add(enemy3);
+//
+//        enemy.add(enemy5);
+//        enemy.add(enemy6);
 
         for(Animal item : enemy) {
             item.setLife(true);

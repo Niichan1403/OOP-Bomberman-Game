@@ -3,10 +3,12 @@ package uet.oop.bomberman.entities.item;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.control.Collision;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 import static uet.oop.bomberman.BombermanGame.player;
 
 public class SpeedItem extends Item {
+    public Sound speedItemSound = new Sound();
     public SpeedItem(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
@@ -25,6 +27,7 @@ public class SpeedItem extends Item {
             if (Collision.collision(player.getX(), player.getY(), 24, 32, this.getX(), this.getY(), 32, 32)) {
                 this.setImg(Sprite.grass.getFxImage());
                 this.setReceived(true);
+                speedItemSound.playItem();
                 if (player.getDist() % 2 == 1) {
                     if (player.getX() % 2 == 1) {
                         player.setX(player.getX() - 1);
@@ -41,7 +44,7 @@ public class SpeedItem extends Item {
                         player.setY(player.getY() - 1);
                     }
                 }
-                player.setDist(player.getDist() + 1);
+                player.setDist(player.getDist() * 2);
             }
         }
     }

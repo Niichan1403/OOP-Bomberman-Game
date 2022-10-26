@@ -2,6 +2,7 @@ package uet.oop.bomberman.control;
 
 import uet.oop.bomberman.entities.animal.*;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.Sound;
 
 import static uet.oop.bomberman.control.Collision.*;
 
@@ -9,6 +10,7 @@ public class Move {
     public static int dx = 0;
     public static int dy = 0;
     public static boolean blocked = false;
+    public static Sound moveSound = new Sound();
 
     public static void checkRun(Animal animal, int dist) {
         if (animal instanceof Bomber){
@@ -74,6 +76,7 @@ public class Move {
             } else if (animal.getSwap() == 3){
                 animal.setImg(Sprite.player_up.getFxImage());
                 animal.setSwap(4);
+                moveSound.playRunning1();
                 animal.animationFrame = 6;
             } else if (animal.getSwap() == 4){
                 animal.setImg(Sprite.player_up_2.getFxImage());
@@ -176,6 +179,7 @@ public class Move {
             } else if (animal.getSwap() == 3){
                 animal.setImg(Sprite.player_down.getFxImage());
                 animal.setSwap(4);
+                moveSound.playRunning1();
                 animal.animationFrame = 6;
             } else if (animal.getSwap() == 4){
                 animal.setImg(Sprite.player_down_2.getFxImage());
@@ -277,6 +281,7 @@ public class Move {
             } else if (animal.getSwap() == 3){
                 animal.setImg(Sprite.player_left.getFxImage());
                 animal.setSwap(4);
+                moveSound.playRunning1();
                 animal.animationFrame = 6;
             } else if (animal.getSwap() == 4){
                 animal.setImg(Sprite.player_left_2.getFxImage());
@@ -378,6 +383,7 @@ public class Move {
             } else if (animal.getSwap() == 3){
                 animal.setImg(Sprite.player_right.getFxImage());
                 animal.setSwap(4);
+                moveSound.playRunning1();
                 animal.animationFrame = 6;
             } else if (animal.getSwap() == 4){
                 animal.setImg(Sprite.player_right_2.getFxImage());

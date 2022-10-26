@@ -19,6 +19,7 @@ public class Level1 {
     public Level1(Group root) {
         level_ = 1;
         new CreateMap("res/levels/level1.txt");
+        levelSound.playBackground();
         LayoutGame.createLayout(root);
         player.setLife(true);
         player.setX(32);
@@ -30,6 +31,22 @@ public class Level1 {
         Bomb.powerDirRight = 1;
         player.setImg(Sprite.player_right.getFxImage());
         timeNumber = 150;
+
+//        Animal enemy1 = new Ballom(13, 1, Sprite.balloom_left1.getFxImage());
+//        Animal enemy2 = new Ballom(24, 8, Sprite.balloom_left1.getFxImage());
+//        Animal enemy3 = new Ballom(10, 7, Sprite.balloom_left1.getFxImage());
+//        Animal enemy5 = new Ballom(7, 7, Sprite.balloom_left1.getFxImage());
+//
+//        Animal enemy6 = new Oneal(26, 3, Sprite.oneal_left1.getFxImage());
+//        Animal enemy7 = new Oneal(27, 8, Sprite.oneal_left1.getFxImage());
+//
+//        enemy.add(enemy1);
+//        enemy.add(enemy2);
+//        enemy.add(enemy3);
+//
+//        enemy.add(enemy5);
+//        enemy.add(enemy6);
+//        enemy.add(enemy7);
 
         frameKill = 0;
         swapKill = 1;

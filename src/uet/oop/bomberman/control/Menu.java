@@ -15,12 +15,14 @@ import javafx.stage.Stage;
 import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.LayoutGame;
 import uet.oop.bomberman.levels.Level1;
+import uet.oop.bomberman.sound.Sound;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.BombermanGame.root;
 import static uet.oop.bomberman.levels.NextLevel.waitLevelToUp;
 
 public class Menu {
+    public static Sound menuSound = new Sound();
     public static long timeWaitLevel1 = 0;
     public static Image authorImage;
     public static Image item1,item2,item3;
@@ -30,6 +32,7 @@ public class Menu {
 
 
     public static void creatMenu(Group root) {
+        menuSound.playTitleScreen();
         item1 = new Image("images/item1.png");
         item2 = new Image("images/item2.png");
         item3 = new Image("images/item3.png");
@@ -67,6 +70,8 @@ public class Menu {
         itemMenu[0].setOnMouseClicked(event -> {
             Image imageNext = new Image("images/nextLevel1.png");
             author.setImage(imageNext);
+            menuSound.stopTitleScreen();
+            menuSound.playNextLevel();
             timeWaitLevel1 = System.currentTimeMillis();
             layoutMenu.setTranslateX(-1000);
             layoutMenu.setTranslateY(-1000);

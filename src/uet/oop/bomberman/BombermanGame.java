@@ -48,6 +48,7 @@ public class BombermanGame extends Application {
     public static Entity[][] object_ids; // store (x, y) coordinate of objects on game board
     public static String[][] killed_list; // store (x, y) coordinate of killed objects on game board
 
+    public static Sound levelSound = new Sound();
     private GraphicsContext gc;
     private Canvas canvas;
 
@@ -172,15 +173,27 @@ public class BombermanGame extends Application {
                 wait = true;
                 timeWait = System.currentTimeMillis();
                 if(level_ == 1) {
-                    imageLevelUp.setImage(imageNext2);
+                    imageLevelUp2.setImage(imageNext2);
+                    imageLevelUp2.setX(0);
+                    imageLevelUp2.setY(0);
+                    root.getChildren().add(imageLevelUp2);
+                    levelSound.stopBackground();
+                    levelSound.playNextLevel();
                 } else if(level_ == 2) {
-                    imageLevelUp.setImage(imageNext3);
+                    imageLevelUp3.setImage(imageNext3);
+                    imageLevelUp3.setX(0);
+                    imageLevelUp3.setY(0);
+                    root.getChildren().add(imageLevelUp3);
+                    levelSound.stopBackground();
+                    levelSound.playNextLevel();
                 } else if(level_ == 3) {
-                    imageLevelUp.setImage(endGame);
+                    imageLevelUp1.setImage(endGame);
+                    imageLevelUp1.setX(0);
+                    imageLevelUp1.setY(0);
+                    root.getChildren().add(imageLevelUp1);
+                    levelSound.stopBackground();
+                    levelSound.playWinTitle();
                 }
-                imageLevelUp.setX(0);
-                imageLevelUp.setY(0);
-                root.getChildren().add(imageLevelUp);
             }
         }
     }

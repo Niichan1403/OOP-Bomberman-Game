@@ -66,8 +66,10 @@ public class Collision {
         if(entity instanceof Ballom || entity instanceof Oneal || entity instanceof Doll) {
             if(yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 - 1] instanceof Wall ||
-                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick||
-                        object_ids[xt / 32][yt / 32 - 1] instanceof Bomb;
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Brick ||
+                        object_ids[xt / 32][yt / 32 - 1] instanceof Bomb ||
+                        (object_ids[xt / 32][yt / 32 - 1] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32][yt / 32 - 1]).isRevealed()) ||
+                        (object_ids[xt / 32][yt / 32 - 1] instanceof FlameItem && !((FlameItem) object_ids[xt / 32][yt / 32 - 1]).isRevealed());
             }
         }
 
@@ -116,8 +118,10 @@ public class Collision {
         if(entity instanceof Ballom || entity instanceof Oneal || entity instanceof Doll) {
             if (yt % 32 == 0) {
                 return object_ids[xt / 32][yt / 32 + 1] instanceof Wall ||
-                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick||
-                        object_ids[xt / 32][yt / 32 + 1] instanceof Bomb;
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Brick ||
+                        object_ids[xt / 32][yt / 32 + 1] instanceof Bomb ||
+                        (object_ids[xt / 32][yt / 32 + 1] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32][yt / 32 + 1]).isRevealed()) ||
+                        (object_ids[xt / 32][yt / 32 + 1] instanceof FlameItem && !((FlameItem) object_ids[xt / 32][yt / 32 + 1]).isRevealed());
             }
         }
 
@@ -163,7 +167,9 @@ public class Collision {
            if(xt % 32 == 0) {
                return object_ids[xt / 32 - 1][yt / 32] instanceof Wall ||
                        object_ids[xt / 32 - 1][yt / 32] instanceof Brick ||
-                       object_ids[xt / 32 - 1][yt / 32] instanceof Bomb;
+                       object_ids[xt / 32 - 1][yt / 32] instanceof Bomb ||
+                       (object_ids[xt / 32 - 1][yt / 32] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32 - 1][yt / 32]).isRevealed()) ||
+                       (object_ids[xt / 32 - 1][yt / 32] instanceof FlameItem && !((FlameItem) object_ids[xt / 32 - 1][yt / 32]).isRevealed());
            }
        }
 
@@ -207,8 +213,10 @@ public class Collision {
        if(entity instanceof Ballom || entity instanceof Oneal || entity instanceof Doll) {
            if(xt % 32 == 0) {
                return object_ids[xt / 32 + 1][yt / 32] instanceof Wall ||
-                       object_ids[xt / 32 + 1][yt / 32] instanceof Brick||
-                       object_ids[xt / 32 + 1][yt / 32] instanceof Bomb;
+                       object_ids[xt / 32 + 1][yt / 32] instanceof Brick ||
+                       object_ids[xt / 32 + 1][yt / 32] instanceof Bomb ||
+                       (object_ids[xt / 32 + 1][yt / 32] instanceof SpeedItem && !((SpeedItem) object_ids[xt / 32 + 1][yt / 32]).isRevealed()) ||
+                       (object_ids[xt / 32 + 1][yt / 32] instanceof FlameItem && !((FlameItem) object_ids[xt / 32 + 1][yt / 32]).isRevealed());
            }
        }
 
