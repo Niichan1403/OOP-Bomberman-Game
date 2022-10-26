@@ -20,6 +20,7 @@ import uet.oop.bomberman.sound.Sound;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.BombermanGame.root;
 import static uet.oop.bomberman.levels.NextLevel.waitLevelToUp;
+import static uet.oop.bomberman.sound.Sound.turnSound;
 
 public class Menu {
     public static Sound menuSound;
@@ -79,6 +80,15 @@ public class Menu {
             layoutMenu.setTranslateY(-1000);
         });
 
+        itemMenu[1].setOnMouseClicked(mouseEvent -> {
+            if(turnSound) {
+                turnSound = false;
+                levelSound.stopTitleScreen();
+            } else {
+                turnSound = true;
+                levelSound.playTitleScreen();
+            }
+        });
         itemMenu[2].setOnMouseClicked(event->{
             stage_.close();
         });
