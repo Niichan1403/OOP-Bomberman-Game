@@ -28,7 +28,7 @@ public class NextLevel {
         if(wait) {
             long now = System.currentTimeMillis();
             if(level_ == 3) {
-                if(now - timeWait >= 10000) {
+                if(now - timeWait >= 13000) {
                     imageLevelUp.setImage(imageNext);
                     running = false;
                     level_ = 0 ;

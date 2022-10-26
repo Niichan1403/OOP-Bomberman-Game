@@ -73,6 +73,7 @@ public class Level3 {
         enemy.add(enemy6);
         enemy.add(enemy7);
         enemy.add(enemy8);
+
         for(Animal item : enemy) {
             item.setLife(true);
             if(item instanceof Ballom || item instanceof Doll || item instanceof Kondoria) {

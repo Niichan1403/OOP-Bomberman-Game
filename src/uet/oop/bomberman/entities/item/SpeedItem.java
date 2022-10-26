@@ -44,7 +44,7 @@ public class SpeedItem extends Item {
                         player.setY(player.getY() - 1);
                     }
                 }
-                player.setDist(player.getDist() * 2);
+                player.setDist(player.getDist() + 1);
             }
         }
     }

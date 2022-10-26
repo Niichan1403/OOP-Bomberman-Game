@@ -67,7 +67,7 @@ public class Sound {
     }
     public void playTitleScreen() {
         if(turnSound) {
-            this.play(1, 0.2, titleScreenPlayer);
+            this.play(-1, 0.2, titleScreenPlayer);
         }
     }
     public void playCoin() {
