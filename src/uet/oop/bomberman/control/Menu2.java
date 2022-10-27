@@ -34,10 +34,10 @@ public class Menu2 {
             textMenu2[i] = new Text();
             if(i == 0) {
                 textMenu2[i].setText("Resume");
-                textMenu2[i].setX(510);
+                textMenu2[i].setX(500);
                 textMenu2[i].setY(180);
             } else if(i == 1) {
-                textMenu2[i].setText("Sounds");
+                textMenu2[i].setText("Sound");
                 textMenu2[i].setX(510);
                 textMenu2[i].setY(230);
             } else if(i == 2) {

@@ -38,7 +38,8 @@ public class Level1 {
         Animal enemy3 = new Ballom(10, 7, Sprite.balloom_left1.getFxImage());
         Animal enemy5 = new Ballom(7, 7, Sprite.balloom_left1.getFxImage());
 
-        Animal enemy6 = new Oneal(18, 5, Sprite.oneal_left1.getFxImage());
+        Animal enemy6 = new Oneal(24, 3, Sprite.oneal_left1.getFxImage());
+        Animal enemy7 = new Oneal(9, 6, Sprite.oneal_left1.getFxImage());
 
         enemy.add(enemy1);
         enemy.add(enemy2);
@@ -46,6 +47,7 @@ public class Level1 {
 
         enemy.add(enemy5);
         enemy.add(enemy6);
+        enemy.add(enemy7);
 
         frameKill = 0;
         swapKill = 1;
@@ -53,13 +55,12 @@ public class Level1 {
         boom = 20;
         coin = 0;
         enemy1Number  = 4;
-        enemy2Number = 1;
+        enemy2Number = 2;
 
 
 
         for(Animal item : enemy) {
             item.setLife(true);
-            if(item instanceof Ballom) {
                 Random random = new Random();
                 int dir = random.nextInt(4);
                 switch (dir) {
@@ -75,7 +76,6 @@ public class Level1 {
                     case 3:
                         item.right = true;
                         break;
-                }
             }
         }
     }

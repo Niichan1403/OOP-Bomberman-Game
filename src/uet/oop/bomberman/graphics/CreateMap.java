@@ -14,11 +14,11 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.entities.animal.Oneal.str;
 
 public class CreateMap {
     public CreateMap(String lv) {
         final File file = new File(lv);
-
         try (FileReader fr = new FileReader(file)) {
             Scanner sc = new Scanner(file);
             String line = sc.nextLine();
@@ -38,6 +38,7 @@ public class CreateMap {
 
                     for (int j = 0; j < width_; j++) {
                         String s = tokenTile.nextToken();
+                        str[i][j] = s.charAt(0);
                         Entity ett;
                         switch(s) {
                             case "#":

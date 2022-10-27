@@ -62,7 +62,7 @@ public class Level3 {
         Animal enemy2 = new Doll(24, 8, Sprite.doll_left1.getFxImage());
 
         Animal enemy5 = new Oneal(7, 7, Sprite.oneal_left1.getFxImage());
-        Animal enemy6 = new Oneal(26, 3, Sprite.oneal_left1.getFxImage());
+        Animal enemy6 = new Oneal(24, 3, Sprite.oneal_left1.getFxImage());
         Animal enemy7 = new Kondoria(27, 8, Sprite.kondoria_left1.getFxImage());
         Animal enemy8 = new Kondoria(22, 3, Sprite.kondoria_left1.getFxImage());
 

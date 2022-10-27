@@ -12,6 +12,7 @@ import uet.oop.bomberman.sound.Sound;
 import java.util.Objects;
 
 import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.entities.animal.Oneal.str;
 import static uet.oop.bomberman.entities.block.Bomb.*;
 import static uet.oop.bomberman.graphics.LayoutGame.*;
 
@@ -335,6 +336,7 @@ public class Collision {
             brickAnimation.isDestroyed = true;
 
             object_ids[xt][yt] = newGrass;
+            str[yt][xt] = '-';
         }
         else if (e instanceof SpeedItem && !((SpeedItem) e).isRevealed()) {
             int xt = e.getX() / 32;
